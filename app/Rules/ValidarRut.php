@@ -13,7 +13,7 @@ class ValidarRut implements Rule
      */
     public function __construct()
     {
-       
+
     }
 
     /**
@@ -39,4 +39,6 @@ class ValidarRut implements Rule
     {
         return 'El rut no es valido.';
     }
+
+    //proyectoooooooooooooooooooooooooooooooooooo
 }
