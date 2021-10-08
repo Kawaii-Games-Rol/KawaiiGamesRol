@@ -26,7 +26,6 @@ class ValidarRut implements Rule
     public function passes($attribute, $value)
     {
         dd($value);
-
         return false;
     }
 
