@@ -13,7 +13,7 @@ class ValidarRut implements Rule
      */
     public function __construct()
     {
-       
+
     }
 
     /**
