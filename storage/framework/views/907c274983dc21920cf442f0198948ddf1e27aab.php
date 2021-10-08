@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row justify-content-center">
@@ -10,7 +12,7 @@
                         <?php echo csrf_field(); ?>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Nombre usuario')); ?></label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Nombre de la Scarlet')); ?></label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control <?php $__errorArgs = ['name'];
