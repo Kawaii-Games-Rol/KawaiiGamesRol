@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
             'rut' =>['required','string', 'unique:users', new ValidarRut()],
+            'rol' => ['string','required','in:Administrador,Jefe Carrera,Alumno'],
         ]);
     }
 
@@ -71,6 +72,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'rut' =>$data['rut'],
+            'rol' => $data['rol'],
             'status' =>1
 
         ]);

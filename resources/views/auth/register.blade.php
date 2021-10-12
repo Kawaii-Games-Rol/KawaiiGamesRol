@@ -24,7 +24,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -85,6 +85,15 @@
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="form-control-label" style="color: white">Rol</label>
+                            <select class="form-control" name="rol" id="rol">
+                                <option value="Administrador">Administrador</option>
+                                <option value="Jefe Carrera">Jefe de carrera</option>
+                                <option value="Alumno">Alumno</option>
+                            </select>
                         </div>
 
                         <div class="form-group row mb-0">

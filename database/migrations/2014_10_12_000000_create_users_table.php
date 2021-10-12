@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
 {
-    /**
+    /**php
      * Run the migrations.
      *
      * @return void
@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('rut')->unique();
             $table->tinyInteger('status');
+            $table->enum('rol',['Administrador','Jefe Carrera', 'Alumno']);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
