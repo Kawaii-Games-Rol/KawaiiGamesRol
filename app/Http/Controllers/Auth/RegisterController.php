@@ -74,6 +74,7 @@ class RegisterController extends Controller
             'rut' =>$data['rut'],
             'rol' => $data['rol'],
             'status' =>1
+            //xd?
 
         ]);
     }
