@@ -43,6 +43,9 @@ class ValidarRut implements Rule
         if (!preg_match("/^[0-9.]+[-]?+[0-9kK]{1}/", $rut)) {
             return false;
         }
+        if (str_contains($rut, '.') || str_contains($rut, '-')){
+            return false;
+        }
 
         $rut = preg_replace('/[\.\-]/i', '', $rut);
         $dv = substr($rut, -1);
