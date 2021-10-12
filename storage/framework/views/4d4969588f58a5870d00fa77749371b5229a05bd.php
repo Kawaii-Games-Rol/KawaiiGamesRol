@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row justify-content-center">
@@ -13,7 +15,7 @@
                         </div>
                     <?php endif; ?>
 
-                    <?php echo e(__('You are logged in!')); ?>
+                    <?php echo e(__('Has iniciado sesion!')); ?>
 
                 </div>
             </div>
