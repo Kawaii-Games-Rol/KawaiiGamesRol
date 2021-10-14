@@ -74,7 +74,7 @@ class CarreraController extends Controller
      */
     public function edit(Carrera $carrera)
     {
-        return view('carrera.edit')->with('carrera',$carrera);
+        return view('carreras.edit')->with('carrera',$carrera);
     }
 
     /**
