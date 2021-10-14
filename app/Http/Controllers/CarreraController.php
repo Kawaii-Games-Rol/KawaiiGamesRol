@@ -20,7 +20,7 @@ class CarreraController extends Controller
             return view('carreras.index')->with('carreras',$carreras);
         }else {
             $carreras = Carrera::where('codigo', $request->search)->simplePaginate(1);
-            return view('carrera.index')->with('carreras',$carreras);
+            return view('carreras.index')->with('carreras',$carreras);
         }
     }
 
@@ -31,7 +31,7 @@ class CarreraController extends Controller
      */
     public function create()
     {
-        return view('carrera.create');
+        return view('carreras.create');
     }
 
     /**
@@ -52,7 +52,7 @@ class CarreraController extends Controller
             'nombre' => $request->nombre
         ]);
 
-        return redirect('/carrera')->with('success','Carrera creada con exito');
+        return redirect('/carreras')->with('success','Carrera creada con exito');
     }
 
     /**
