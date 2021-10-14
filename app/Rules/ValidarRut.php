@@ -13,7 +13,7 @@ class ValidarRut implements Rule
      */
     public function __construct()
     {
-       
+
     }
 
     /**
@@ -25,9 +25,9 @@ class ValidarRut implements Rule
      */
     public function passes($attribute, $value)
     {
-        dd($value);
+        /* Logica para validar rut */
 
-        return false;
+        return true;
     }
 
     /**
@@ -37,6 +37,6 @@ class ValidarRut implements Rule
      */
     public function message()
     {
-        return 'El rut no es valido.';
+        return 'El rut no es válido.';
     }
 }

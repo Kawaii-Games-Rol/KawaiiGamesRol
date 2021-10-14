@@ -2,6 +2,7 @@
 
 @section('content')
 
+@if (Auth::user()->rol == 'Administrador')
 <div class="container">
     <div class="row">
         <div class="col-lg-3 col-md-2"></div>
@@ -15,7 +16,7 @@
 
             <div class="col-lg-12 login-form">
                 <div class="col-lg-12 login-form">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('usuario.store') }}">
                         @csrf
                         <div class="form-group">
                             <label class="form-control-label">NOMBRE</label>
@@ -50,34 +51,10 @@
                             </span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label class="form-control-label">CONTRASEÑA</label>
-                            <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="new-password">
 
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="form-control-label">CONFIRMACIÓN</label>
-                            <input id="password-confirm" type="password" class="form-control"
-                                name="password_confirmation" required autocomplete="new-password">
-                        </div>
-                        <div class="form-group">
-                            <label for="form-control-label" style="color: white">Estado</label>
-                            <select class="form-control" name="status" id="status">
-                                <option value="1">Habilitado</option>
-                                <option value="0">Deshabilitado</option>
-                            </select>
-                        </div>
                         <div class="form-group">
                             <label for="form-control-label" style="color: white">Rol</label>
                             <select class="form-control" name="rol" id="rol">
-                                <option value="Administrador">Administrador</option>
                                 <option value="Jefe Carrera">Jefe de carrera</option>
                                 <option value="Alumno">Alumno</option>
                             </select>
@@ -85,10 +62,11 @@
 
                         <div class="form-group">
                             <label for="form-control-label" style="color: white">Carrera</label>
-                            <select class="form-control" name="carrera" id="carrera">
-                                {{-- <option value="Administrador">Administrador</option>
-                                <option value="Jefe Carrera">Jefe de carrera</option>
-                                <option value="Alumno">Alumno</option> --}}
+                            <select class="form-control" name="carrera" id="carrera" disabled>
+                                <option value={{null}}>Seleccione carrera</option>
+                                @foreach ($carreras as $carrera)
+                                <option value={{$carrera->id}}>{{$carrera->nombre}}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -103,6 +81,36 @@
             <div class="col-lg-3 col-md-2"></div>
         </div>
     </div>
+    <script>
+        const rolSelect = document.getElementById('rol');
+        const carreraSelect = document.getElementById('carrera')
+        //variable de carreras desde el controlador de carreras
+        const listaCarreras = {!! json_encode($carreras) !!}
+        if (listaCarreras.length === 2) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No puedes crear usuarios sin tener carreras en el sistema!',
+                footer: 'Para crear carreras has&nbsp;<a href="/carrera/create">click aca</a>'
+            }).then((result) => {
+                window.location.href = '/usuario'
+            })
+        }
+        rolSelect.addEventListener('change', function(e){
+            if (rolSelect.value === 'Jefe Carrera') {
+            carreraSelect.value = null;
+            carreraSelect.disabled = true;
+            }else{
+                carreraSelect.disabled = false;
+            }
+        })
+    </script>
 
+    @else
+    @php
+    header("Location: /home" );
+    exit();
+    @endphp
+    @endif
 
     @endsection

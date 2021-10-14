@@ -13,9 +13,15 @@ class CarreraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->search == null) {
+            $carreras = Carrera::simplePaginate(5);
+            return view('carrera.index')->with('carreras',$carreras);
+        }else {
+            $carreras = Carrera::where('codigo', $request->search)->simplePaginate(1);
+            return view('carrera.index')->with('carreras',$carreras);
+        }
     }
 
     /**
@@ -25,7 +31,7 @@ class CarreraController extends Controller
      */
     public function create()
     {
-        //
+        return view('carrera.create');
     }
 
     /**
@@ -36,7 +42,17 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'codigo' => 'regex:/[1-9]/',
+            'nombre' => 'regex:/[A-z]/'
+        ]);
+
+        Carrera::create([
+            'codigo' => $request->codigo,
+            'nombre' => $request->nombre
+        ]);
+
+        return redirect('/carrera')->with('success','Carrera creada con exito');
     }
 
     /**
@@ -47,7 +63,7 @@ class CarreraController extends Controller
      */
     public function show(Carrera $carrera)
     {
-        //
+
     }
 
     /**
@@ -58,7 +74,7 @@ class CarreraController extends Controller
      */
     public function edit(Carrera $carrera)
     {
-        //
+        return view('carrera.edit')->with('carrera',$carrera);
     }
 
     /**
@@ -70,7 +86,12 @@ class CarreraController extends Controller
      */
     public function update(Request $request, Carrera $carrera)
     {
-        //
+        $request->validate(['codigo' => 'regex:/[0-9]/']);
+
+        $carrera->nombre = $request->nombre;
+        $carrera->codigo = $request->codigo;
+        $carrera->save();
+        return redirect('/carrera');
     }
 
     /**

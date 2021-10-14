@@ -17,16 +17,17 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('role')->nullable();
             $table->string('rut')->unique();
-            $table->tinyInteger('status');
+            $table->tinyInteger('status'); //0: deshabilitado; 1: habilitado
+            $table->enum('rol',['Administrador','Jefe Carrera', 'Alumno']);
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
 
             $table->unsignedBigInteger('carrera_id')->nullable();
             $table->foreign('carrera_id')->references('id')->on('carreras');
+
         });
     }
 

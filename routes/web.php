@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +18,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/perfil', function (){
+        $usuarioLogeado = Auth::user();
+        return view('perfil')->with('user',$usuarioLogeado);
+    });
+});
+
+Route::resource('carrera', CarreraController::class,['middleware'=>'auth']);
+Route::resource('usuario', UsuarioController::class,['middleware' => 'auth']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::get('/help', function () {
+    return view('help');
+})->name('help');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/change-password',[ChangePasswordController::class, 'changePassword'])->name('changepassword');
+
+Route::get('/status-user-change', [DisabledUserController::class, 'disabledUser'])->name('changeStatus');
+
+//nuevo
+//otra linea
