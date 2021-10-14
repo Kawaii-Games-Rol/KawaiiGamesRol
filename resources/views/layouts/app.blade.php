@@ -34,7 +34,7 @@
             <div class="container">
                 <img class="img-fluid mr-5" src="http://www.ucn.cl/wp-content/uploads/2018/05/Escudo-UCN-Full-Color.png"
                     style="width: 5%;" alt="">
-                <a class="navbar-brand text-white" href="{{ url('/home') }}">
+                <a class="navbar-brand text-dark" href="{{ url('/home') }}">
                     {{ __('Gestión de Solicitudes') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -55,15 +55,15 @@
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link text-dark" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @endif
 
-                        <li><a href={{ route('help') }} class="nav-link text-white">Ayuda</a></li>
+                        <li><a href={{ route('help') }} class="nav-link text-dark">Ayuda</a></li>
 
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button"
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->rut }}
                             </a>
