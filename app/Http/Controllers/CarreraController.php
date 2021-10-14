@@ -17,7 +17,7 @@ class CarreraController extends Controller
     {
         if ($request->search == null) {
             $carreras = Carrera::simplePaginate(5);
-            return view('carrera.index')->with('carreras',$carreras);
+            return view('carreras.index')->with('carreras',$carreras);
         }else {
             $carreras = Carrera::where('codigo', $request->search)->simplePaginate(1);
             return view('carrera.index')->with('carreras',$carreras);
