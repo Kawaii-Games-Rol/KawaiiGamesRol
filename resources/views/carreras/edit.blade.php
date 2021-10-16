@@ -19,17 +19,6 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label class="form-control-label">CÓDIGO</label>
-                            <input value={{$carrera->codigo}} id="codigo" type="text" class="form-control @error('codigo') is-invalid @enderror"
-                                name="codigo" required>
-
-                            @error('codigo')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                             <label class="form-control-label">NOMBRE</label>
                             <input value="{{$carrera->nombre}}" id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror"
                                 name="nombre" required>
