@@ -25,7 +25,7 @@ class ValidarCodigo implements Rule
      */
     public function passes($attribute, $value)
     {
-        //
+        return ($this->valida_codigo($value));
     }
 
     /**
@@ -35,6 +35,14 @@ class ValidarCodigo implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'El Código de carrera no puede comenzar con 0.';
+    }
+
+    public function valida_codigo($codigo){
+        $pcod = substr($codigo,0,1);
+        if($pcod == 0){
+            return false;
+        }
+        return true;
     }
 }
