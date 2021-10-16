@@ -43,7 +43,7 @@ class CarreraController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'codigo' => ['regex:/[1-9]/','max:4'],
+            'codigo' => ['regex:/[1-9]/','max:4','unique:carreras'],
             'nombre' => 'regex:/[A-z]/'
         ]);
 
