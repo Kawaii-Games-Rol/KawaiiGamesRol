@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Carrera;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Rules\ValidarCodigo;
 
 class CarreraController extends Controller
 {
@@ -43,7 +44,7 @@ class CarreraController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'codigo' => ['regex:/[1-9]/','max:4','unique:carreras'],
+            'codigo' => ['regex:/[1-9]/','max:4','unique:carreras', new ValidarCodigo()],
             'nombre' => 'regex:/[A-z]/'
         ]);
 
