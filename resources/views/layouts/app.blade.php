@@ -35,7 +35,7 @@
                 <img class="img-fluid mr-5" src="http://www.ucn.cl/wp-content/uploads/2018/05/Escudo-UCN-Full-Color.png"
                     style="width: 5%;" alt="">
                 <a class="navbar-brand text-dark" href="{{ url('/home') }}">
-                    {{ __('Gestión de Solicitudes') }}
+                    {{ __('Home') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
