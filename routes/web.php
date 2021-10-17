@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarreraController;
+use App\Http\Controllers\DisabledUserController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
