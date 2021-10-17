@@ -86,7 +86,7 @@
         const carreraSelect = document.getElementById('carrera')
         //variable de carreras desde el controlador de carreras
         const listaCarreras = {!! json_encode($carreras) !!}
-        if (listaCarreras.length === 2) {
+        if (listaCarreras.length === 0) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
