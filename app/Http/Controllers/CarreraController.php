@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Rules\ValidarCodigo;
 
+
 class CarreraController extends Controller
 {
     /**
@@ -24,6 +25,7 @@ class CarreraController extends Controller
             return view('carreras.index')->with('carreras',$carreras);
         }
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -53,7 +55,7 @@ class CarreraController extends Controller
             'nombre' => $request->nombre
         ]);
 
-        return redirect('/carreras')->with('success','Carrera creada con exito');
+        return redirect('/carrera')->with('success','Carrera creada con exito');
     }
 
     /**
