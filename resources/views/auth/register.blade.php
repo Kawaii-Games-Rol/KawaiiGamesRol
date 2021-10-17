@@ -29,7 +29,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="form-control-label">EMAIL</label>
+                            <label class="form-control-label">EMAILL</label>
                             <input id="email" type="text" class="form-control @error('email') is-invalid @enderror"
                                 name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
