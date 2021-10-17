@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class ChangePasswordController extends Controller
 {
@@ -21,6 +22,8 @@ class ChangePasswordController extends Controller
         ]);
 
         $findUser->update(['password' => Hash::make($request->password)]);
+        Auth::logout();
+        return redirect('/home');
         return redirect(route('home'))->with('password', 'updated');
     }
  }
