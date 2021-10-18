@@ -18,7 +18,7 @@
             <a class="btn btn-success btn-block" href={{ route('usuario.create') }}> <i class="fas fa-plus"></i> Usuario</a>
         </div>
     </div>
-    <table class="table table-Dark">
+    <table class="table table-dark">
         <thead>
             <tr>
                 <th style="width: 10%" scope="col">Rut</th>
