@@ -18,7 +18,7 @@
             <a class="btn btn-success btn-block" href={{ route('usuario.create') }}> <i class="fas fa-plus"></i> Usuario</a>
         </div>
     </div>
-    <table class="table table-dark">
+    <table class="table table-Dark">
         <thead>
             <tr>
                 <th style="width: 10%" scope="col">Rut</th>
@@ -48,7 +48,11 @@
                     <td><a class="btn btn-info" href={{ route('changeStatus', ['id' => $usuario]) }}>Habilitar</a></td>
                 @endif
 
-                <td><a class="btn btn-info" href={{ route('password.reset', [$usuario]) }}>Reiniciar Clave</a></td>
+                <td>
+                    <form action='/reset-password/{{$usuario->id}}'
+                        method="POST">
+                        @csrf<button class="btn-info">Reiniciar Clave</button>
+                    </form>
             </tr>
             @endforeach
         </tbody>

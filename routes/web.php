@@ -46,6 +46,6 @@ Route::post('/change-password',[ChangePasswordController::class, 'changePassword
 
 Route::get('/status-user-change', [DisabledUserController::class, 'disabledUser'])->name('changeStatus');
 
-Route::post('/reset-password',[ResetPasswordController::class, 'resetPassword'])->name('resetpassword');
+Route::post('/reset-password/{id}',[ResetPasswordController::class, 'resetPassword'])->name('resetpassword');
 //nuevo
 //otra linea

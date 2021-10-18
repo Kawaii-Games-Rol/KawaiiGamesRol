@@ -37,9 +37,11 @@ class ResetPasswordController extends Controller
         $this->middleware('auth');
     }
 
-    public function resetPassword (Request $request){
-        $findUser = User::where('rut', $request->rut)->get();
-        $codigo = substr($request->rut,0,6);
+    public function resetPassword (Request $request,String $id){
+
+        $findUser = User::where('id', $id)->first();
+
+        $codigo = substr($findUser->rut,0,6);
         $findUser->update(['password' => Hash::make($codigo)]);
 
         return redirect('/home');
