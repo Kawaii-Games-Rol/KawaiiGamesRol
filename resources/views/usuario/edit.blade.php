@@ -63,7 +63,7 @@
 
                         <div class="form-group">
                             <label for="form-control-label" style="color: white">Carrera</label>
-                            <select class="form-control" name="carrera" id="carrera" disabled>
+                            <select class="form-control" name="carrera" id="carrera">
                                 <option value={{null}}>Seleccione carrera</option>
                                 @foreach ($carreras as $carrera)
                                 <option value={{$carrera->id}}>{{$carrera->nombre}}</option>
@@ -85,20 +85,35 @@
     <script>
         const rolSelect = document.getElementById('rol');
         const carreraSelect = document.getElementById('carrera');
+
+        const optionSelect = document.getElementById("carrera").getElementsByTagName("option");
+
         rolSelect.value = {!! json_encode($usuario->rol) !!}
         carreraSelect.value = {!! json_encode($usuario->carrera_id)!!}
-        if (rolSelect.value === "Jefe Carrera") {
-            carreraSelect.value = null;
-            carreraSelect.disabled = true;
-        }else{
-            carreraSelect.disabled = false;
-        }
-        rolSelect.addEventListener('change', function(e){
-            if (rolSelect.value === 'Jefe Carrera') {
-            carreraSelect.value = null;
-            carreraSelect.disabled = true;
+        if (rolSelect.value === 'Jefe Carrera') {
+                listaCarreras.forEach(carrera=>{
+                    carrera.users.forEach(usuario=>{
+                        if(usuario.rol ==="Jefe Carrera"){
+                            for(let i=0;i < optionSelect.lenght;i++){
+                                if(carrera.id == optionSelect[i].value){
+                                    optionSelect[i].style.display = "none"
+                                }
+                            }
+                        }
+                    });
+
+                });
+
             }else{
-                carreraSelect.disabled = false;
+                listaCarreras.forEach(carrera=>{
+                    carrera.users.forEach(usuario=>{
+                        for(let i=0; i<optionSelect.lenght;i++){
+                            if(carrera.id == optionSelect[i].value){
+                                optionSelect[i].style.display ="unset"
+                            }
+                        }
+                    })
+                });
             }
         })
     </script>

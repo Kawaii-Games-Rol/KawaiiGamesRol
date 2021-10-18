@@ -105,7 +105,7 @@ class UsuarioController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'rut' => ['required', 'string', 'unique:users', new ValidarRut()],
+            'rut' => ['required', 'string', new ValidarRut()],
             'rol' => ['string','required', 'in:Jefe Carrera,Alumno'],
             'carrera'=>['exists:App\Models\Carrera,id']
         ]);

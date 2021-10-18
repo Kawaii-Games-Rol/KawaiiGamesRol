@@ -84,9 +84,12 @@
     <script>
         const rolSelect = document.getElementById('rol');
         const carreraSelect = document.getElementById('carrera')
+
+        const optionSelect = document.getElementById("carrera").getElementsByTagName("option");
+
         //variable de carreras desde el controlador de carreras
         const listaCarreras = {!! json_encode($carreras) !!}
-        console.log(listaCarreras);
+
         if (listaCarreras.length === 0) {
             Swal.fire({
                 icon: 'error',
@@ -99,12 +102,12 @@
         }
         rolSelect.addEventListener('change', function(e){
             if (rolSelect.value === 'Jefe Carrera') {
-                listaCarreras.forEach(carrera=>{
-                    carrera.users.forEach(usuario=>{
-                        if(usuario.rol ==="Jefe Carrera"){
-                            for(let i=0;i < carreraSelect.lenght;i++){
-                                if(carrera.id == carreraSelect[i].value){
-                                    carreraSelect[i].style.display ="none"
+                listaCarreras.forEach(carrera => {
+                    carrera.users.forEach(usuario => {
+                        if(usuario.rol === "Jefe Carrera"){
+                            for(let i = 0; i < optionSelect.lenght;i++){
+                                if(carrera.id == optionSelect[i].value){
+                                    optionSelect[i].style.display ="none"
                                 }
                             }
                         }
@@ -113,7 +116,15 @@
                 });
 
             }else{
-                carreraSelect.disabled = false;
+                listaCarreras.forEach(carrera=>{
+                    carrera.users.forEach(usuario=>{
+                        for(let i=0; i<optionSelect.lenght;i++){
+                            if(carrera.id == optionSelect[i].value){
+                                optionSelect[i].style.display ="unset"
+                            }
+                        }
+                    })
+                });
             }
         })
     </script>
