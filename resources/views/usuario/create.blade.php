@@ -98,19 +98,8 @@
         }
         rolSelect.addEventListener('change', function(e){
             if (rolSelect.value === 'Jefe Carrera') {
-                if(listaCarreras.lenght != 0){
-                    for($i=0;$i<listaCarreras.lenght;i++){
-                        while(listaCarreras[$i] == 'carrera'){
-                            listaUsuarios =users(listaCarreras);
-                            for($j=0;j<listUsuarios.lenght;j++){
-                                if(listaUsuarios[$j]->user()->rol() == 'Jefe Carrera'){
-
-                                }
-                            }
-                        }
-
-                    }
-                }
+                carreraSelect.value =null;
+                carerraSelect.disableb=true;
 
             }else{
                 carreraSelect.disabled = false;
