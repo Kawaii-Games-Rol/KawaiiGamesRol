@@ -58,9 +58,6 @@ class UsuarioController extends Controller
 
         $codigo = substr($request->rut,0,6);
 
-
-
-
         $newUser = User::create([
             'name' => $request->name,
             'email' => $request->email,
