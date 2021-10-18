@@ -62,7 +62,7 @@
 
                         <div class="form-group">
                             <label for="form-control-label" style="color: white">Carrera</label>
-                            <select class="form-control" name="carrera" id="carrera" disabled>
+                            <select class="form-control" name="carrera" id="carrera" >
                                 <option value={{null}}>Seleccione carrera</option>
                                 @foreach ($carreras as $carrera)
                                 <option value={{$carrera->id}}>{{$carrera->nombre}}</option>
@@ -86,6 +86,7 @@
         const carreraSelect = document.getElementById('carrera')
         //variable de carreras desde el controlador de carreras
         const listaCarreras = {!! json_encode($carreras) !!}
+        console.log(listaCarreras);
         if (listaCarreras.length === 0) {
             Swal.fire({
                 icon: 'error',
@@ -98,8 +99,18 @@
         }
         rolSelect.addEventListener('change', function(e){
             if (rolSelect.value === 'Jefe Carrera') {
-                carreraSelect.value =null;
-                carerraSelect.disableb=true;
+                listaCarreras.forEach(carrera=>{
+                    carrera.users.forEach(usuario=>{
+                        if(usuario.rol ==="Jefe Carrera"){
+                            for(let i=0;i < carreraSelect.lenght;i++){
+                                if(carrera.id == carreraSelect[i].value){
+                                    carreraSelect[i].style.display ="none"
+                                }
+                            }
+                        }
+                    });
+
+                });
 
             }else{
                 carreraSelect.disabled = false;

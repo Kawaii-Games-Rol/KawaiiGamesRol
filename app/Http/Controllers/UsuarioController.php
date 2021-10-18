@@ -34,7 +34,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        $carreras = Carrera::all();
+        $carreras = Carrera::with('users')->get();
         return view('usuario.create')->with('carreras', $carreras);
     }
 
