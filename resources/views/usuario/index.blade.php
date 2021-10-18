@@ -35,20 +35,20 @@
                 <td>{{$usuario->name}}</td>
                 <td>{{$usuario->email}}</td>
                 <td>{{$usuario->rol}}</td>
-                <td><a class="btn btn-info" href={{ route('usuario.edit', [$usuario]) }}>editar</a></td>
+                <td><a class="btn btn-info" href={{ route('usuario.edit', [$usuario]) }}>Editar</a></td>
                 @if ($usuario->status === 1)
                      @if($usuario->rol =='Jefe Carrera'){
-                        <td><a class="btn btn-warning" href={{ route('changeStatus', ['id' => $usuario]) }}>deshabilitar</a></td>
+                        <td><a class="btn btn-warning" href={{ route('changeStatus', ['id' => $usuario]) }}>Deshabilitar</a></td>
                     @endif
 
                     @if($usuario->rol =='Alumno'){
-                        <td><a class="btn btn-warning" href={{ route('changeStatus', ['id' => $usuario]) }}>deshabilitar</a></td>
+                        <td><a class="btn btn-warning" href={{ route('changeStatus', ['id' => $usuario]) }}>Deshabilitar</a></td>
                     @endif
                 @else
-                    <td><a class="btn btn-info" href={{ route('changeStatus', ['id' => $usuario]) }}>habilitar</a></td>
+                    <td><a class="btn btn-info" href={{ route('changeStatus', ['id' => $usuario]) }}>Habilitar</a></td>
                 @endif
 
-                <td><a class="btn btn-danger" href="">reiniciar clave</a></td>
+                <td><a class="btn btn-info" href={{ route('password.reset', [$usuario]) }}>Reiniciar Clave</a></td>
             </tr>
             @endforeach
         </tbody>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DisabledUserController;
@@ -45,5 +46,6 @@ Route::post('/change-password',[ChangePasswordController::class, 'changePassword
 
 Route::get('/status-user-change', [DisabledUserController::class, 'disabledUser'])->name('changeStatus');
 
+Route::post('/reset-password',[ResetPasswordController::class, 'resetPassword'])->name('resetpassword');
 //nuevo
 //otra linea

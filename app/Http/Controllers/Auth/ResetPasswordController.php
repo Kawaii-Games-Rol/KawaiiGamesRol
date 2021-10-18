@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class ResetPasswordController extends Controller
 {
@@ -27,4 +31,18 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function resetPassword (Request $request){
+        $findUser = User::where('rut', $request->rut)->get();
+        $codigo = substr($request->rut,0,6);
+        $findUser->update(['password' => Hash::make($codigo)]);
+
+        return redirect('/home');
+        return redirect(route('home'))->with('password', 'updated');
+    }
 }
