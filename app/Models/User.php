@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function carrera(){
         return $this->belongsTo(Carrera::class);
     }
+
+    public function solicitudes(){
+        return $this->hasMany(Solicitud::class);
+    }
 }
