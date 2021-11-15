@@ -4,7 +4,10 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DisabledUserController;
+use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\UsuarioController;
+use App\Models\Solicitud;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
