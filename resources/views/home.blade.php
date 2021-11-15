@@ -101,7 +101,7 @@
                     <small class="text-muted">Permite o crear/editar o anular solicitudes especiales.</small>
                 </div>
                 <div class="card-footer">
-                    <a href="" class="btn btn-info btn-block">IR</a>
+                    <a href="/solicitud" class="btn btn-info btn-block">IR</a>
                 </div>
             </div>
         </div>

@@ -34,6 +34,10 @@ Route::middleware(['auth'])->group(function () {
 Route::resource('carrera', CarreraController::class,['middleware'=>'auth']);
 Route::resource('usuario', UsuarioController::class,['middleware' => 'auth']);
 
+Route::middleware(['rutasAlumno'])->group(function () {
+    Route::resource('solicitud', SolicitudController::class);
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
