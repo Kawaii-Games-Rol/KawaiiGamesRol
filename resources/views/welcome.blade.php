@@ -5,7 +5,7 @@
 <div class="container">
     <div class="card text-center">
         <div class="card-header">
-            Sistema desarrollado para la gestión de solicitudes especiales relacionadas con: asignaturas, la carrera y otros trámites adicionales.
+            Sistema desarrollado para la gestión de solicitudes especiales relacionadas con: asignaturas, carreras y otros trámites adicionales.
         </div>
         <div class="card-body">
             <h5 class="card-title">Desarrollado por:</h5>

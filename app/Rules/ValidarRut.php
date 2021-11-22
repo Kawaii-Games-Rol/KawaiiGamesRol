@@ -35,11 +35,15 @@ class ValidarRut implements Rule
      */
     public function message()
     {
-        return 'El rut no es valido.';
+        return 'El RUT ingresado no es válido.';
     }
 
     public function valida_rut($rut)
     {
+        if(!is_int($rut)){
+            return false;
+        }
+
         if (!preg_match("/^[0-9.]+[-]?+[0-9kK]{1}/", $rut)) {
             return false;
         }

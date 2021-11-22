@@ -56,7 +56,7 @@
                         <div class="form-group">
                             <label for="form-control-label" style="color: white">Rol</label>
                             <select class="form-control" name="rol" id="rol">
-                                <option value="Jefe Carrera">Jefe de carrera</option>
+                                <option value="Jefe Carrera">Jefe de Carrera</option>
                                 <option value="Alumno">Alumno</option>
                             </select>
                         </div>
@@ -64,7 +64,7 @@
                         <div class="form-group">
                             <label for="form-control-label" style="color: white">Carrera</label>
                             <select class="form-control" name="carrera" id="carrera">
-                                <option value={{null}}>Seleccione carrera</option>
+                                <option value={{null}}>Seleccione Carrera</option>
                                 @foreach ($carreras as $carrera)
                                 <option value={{$carrera->id}}>{{$carrera->nombre}}</option>
                                 @endforeach

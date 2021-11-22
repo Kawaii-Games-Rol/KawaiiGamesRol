@@ -78,7 +78,7 @@
                             <label for="form-control-label" style="color: white">Rol</label>
                             <select class="form-control" name="rol" id="rol">
                                 <option value="Administrador">Administrador</option>
-                                <option value="Jefe Carrera">Jefe de carrera</option>
+                                <option value="Jefe Carrera">Jefe de Carrera</option>
                                 <option value="Alumno">Alumno</option>
                             </select>
                         </div>

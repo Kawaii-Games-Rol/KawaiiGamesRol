@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <label for="form-control-label" style="color: white">Rol</label>
                             <select class="form-control" name="rol" id="rol">
-                                <option value="Jefe Carrera">Jefe de carrera</option>
+                                <option value="Jefe Carrera">Jefe de Carrera</option>
                                 <option value="Alumno">Alumno</option>
                             </select>
                         </div>
@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <label for="form-control-label" style="color: white">Carrera</label>
                             <select class="form-control" name="carrera" id="carrera" >
-                                <option value={{null}}>Seleccione carrera</option>
+                                <option value={{null}}>Seleccione Carrera</option>
                                 @foreach ($carreras as $carrera)
                                 <option value={{$carrera->id}}>{{$carrera->nombre}}</option>
                                 @endforeach
@@ -92,10 +92,10 @@
 
         if (listaCarreras.length === 0) {
             Swal.fire({
-                icon: 'error',
+                icon: 'Error',
                 title: 'Oops...',
                 text: 'No puedes crear usuarios sin tener carreras en el sistema!',
-                footer: 'Para crear carreras has&nbsp;<a href="/carrera/create">click aca</a>'
+                footer: 'Para crear carreras has&nbsp;<a href="/carrera/create">click aquí</a>'
             }).then((result) => {
                 window.location.href = '/usuario'
             })

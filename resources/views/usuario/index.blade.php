@@ -8,7 +8,7 @@
         <div class="col col-2">
             <form method="GET" action="{{ route('usuario.index') }}">
                 <input type="text" name="search" id="search" placeholder="Buscar por Rut">
-                <button class="btn btn-success">buscar</button>
+                <button class="btn btn-success">Buscar</button>
             </form>
         </div>
         <div class="col col-8">
@@ -25,7 +25,7 @@
                 <th style="width: 25%" scope="col">Nombre</th>
                 <th style="width: 25%" scope="col">Email</th>
                 <th style="width: 20%" scope="col">Rol</th>
-                <th style="width: 20%" scope="col" colspan="3">Accion</th>
+                <th style="width: 20%" scope="col" colspan="3">Acción</th>
             </tr>
         </thead>
         <tbody>
@@ -37,11 +37,11 @@
                 <td>{{$usuario->rol}}</td>
                 <td><a class="btn btn-info" href={{ route('usuario.edit', [$usuario]) }}>Editar</a></td>
                 @if ($usuario->status === 1)
-                     @if($usuario->rol =='Jefe Carrera'){
+                     @if($usuario->rol =='Jefe Carrera')
                         <td><a class="btn btn-warning" href={{ route('changeStatus', ['id' => $usuario]) }}>Deshabilitar</a></td>
                     @endif
 
-                    @if($usuario->rol =='Alumno'){
+                    @if($usuario->rol =='Alumno')
                         <td><a class="btn btn-warning" href={{ route('changeStatus', ['id' => $usuario]) }}>Deshabilitar</a></td>
                     @endif
                 @else

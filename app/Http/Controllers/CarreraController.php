@@ -92,7 +92,7 @@ class CarreraController extends Controller
         $request->validate(['codigo' => 'regex:/[0-9]/']);
 
         $carrera->nombre = $request->nombre;
-        $carrera->codigo = $request->codigo;
+
         $carrera->save();
         return redirect('/carrera');
     }
