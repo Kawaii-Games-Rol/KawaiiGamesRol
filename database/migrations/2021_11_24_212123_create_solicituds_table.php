@@ -16,15 +16,7 @@ class CreateSolicitudsTable extends Migration
         Schema::create('solicituds', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('NRC');
-            $table->string('asignatura');
-            $table->string('detalle');
-            $table->string('calificacion');
-            $table->string('numeroAyudantias');
-            $table->string('numeroTelefonico');
-            $table->string('nombreProfesor');
-            $table->string('estadoSolicitud');
-            $table->string('tipoSolicitud');
+            $table->string('tipo');
         });
     }
 

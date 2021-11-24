@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersSolicitudsTable extends Migration
+class CreateSolicitudsUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,31 +13,31 @@ class CreateUsersSolicitudsTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_solicituds', function (Blueprint $table) {
+        Schema::create('solcitud_user', function (Blueprint $table) {
             $table->id();
             $table->string('telefono');
             $table->tinyInteger('estado')->default(0); //0: Pendiente, 1:Aceptada, 2:Aceptada con obs, 3:Rechazada
 
-            // sobrecupo, cambio paralelo, eliminación e inscripción asignatura.
+            //columnas para sobrecupo, cambio paralelo, eliminación e inscripción asignatura.
             $table->string('NRC')->nullable();
             $table->string('nombre_asignatura')->nullable();
             $table->string('detalles')->nullable();
 
-            // solicitud ayudantía
+            //columnas para solicitud ayudantía
             $table->string('calificacion_aprob')->nullable();
             $table->integer('cant_ayudantias')->nullable();
 
-            // facilidades academicas
+            //columnas facilidades academicas
             $table->enum('tipo_facilidad',['Licencia', 'Inasistencia Fuerza Mayor', 'Representacion', 'Inasistencia Motivo Personal'])->nullable();
             $table->string('nombre_profesor')->nullable();
             $table->json('archivos')->nullable();
 
-            //Relacion de tablas
+            //relaciones
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->unsignedBigInteger('solicitud_id')->nullable();
-            $table->foreign('solicitud_id')->references('id')->on('solicituds');
+            $table->unsignedBigInteger('solcitud_id')->nullable();
+            $table->foreign('solcitud_id')->references('id')->on('solcituds');
 
             $table->timestamps();
         });
@@ -50,6 +50,6 @@ class CreateUsersSolicitudsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_solicituds');
+        Schema::dropIfExists('solicituds_user');
     }
 }

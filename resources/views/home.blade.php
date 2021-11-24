@@ -67,7 +67,7 @@
                     <small class="text-muted">Permite buscar un estudiante mediante su RUT.</small>
                 </div>
                 <div class="card-footer">
-                    <a href="" class="btn btn-info btn-block">IR</a>
+                    <a href="/buscar-estudiante" class="btn btn-info btn-block">IR</a>
                 </div>
             </div>
             <div class="card">

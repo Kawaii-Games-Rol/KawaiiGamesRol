@@ -5,10 +5,10 @@
 @if (Auth::user()->rol == 'Administrador')
 <div class="container">
     <div class="row mb-3">
-        <div class="col col-2">
-            <form method="GET" action="{{ route('usuario.index') }}">
-                <input type="text" name="search" id="search" placeholder="Buscar por Rut">
-                <button class="btn btn-success">Buscar</button>
+        <div class="col col-3" >
+            <form class="form-inline my-2 my-lg-0" method="GET" action="{{ route('usuario.index') }}">
+                <input class="form-control mr-sm-2" name="search" id="search" type="search" placeholder="Buscar por rut" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
         <div class="col col-8">

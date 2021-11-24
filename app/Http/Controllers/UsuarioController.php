@@ -19,7 +19,7 @@ class UsuarioController extends Controller
     public function index(Request $request)
     {
         if ($request->search == null) {
-            $usuarios = User::simplePaginate(3);
+            $usuarios = User::simplePaginate(5);
             return view('usuario.index')->with('usuarios',$usuarios);
         }else {
             $usuarios = User::where('rut', $request->search)->simplePaginate(1);

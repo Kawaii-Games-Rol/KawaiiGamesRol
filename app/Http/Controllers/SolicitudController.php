@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Solicitud;
 use App\Models\User;
-use Facade\FlareClient\Stacktrace\File;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class SolicitudController extends Controller
 {
@@ -19,6 +18,7 @@ class SolicitudController extends Controller
     {
         $solicitudesAlumno = Auth::user()->solicitudes;
         return view('solicitud.index')->with('solicitudes', $solicitudesAlumno);
+
     }
 
     /**
@@ -41,62 +41,6 @@ class SolicitudController extends Controller
     {
         switch ($request->tipo) {
             case '1':
-                $request->validate([
-                    'telefono' => ['regex:/[0-9]*/','required'],
-                    'nrc' => ['required'],
-                    'nombre' => ['required'],
-                    'detalle' => ['required']
-                ]);
-
-                $findUser = User::find($request->user);
-
-                $findUser->solicitudes()->attach($request->tipo, [
-                    'telefono' => $request->telefono,
-                    'NRC' => $request->nrc,
-                    'nombre_asignatura' => $request->nombre,
-                    'detalles' => $request->detalle
-                ]);
-                return redirect('/solicitud');
-                break;
-
-            case '2':
-                $request->validate([
-                    'telefono' => ['regex:/[0-9]*/','required'],
-                    'nrc' => ['required'],
-                    'nombre' => ['required'],
-                    'detalle' => ['required']
-                ]);
-
-                $findUser = User::find($request->user);
-
-                $findUser->solicitudes()->attach($request->tipo, [
-                    'telefono' => $request->telefono,
-                    'NRC' => $request->nrc,
-                    'nombre_asignatura' => $request->nombre,
-                    'detalles' => $request->detalle
-                ]);
-                return redirect('/solicitud');
-                break;
-            case '2':
-                $request->validate([
-                    'telefono' => ['regex:/[0-9]*/','required'],
-                    'nrc' => ['required'],
-                    'nombre' => ['required'],
-                    'detalle' => ['required']
-                ]);
-
-                $findUser = User::find($request->user);
-
-                $findUser->solicitudes()->attach($request->tipo, [
-                    'telefono' => $request->telefono,
-                    'NRC' => $request->nrc,
-                    'nombre_asignatura' => $request->nombre,
-                    'detalles' => $request->detalle
-                ]);
-                return redirect('/solicitud');
-                break;
-
-            case '3':
                 $request->validate([
                     'telefono' => ['regex:/[0-9]*/','required'],
                     'nrc' => ['required'],
@@ -149,7 +93,7 @@ class SolicitudController extends Controller
                 break;
 
             default:
-                # code...
+
                 break;
         }
     }
@@ -157,7 +101,7 @@ class SolicitudController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Solcitud  $solcitud
+     * @param  \App\Models\Solicitud  $solicitud
      * @return \Illuminate\Http\Response
      */
     public function show(Solicitud $solicitud)
@@ -168,7 +112,7 @@ class SolicitudController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Solcitud  $solcitud
+     * @param  \App\Models\Solicitud  $solicitud
      * @return \Illuminate\Http\Response
      */
     public function edit(Solicitud $solicitud)
@@ -180,7 +124,7 @@ class SolicitudController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Solcitud  $solcitud
+     * @param  \App\Models\Solicitud  $solicitud
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Solicitud $solicitud)
@@ -191,7 +135,7 @@ class SolicitudController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Solcitud  $solcitud
+     * @param  \App\Models\Solicitud  $solicitud
      * @return \Illuminate\Http\Response
      */
     public function destroy(Solicitud $solicitud)
@@ -199,6 +143,3 @@ class SolicitudController extends Controller
         //
     }
 }
-
-
-

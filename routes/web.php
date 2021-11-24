@@ -39,8 +39,15 @@ Route::resource('usuario', UsuarioController::class,['middleware' => 'auth']);
 
 Route::middleware(['rutasAlumno'])->group(function () {
     Route::resource('solicitud', SolicitudController::class);
+
 });
 
+Route::middleware(['rutasJefeC'])->group(function () {
+    Route::get('buscarEstudiante', function(){return view('buscarEstudiante.index');})->name('buscarEstudiante');
+    Route::post('alumno',[BuscarEstudianteController::class, 'devolverEstudiante'])->name('postBuscarEstudiante');
+    Route::get('alumno/{id}', [BuscarEstudianteController::class,'mostrarEstudiante'])->name('mostrarEstudiante');
+    Route::get('alumno/{alumno_id}/solicitud/{id}', [BuscarEstudianteController::class, 'verDatosSolicitud'])->name('verSolicitudAlumno');
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
