@@ -2578,3 +2578,15 @@ Stack trace:
 #58 C:\\xampp\\htdocs\\KawaiiGamesRol\\server.php(21): require_once('C:\\\\xampp\\\\htdocs...')
 #59 {main}
 "} 
+[2021-11-24 20:41:10] local.ERROR: Uncaught ReflectionException: Class "App\Http\Middleware\RutasJefeCarrera" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionMethod->__construct('App\\Http\\Middle...', 'handle')
+#1 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ReflectionException: Class \"App\\Http\\Middleware\\RutasJefeCarrera\" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionMethod->__construct('App\\\\Http\\\\Middle...', 'handle')
+#1 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 {main}
+"} 
