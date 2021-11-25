@@ -35,7 +35,14 @@
                 <td>{{$usuario->name}}</td>
                 <td>{{$usuario->email}}</td>
                 <td>{{$usuario->rol}}</td>
+                @if($usuario->rol =='Jefe Carrera')
                 <td><a class="btn btn-info" href={{ route('usuario.edit', [$usuario]) }}>Editar</a></td>
+                    @endif
+
+                    @if($usuario->rol =='Alumno')
+                    <td><a class="btn btn-info" href={{ route('usuario.edit', [$usuario]) }}>Editar</a></td>
+                    @endif
+               
                 @if ($usuario->status === 1)
                      @if($usuario->rol =='Jefe Carrera')
                         <td><a class="btn btn-warning" href={{ route('changeStatus', ['id' => $usuario]) }}>Deshabilitar</a></td>
