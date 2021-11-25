@@ -84,7 +84,7 @@
             <div class="card">
                 <i class="fas fa-info fa-10x text-center"></i>
                 <div class="card-body">
-                    <h5 class="card-title text-center">Estadísticas del Eistema</h5>
+                    <h5 class="card-title text-center">Estadísticas del Sistema</h5>
                     <small class="text-muted">Permite visualizar mediante gráficos las distintas solicitudes del sistema.</small>
                 </div>
                 <div class="card-footer">
