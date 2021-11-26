@@ -1,14 +1,13 @@
 <?php
 
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\BuscarEstudiante;
+use App\Http\Controllers\BuscarEstudianteController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DisabledUserController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\UsuarioController;
-use App\Models\Solicitud;
-use App\Models\User;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -43,11 +42,11 @@ Route::middleware(['rutasAlumno'])->group(function () {
 
 });
 
-Route::middleware(['rutasJefeC'])->group(function () {
+Route::middleware(['rutasJefeCarrera'])->group(function () {
     Route::get('buscarEstudiante', function(){return view('buscarEstudiante.index');})->name('buscarEstudiante');
-    Route::post('alumno',[BuscarEstudiante::class, 'devolverEstudiante'])->name('postBuscarEstudiante');
-    Route::get('alumno/{id}', [BuscarEstudiante::class,'mostrarEstudiante'])->name('mostrarEstudiante');
-    Route::get('alumno/{alumno_id}/solicitud/{id}', [BuscarEstudiante::class, 'verDatosSolicitud'])->name('verSolicitudAlumno');
+    Route::post('alumno',[BuscarEstudianteController::class, 'devolverEstudiante'])->name('postBuscarEstudiante');
+    Route::get('alumno/{id}', [BuscarEstudianteController::class,'mostrarEstudiante'])->name('mostrarEstudiante');
+    Route::get('alumno/{alumno_id}/solicitud/{id}', [BuscarEstudianteController::class, 'verDatosSolicitud'])->name('verSolicitudAlumno');
 });
 Auth::routes();
 

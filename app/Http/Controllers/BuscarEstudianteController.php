@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class BuscarEstudiante extends Controller
+class BuscarEstudianteController extends Controller
 {
     public function devolverEstudiante(Request $request){
 

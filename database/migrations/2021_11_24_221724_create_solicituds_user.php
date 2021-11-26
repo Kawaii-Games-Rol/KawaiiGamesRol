@@ -13,21 +13,21 @@ class CreateSolicitudsUser extends Migration
      */
     public function up()
     {
-        Schema::create('solcitud_user', function (Blueprint $table) {
+        Schema::create('solicituds_user', function (Blueprint $table) {
             $table->id();
             $table->string('telefono');
             $table->tinyInteger('estado')->default(0); //0: Pendiente, 1:Aceptada, 2:Aceptada con obs, 3:Rechazada
 
-            //columnas para sobrecupo, cambio paralelo, eliminación e inscripción asignatura.
+            //sobrecupo, cambio paralelo, eliminación e inscripción asignatura.
             $table->string('NRC')->nullable();
             $table->string('nombre_asignatura')->nullable();
             $table->string('detalles')->nullable();
 
-            //columnas para solicitud ayudantía
+            //solicitud ayudantía
             $table->string('calificacion_aprob')->nullable();
             $table->integer('cant_ayudantias')->nullable();
 
-            //columnas facilidades academicas
+            //facilidades academicas
             $table->enum('tipo_facilidad',['Licencia', 'Inasistencia Fuerza Mayor', 'Representacion', 'Inasistencia Motivo Personal'])->nullable();
             $table->string('nombre_profesor')->nullable();
             $table->json('archivos')->nullable();
@@ -36,8 +36,8 @@ class CreateSolicitudsUser extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->unsignedBigInteger('solcitud_id')->nullable();
-            $table->foreign('solcitud_id')->references('id')->on('solcituds');
+            $table->unsignedBigInteger('solicitud_id')->nullable();
+            $table->foreign('solicitud_id')->references('id')->on('solicituds');
 
             $table->timestamps();
         });
