@@ -59,8 +59,45 @@ class SolicitudController extends Controller
                 ]);
                 return redirect('/solicitud');
                 break;
+            case '2':
+                $request->validate([
+                    'telefono' => ['regex:/[0-9]*/','required'],
+                    'nrc' => ['required'],
+                    'nombre' => ['required'],
+                    'detalle' => ['required']
+                ]);
 
-                case '6':
+                $findUser = User::find($request->user);
+
+                $findUser->solicitudes()->attach($request->tipo, [
+                    'telefono' => $request->telefono,
+                    'NRC' => $request->nrc,
+                    'nombre_asignatura' => $request->nombre,
+                    'detalles' => $request->detalle
+                ]);
+                return redirect('/solicitud');
+                break;
+            case '2':
+                $request->validate([
+                    'telefono' => ['regex:/[0-9]*/','required'],
+                    'nrc' => ['required'],
+                    'nombre' => ['required'],
+                    'detalle' => ['required']
+                ]);
+
+                $findUser = User::find($request->user);
+
+                $findUser->solicitudes()->attach($request->tipo, [
+                    'telefono' => $request->telefono,
+                    'NRC' => $request->nrc,
+                    'nombre_asignatura' => $request->nombre,
+                    'detalles' => $request->detalle
+                ]);
+                return redirect('/solicitud');
+                break;
+
+
+            case '6':
                 $request->validate([
                     'telefono' => ['regex:/[0-9]*/','required'],
                     'nombre' => ['required'],
