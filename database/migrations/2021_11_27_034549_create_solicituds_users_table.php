@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSolicitudsUser extends Migration
+class CreateSolicitudsUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSolicitudsUser extends Migration
      */
     public function up()
     {
-        Schema::create('solicituds_user', function (Blueprint $table) {
+        Schema::create('solicitud_user', function (Blueprint $table) {
             $table->id();
             $table->string('telefono');
             $table->tinyInteger('estado')->default(0); //0: Pendiente, 1:Aceptada, 2:Aceptada con obs, 3:Rechazada
