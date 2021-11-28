@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <table class="table table-striped table-dark table-hover table-sm">
+                    <table class="table table-striped table-hover table-hover table-sm" style="background-color:#DBE2E9">
                         <tbody>
                             <tr>
                                 <td>Telefono:</td>
