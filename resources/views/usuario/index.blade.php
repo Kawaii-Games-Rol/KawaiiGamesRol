@@ -4,13 +4,7 @@
 
 @if (Auth::user()->rol == 'Administrador')
 <div class="container">
-    <div class="row mb-3">
-        <div class="col col-3" >
-            <form class="form-inline my-2 my-lg-0" method="GET" action="{{ route('usuario.index') }}">
-                <input class="form-control mr-sm-2" name="search" id="search" type="search" placeholder="Buscar por rut" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-            </form>
-        </div>
+        <div class="row mb-3">
         <div class="col col-8">
             <p class="text-center" style="font-size: x-large">Gestión de Usuarios</p>
         </div>
@@ -42,7 +36,7 @@
                     @if($usuario->rol =='Alumno')
                     <td><a class="btn btn-info" href={{ route('usuario.edit', [$usuario]) }}>Editar</a></td>
                     @endif
-               
+
                 @if ($usuario->status === 1)
                      @if($usuario->rol =='Jefe Carrera')
                         <td><a class="btn btn-warning" href={{ route('changeStatus', ['id' => $usuario]) }}>Deshabilitar</a></td>

@@ -10,12 +10,6 @@
 @endif
 <div class="container">
     <div class="row mb-3">
-        <div class="col col-2">
-            <form method="GET" action="{{ route('carrera.index') }}">
-                <input type="text" name="search" id="search" placeholder="Buscar por Código">
-                <button class="btn btn-success">Buscar</button>
-            </form>
-        </div>
         <div class="col col-8">
             <p class="text-center" style="font-size: x-large">Gestión de Carreras</p>
         </div>

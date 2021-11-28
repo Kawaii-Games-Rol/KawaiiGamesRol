@@ -20,7 +20,7 @@ class BuscarEstudianteController extends Controller
                 return redirect('buscarEstudiante')->with('error', 'El rut ingresado no es Alumno.');
             }
         }else {
-            return redirect('buscarEstudiante')->with('error', 'Alumno no encontrado.');
+            return redirect('buscarEstudiante')->with('error', 'El Rut ingresado no existe.');
         }
     }
 

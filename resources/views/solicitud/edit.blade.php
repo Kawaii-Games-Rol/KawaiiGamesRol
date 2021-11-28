@@ -13,9 +13,10 @@
             </div>
             <div class="col-lg-12 login-form">
                 <div class="col-lg-12 login-form">
-                    <form id="formulario" method="PUT" action="{{ route('solicitud.store',[$solicitud]) }}"
+                    <form method="POST" action="{{ route('solicitud.update', [$solicitud]) }}"
                         enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <input type="text" name="user" id="user" value={{Auth::user()->id}} hidden>
                         <div class="form-group">
                             <label for="form-control-label" style="color: white">Tipo Solicitud</label>
@@ -33,8 +34,8 @@
                         <div class="form-group" id="groupTelefono" hidden>
                             <label class="form-control-label">TELEFONO CONTACTO</label>
                             <input id="telefono" type="text"
-                                class="form-control @error('telefono') is-invalid @enderror" name="telefono"
-                                value="{{ $solicitud->telefono }}" required>
+                                class="form-control @error('telefono') is-invalid @enderror"
+                                name="telefono" value="{{ $solicitud->telefono }}" required>
 
                             @error('telefono')
                             <span class="invalid-feedback" role="alert">
@@ -45,7 +46,7 @@
                         <div class="form-group" id="groupNrc" hidden>
                             <label class="form-control-label">NRC ASIGNATURA</label>
                             <input id="nrc" type="text" class="form-control @error('nrc') is-invalid @enderror"
-                            value="{{ $solicitud->nrc }}" required>
+                               name="nrc" value="{{ $solicitud->nrc }}" required>
 
                             @error('nrc')
                             <span class="invalid-feedback" role="alert">
@@ -57,7 +58,7 @@
                         <div class="form-group" id="groupNombre" hidden>
                             <label class="form-control-label">NOMBRE ASIGNATURA</label>
                             <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror"
-                            value="{{ $solicitud->nombre }}" required>
+                            name="nombre" value="{{ $solicitud->nombre }}" required>
 
                             @error('nombre')
                             <span class="invalid-feedback" role="alert">
@@ -69,8 +70,8 @@
                         <div class="form-group" id="groupDetalles" hidden>
                             <label class="form-control-label">DETALLES DE LA SOLICITUD</label>
                             <textarea id="detalle" type="text"
-                                class="form-control @error('detalle') is-invalid @enderror" name="detalle"
-                                value="{{ $solicitud->detalle }}" required>
+                                class="form-control @error('detalle') is-invalid @enderror"
+                                name="detalle" value="{{ $solicitud->detalle }}" required>
 
                             @error('detalle')
                             <span class="invalid-feedback" role="alert">
@@ -82,8 +83,8 @@
                         <div class="form-group" id="groupCalificacion" hidden>
                             <label class="form-control-label">CALIFICACIÓN DE APROBACIÓN</label>
                             <input id="calificacion" type="text"
-                                class="form-control @error('calificacion') is-invalid @enderror" name="calificacion"
-                                value="{{ $solicitud->calificacion }}" required placeholder="Ej. 6.8" autofocus>
+                                class="form-control @error('calificacion') is-invalid @enderror"
+                                name="calificacion" value="{{ $solicitud->calificacion }}" required placeholder="Ej. 6.8" autofocus>
 
                             @error('calificacion')
                             <span class="invalid-feedback" role="alert">
@@ -95,8 +96,8 @@
                         <div class="form-group" id="groupCantidad" hidden>
                             <label class="form-control-label">CANTIDAD DE AYUDANTIAS REALIZADAS</label>
                             <input id="cantidad" type="text"
-                                class="form-control @error('cantidad') is-invalid @enderror" name="cantidad"
-                                value="{{ $solicitud->cantidad }}" required
+                                class="form-control @error('cantidad') is-invalid @enderror"
+                                name="cantidad" value="{{ $solicitud->cantidad }}" required
                                 placeholder="Ej. 2, ingrese 0 en caso no haber realizado antes ayudantias" autofocus>
 
                             @error('cantidad')
@@ -121,8 +122,8 @@
                         <div class="form-group" id="groupProfesor" hidden>
                             <label class="form-control-label">NOMBRE PROFESOR</label>
                             <input id="profesor" type="text"
-                                class="form-control @error('profesor') is-invalid @enderror" name="profesor"
-                                value="{{ $solicitud->profesor }}" required>
+                                class="form-control @error('profesor') is-invalid @enderror"
+                                name="profesor" value="{{ $solicitud->profesor }}" required>
 
                             @error('profesor')
                             <span class="invalid-feedback" role="alert">

@@ -189,7 +189,7 @@ class SolicitudController extends Controller
      */
     public function edit(Solicitud $solicitud)
     {
-        return view('solicitud.edit')->with('soliciud',$solicitud);
+        return view('solicitud.edit')->with('solicitud',$solicitud);
     }
 
     /**
@@ -201,7 +201,17 @@ class SolicitudController extends Controller
      */
     public function update(Request $request, Solicitud $solicitud)
     {
-        //
+
+        if($solicitud->getOriginal()["pivot_id"] == $request->id_solicitud){
+            $solicitud->pivot->telefono = $request->telefono;
+            $solicitud->pivot->nombre_asignatura = $request->nombre;
+            $solicitud->pivot->detalles = $request->detalle;
+            $solicitud->pivot->tipo_facilidad = $request->facilidad;
+            $solicitud->pivot->nombre_profesor = $request->profesor;
+            $solicitud->pivo->telefono = $request->telefono;
+            $solicitud->pivot->save();
+        }
+        return redirect('/solicitud');
     }
 
     /**
