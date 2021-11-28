@@ -72,7 +72,7 @@
 
                         <div class="col-lg-12 py-3">
                             <div class="col-lg-12 text-center">
-                                <button type="submit" class="btn btn-outline-primary">{{ __('Register') }}</button>
+                                <button type="submit" class="btn btn-outline-primary">{{ __('Registrar') }}</button>
                             </div>
                         </div>
                     </form>

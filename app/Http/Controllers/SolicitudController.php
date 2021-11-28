@@ -77,7 +77,7 @@ class SolicitudController extends Controller
                 ]);
                 return redirect('/solicitud');
                 break;
-            case '2':
+            case '3':
                 $request->validate([
                     'telefono' => ['regex:/[0-9]*/','required'],
                     'nrc' => ['required'],
@@ -92,6 +92,40 @@ class SolicitudController extends Controller
                     'NRC' => $request->nrc,
                     'nombre_asignatura' => $request->nombre,
                     'detalles' => $request->detalle
+                ]);
+                return redirect('/solicitud');
+                break;
+            case '4':
+                $request->validate([
+                    'telefono' => ['regex:/[0-9]*/','required'],
+                    'nrc' => ['required'],
+                    'nombre' => ['required'],
+                    'detalle' => ['required']
+                ]);
+
+                $findUser = User::find($request->user);
+
+                $findUser->solicitudes()->attach($request->tipo, [
+                    'telefono' => $request->telefono,
+                    'NRC' => $request->nrc,
+                    'nombre_asignatura' => $request->nombre,
+                    'detalles' => $request->detalle
+                ]);
+                return redirect('/solicitud');
+                break;
+            case '5':
+                $request->validate([
+                    'telefono' => ['regex:/[0-9]*/','required'],
+                    'calificacion_aprob'=>$request->calificacion,
+                    'cant_ayudantias' => $request->cantidad,
+                ]);
+
+                $findUser = User::find($request->user);
+
+                $findUser->solicitudes()->attach($request->tipo, [
+                    'telefono' => $request->telefono,
+                    'calificacion_aprob'=>$request->calificacion,
+                    'cant_ayudantias' => $request->cantidad,
                 ]);
                 return redirect('/solicitud');
                 break;
@@ -155,7 +189,7 @@ class SolicitudController extends Controller
      */
     public function edit(Solicitud $solicitud)
     {
-        //
+        return view('solicitud.edit')->with('soliciud',$solicitud);
     }
 
     /**
