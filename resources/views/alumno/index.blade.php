@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <table class="table table-striped table-dark table-hover table-sm">
+                    <table class="table table-striped table-hover  table-hover table-sm" style="background-color:#DBE2E9">
                         <tbody>
                             <tr>
                                 <td>Rut:</td>
@@ -53,7 +53,7 @@
         <div class="col-lg-6 col-md-6 mt-3 login-box">
             <div class="col-12">
                 <div class="login-title">SOLICITUDES</div>
-                <table class="table table-striped table-dark table-hover table-sm">
+                <table class="table table-striped table-hover table-hover table-sm" style="background-color:#DBE2E9">
                     <thead>
                         <th scope="col">id</th>
                         <th scope="col">Fecha</th>

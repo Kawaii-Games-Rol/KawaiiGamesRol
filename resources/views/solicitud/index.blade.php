@@ -17,7 +17,7 @@
                 Solicitud</a>
         </div>
     </div>
-    <table class="table table-hover">
+    <table class="table table-hover" style="background-color:#DBE2E9">
         <thead>
             <tr>
                 <th style="width: 15%" scope="col">Fecha Solicitud</th>

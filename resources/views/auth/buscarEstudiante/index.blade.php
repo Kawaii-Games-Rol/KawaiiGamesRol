@@ -46,7 +46,7 @@
                             <div class="col-lg-12 py-3">
                                 <div class="col-lg-12 text-center">
                                     <button id="boton"
-                                        class="btn btn-outline-primary">{{ __('Agregar') }}</button>
+                                        class="btn btn-outline-primary">{{ __('Buscar') }}</button>
                                 </div>
                             </div>
                         </form>

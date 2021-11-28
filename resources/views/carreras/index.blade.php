@@ -17,7 +17,7 @@
             <a class="btn btn-success btn-block" href="carrera/create"> <i class="fas fa-plus"></i> Carrera</a>
         </div>
     </div>
-    <table class="table table-dark">
+    <table class="table table-hover" style="background-color:#DBE2E9">
         <thead>
             <tr>
                 <th style="width: 10%" scope="col">Código</th>
