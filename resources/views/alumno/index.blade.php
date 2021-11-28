@@ -30,6 +30,10 @@
                                 <td>{{ $user->rut }}</td>
                             </tr>
                             <tr>
+                                <td>Nombre:</td>
+                                <td>{{ $user->name }}</td>
+                            </tr>
+                            <tr>
                                 <td>Carrera:</td>
                                 <td>{{ $user->carrera()->first()->nombre }}</td>
                             </tr>
