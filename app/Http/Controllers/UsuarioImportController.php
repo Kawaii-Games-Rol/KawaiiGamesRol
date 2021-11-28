@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\UsersImport;
+use App\Imports\UsuarioImport;
 use Illuminate\Http\Request;
 
-class UsersImportController extends Controller
+class UsuarioImportController extends Controller
 {
     public function show()
     {
@@ -16,7 +16,7 @@ class UsersImportController extends Controller
     {
         $file = $request->file('file')->store('import');
 
-        $import = new UsersImport;
+        $import = new UsuarioImport;
         $import->import($file);
 
         if ($import->failures()->isNotEmpty()) {

@@ -45,12 +45,11 @@ class UsersImport implements
             '*.rut' => 'required',
             '*.id_carrera'=>'required',
 
-        ]
-        )
+        ])->validate();
 
 
         foreach ($rows as $row) {
-            $user = User::create([
+            User::create([
                 'name' => $row['name'],
                 'email' => $row['email'],
                 'rut' => $row['required'],
@@ -84,5 +83,7 @@ class UsersImport implements
         return[
 
         ]
+
+
 
     }
