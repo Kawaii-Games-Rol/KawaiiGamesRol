@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'd9450322d5446a13885a3ff375cf8b54063f7a2e',
+        'reference' => 'be289b09417e7f31cf3d2c098abcbc3aa14cab92',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -147,6 +147,15 @@
             'aliases' => array(),
             'reference' => '89584ce67dd32307f1063cc43846674f4679feda',
             'dev_requirement' => true,
+        ),
+        'freshwork/chilean-bundle' => array(
+            'pretty_version' => '2.1.3',
+            'version' => '2.1.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../freshwork/chilean-bundle',
+            'aliases' => array(),
+            'reference' => 'a27f276a1028371f6c9687b8b0951c281814e1cb',
+            'dev_requirement' => false,
         ),
         'fruitcake/laravel-cors' => array(
             'pretty_version' => 'v2.0.4',
@@ -409,7 +418,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'd9450322d5446a13885a3ff375cf8b54063f7a2e',
+            'reference' => 'be289b09417e7f31cf3d2c098abcbc3aa14cab92',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(

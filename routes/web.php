@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioImportController;
 use App\Imports\UsersImport;
+use App\Imports\UsuarioImport;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +67,8 @@ Route::get('/status-user-change', [DisabledUserController::class, 'disabledUser'
 Route::post('/reset-password/{id}',[ResetPasswordController::class, 'resetPassword'])->name('resetpassword');
 //nuevo
 //otra linea
-Route::get('/usuario/import', [UsuarioImportController::class, 'store']);
+//importar alumnos
 
-Route::post('/users/import', [UsuarioImportController::class, 'store']);
-
+Route::get('import-alumno',[App\Http\Controllers\UsuarioImportController::class,'show']);
+Route::post('import-alumno',[App\Http\Controllers\UsuarioImportController::class,'store'])->name('alumno.import');
+Route::get('/import', function () {return view('usuario.import');});

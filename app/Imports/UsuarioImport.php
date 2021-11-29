@@ -4,9 +4,11 @@ namespace App\Imports;
 
 use Throwable;
 use App\Models\User;
+use App\Rules\ValidarRut;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Freshwork\ChileanBundle\Facades\Rut;
 use Maatwebsite\Excel\Events\AfterImport;
 use Maatwebsite\Excel\Validators\Failure;
 use Maatwebsite\Excel\Concerns\Importable;
@@ -23,43 +25,22 @@ use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\RegistersEventListeners;
 
-class UsersImport implements
-    ToCollection,
-    WithHeadingRow,
-    SkipsOnError,
-    WithValidation,
-    SkipsOnFailure,
-    WithChunkReading,
-    ShouldQueue,
-    WithEvents
+
+
+class UsuarioImport implements ToModel,WithHeadingRow,SkipsOnError
 {
-    use Importable, SkipsErrors, SkipsFailures, RegistersEventListeners;
 
 
-    public function collection(Collection $rows)
+    public function model(array $row)
     {
-        Validator::make($rows->toArray(),[
-
-            '*.name' => 'required',
-            '*.email' => 'required:users,email | unique:users,email',
-            '*.rut' => 'required',
-            '*.id_carrera'=>'required',
-
-        ])->validate();
-
-
-        foreach ($rows as $row) {
-            User::create([
-                'name' => $row['name'],
-                'email' => $row['email'],
-                'rut' => $row['required'],
-                'id_carrera'=>$row['required'],
-                'status'=>1,
-                'password'=>Hash::make('password')
-            ]);
-
-
-        }
+        return new User([
+            'id_carrera'=>$row['id_carrera'],
+            'rut'=>$row['rut'],
+            'name'=>$row['name'],
+            'email'=>$row['email'],
+            'status'=>'1',
+            'password' => Hash::make(Rut::parse($row['rut'])->number()),
+        ]);
     }
 
     public function rules(): array
@@ -77,13 +58,4 @@ class UsersImport implements
     {
 
     }
-
-    public function rules(): array
-    {
-        return[
-
-        ]
-
-
-
-    }
+}

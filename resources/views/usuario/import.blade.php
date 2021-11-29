@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Importar Excel</div>
+                <div class="card-header">Import Excel</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -52,18 +52,17 @@
 
                     @endif
 
-                   <form action="/usuario/import" method="post" enctype="multipart/form-data">
+
+                    <form method="POST" enctype="multipart/form-data" action="{{route('alumno.import')}}">
                         @csrf
+                        <div class=" d-flex form-group justify-content-center">
+                            <label for="file py-2 mt-2"></label>
+                            <input type="file" name="file" required class="form-control"/>
 
-                        <div class="form-group">
-                            <input type="file" name="file" />
-
-                            <button type="submit" class="btn btn-primary">Importar</button>
                         </div>
-                   </form>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+                        <div class ="container d-flex justify-content-center">
+                        <button  type="submit" class=" btn btn-primary py-3 mt-3"> Subir Archivo</button>
+
+                       </div>
+                </form>
+
