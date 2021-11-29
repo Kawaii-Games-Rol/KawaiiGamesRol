@@ -30,6 +30,17 @@
             <div class="card">
                 <i class="fas fa-users fa-10x text-center"></i>
                 <div class="card-body">
+                    <h5 class="card-title text-center">Carga Masiva de Estudiantes</h5>
+                    <small class="text-muted">Permite realizar una carga masiva de estudiantes al sistema.</small>
+                </div>
+                <div class="card-footer">
+                    <a href="/import" class="btn btn-info btn-block">IR</a>
+                </div>
+            </div>
+        <div class="card-deck">
+            <div class="card">
+                <i class="fas fa-users fa-10x text-center"></i>
+                <div class="card-body">
                     <h5 class="card-title text-center">Administrar Usuarios</h5>
                     <small class="text-muted">Permite crear, editar y deshabilitar usuarios del sistema.</small>
                 </div>
@@ -49,17 +60,7 @@
             </div>
         </div>
         @elseif (Auth::user()->rol == "Jefe Carrera")
-        <div class="card-deck">
-            <div class="card">
-                <i class="fas fa-users fa-10x text-center"></i>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Carga Masiva de Estudiantes</h5>
-                    <small class="text-muted">Permite realizar una carga masiva de estudiantes al sistema.</small>
-                </div>
-                <div class="card-footer">
-                    <a href="" class="btn btn-info btn-block">IR</a>
-                </div>
-            </div>
+
             <div class="card">
                 <i class="fas fa-search fa-10x text-center"></i>
                 <div class="card-body">

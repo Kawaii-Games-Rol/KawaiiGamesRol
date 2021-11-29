@@ -10,6 +10,17 @@
       'Flare' => 'Facade\\Ignition\\Facades\\Flare',
     ),
   ),
+  'freshwork/chilean-bundle' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Freshwork\\ChileanBundle\\Laravel\\ChileanBundleServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Rut' => 'Freshwork\\ChileanBundle\\Facades\\Rut',
+    ),
+  ),
   'fruitcake/laravel-cors' => 
   array (
     'providers' => 
@@ -50,6 +61,17 @@
     'providers' => 
     array (
       0 => 'Laraveles\\Spanish\\SpanishServiceProvider',
+    ),
+  ),
+  'maatwebsite/excel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
     ),
   ),
   'nesbot/carbon' => 

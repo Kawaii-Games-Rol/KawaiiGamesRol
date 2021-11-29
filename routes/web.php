@@ -63,3 +63,10 @@ Route::get('/status-user-change', [DisabledUserController::class, 'disabledUser'
 Route::post('/reset-password/{id}',[ResetPasswordController::class, 'resetPassword'])->name('resetpassword');
 //nuevo
 //otra linea
+
+//importar alumnos
+
+Route::get('import-alumno',[App\Http\Controllers\UsuarioImportController::class,'show']);
+Route::post('import-alumno',[App\Http\Controllers\UsuarioImportController::class,'store'])->name('alumno.import');
+Route::get('/import', function () {return view('usuario.import');});
+
