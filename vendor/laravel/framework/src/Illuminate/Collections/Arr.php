@@ -122,6 +122,23 @@ class Arr
     }
 
     /**
+     * Convert a flatten "dot" notation array into an expanded array.
+     *
+     * @param  iterable  $array
+     * @return array
+     */
+    public static function undot($array)
+    {
+        $results = [];
+
+        foreach ($array as $key => $value) {
+            static::set($results, $key, $value);
+        }
+
+        return $results;
+    }
+
+    /**
      * Get all of the given array except for a specified array of keys.
      *
      * @param  array  $array
@@ -391,6 +408,19 @@ class Arr
         $keys = array_keys($array);
 
         return array_keys($keys) !== $keys;
+    }
+
+    /**
+     * Determines if an array is a list.
+     *
+     * An array is a "list" if all array keys are sequential integers starting from 0 with no gaps in between.
+     *
+     * @param  array  $array
+     * @return bool
+     */
+    public static function isList($array)
+    {
+        return ! self::isAssoc($array);
     }
 
     /**

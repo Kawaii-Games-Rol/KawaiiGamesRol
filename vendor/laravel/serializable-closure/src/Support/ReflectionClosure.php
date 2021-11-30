@@ -5,6 +5,7 @@ namespace Laravel\SerializableClosure\Support;
 defined('T_NAME_QUALIFIED') || define('T_NAME_QUALIFIED', -4);
 defined('T_NAME_FULLY_QUALIFIED') || define('T_NAME_FULLY_QUALIFIED', -5);
 defined('T_FN') || define('T_FN', -6);
+defined('T_NULLSAFE_OBJECT_OPERATOR') || define('T_NULLSAFE_OBJECT_OPERATOR', -7);
 
 use Closure;
 use ReflectionFunction;
@@ -389,6 +390,7 @@ class ReflectionClosure extends ReflectionFunction
                             $lastState = 'closure';
                             break;
                         case T_OBJECT_OPERATOR:
+                        case T_NULLSAFE_OBJECT_OPERATOR:
                         case T_DOUBLE_COLON:
                             $code .= $token[1];
                             $lastState = 'closure';
@@ -495,6 +497,15 @@ class ReflectionClosure extends ReflectionFunction
                     break;
                 case 'id_name':
                     switch ($token[0]) {
+                        // named arguments...
+                        case ':':
+                            if ($lastState === 'closure' && $context === 'root') {
+                                $state = 'ignore_next';
+                                $lastState = 'closure';
+                                $code .= $id_start.$token;
+                            }
+
+                            break;
                         case T_NAME_QUALIFIED:
                         case T_NS_SEPARATOR:
                         case T_STRING:
