@@ -187,9 +187,18 @@ class SolicitudController extends Controller
      * @param  \App\Models\Solicitud  $solicitud
      * @return \Illuminate\Http\Response
      */
-    public function edit(Solicitud $solicitud)
+    public function edit(String  $id)
     {
-        return view('solicitud.edit')->with('solicitud',$solicitud);
+        $getUser =  Auth::user()->solicitudes;
+        foreach($getUser as $key => $solicitud){
+            if($solicitud->getOriginal()["pivot_id"] == $id ){
+
+                return view('solicitud.edit')->with('solicitud',$solicitud);
+            }
+
+        }
+
+       
     }
 
     /**

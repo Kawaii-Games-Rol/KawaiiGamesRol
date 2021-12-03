@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+@dd($solicitud)
+
 <div class="container">
     <div class="row">
         <div class="col-lg-3 col-md-2"></div>
@@ -20,22 +22,36 @@
                         <input type="text" name="user" id="user" value={{Auth::user()->id}} hidden>
                         <div class="form-group">
                             <label for="form-control-label" style="color: white">Tipo Solicitud</label>
-                            <select class="form-control" name="tipo" id="tipo">
+                            <select class="form-control" name="tipo" id="tipo" disabled>
                                 <option value={{ null }}>Seleccione..</option>
-                                <option value="1">Solicitud de Sobrecupo</option>
-                                <option value="2">Solicitud Cambio de Paralelo</option>
-                                <option value="3">Solicitud Eliminación de Asignatura</option>
-                                <option value="4">Solicitud Inscripción de Asignatura</option>
-                                <option value="5">Solicitud Ayudantía</option>
-                                <option value="6">Solicitud Facilidades Académicas</option>
+                                <option value="1" @if ($solicitud->id == 1)
+                                    selected
+                                    @endif>Solicitud de Sobrecupo</option>
+                                <option value="2" @if ($solicitud->id == 2)
+                                    selected
+                                    @endif>Solicitud Cambio de Paralelo</option>
+                                <option value="3" @if ($solicitud->id == 3)
+                                    selected
+                                    @endif>Solicitud Eliminación de Asignatura</option>
+                                <option value="4" @if ($solicitud->id == 4)
+                                    selected
+                                    @endif>Solicitud Inscripción de Asignatura</option>
+                                <option value="5" @if ($solicitud->id == 5)
+                                    selected
+                                    @endif>Solicitud Ayudantía</option>
+                                <option value="6" @if ($solicitud->id == 6)
+                                    selected
+                                    @endif>Solicitud Facilidades Académicas</option>
                             </select>
                         </div>
                         <br>
                         <div class="form-group" id="groupTelefono" hidden>
                             <label class="form-control-label">TELEFONO CONTACTO</label>
                             <input id="telefono" type="text"
-                                class="form-control @error('telefono') is-invalid @enderror"
-                                name="telefono" value="{{ $solicitud->telefono }}" required>
+                                class="form-control @error('telefono') is-invalid @enderror" 
+                                name="telefono" value="{{$solicitud->getOriginal()['pivot_telefono'] }}" autocomplete="telefono"
+                                autofocus>
+                                
 
                             @error('telefono')
                             <span class="invalid-feedback" role="alert">
@@ -170,12 +186,11 @@
     const inputProfesor = document.getElementById('groupProfesor');
     const inputAdjunto = document.getElementById('groupAdjunto');
     const button = document.getElementById('groupButton');
-
-
-
-    selectSolicitud.addEventListener('change', () => {
-        switch (selectSolicitud.value) {
-            case "1":
+    const variable = {!! json_encode($solicitud->id) !!}                                  
+ 
+   
+    switch (variable) {
+            case 1:
                 inputTelefono.hidden = false;
                 inputNrc.hidden = false;
                 inputNombre.hidden = false;
@@ -187,7 +202,7 @@
                 inputAdjunto.hidden = true;
                 button.hidden = false
                 break;
-            case "2":
+            case 2:
                 inputTelefono.hidden = false;
                 inputNrc.hidden = false;
                 inputNombre.hidden = false;
@@ -199,7 +214,7 @@
                 inputAdjunto.hidden = true;
                 button.hidden = false
                 break;
-            case "3":
+            case 3:
                 inputTelefono.hidden = false;
                 inputNrc.hidden = false;
                 inputNombre.hidden = false;
@@ -211,7 +226,7 @@
                 inputAdjunto.hidden = true;
                 button.hidden = false
                 break;
-            case "4":
+            case 4:
                 inputTelefono.hidden = false;
                 inputNrc.hidden = false;
                 inputNombre.hidden = false;
@@ -223,7 +238,7 @@
                 inputAdjunto.hidden = true;
                 button.hidden = false
                 break;
-            case "5":
+            case 5:
                 inputTelefono.hidden = false;
                 inputNrc.hidden = true;
                 inputNombre.hidden = false;
@@ -235,7 +250,7 @@
                 inputAdjunto.hidden = true;
                 button.hidden = false
                 break;
-            case "6":
+            case 6:
                 inputTelefono.hidden = false;
                 inputNrc.hidden = true;
                 inputNombre.hidden = false;
@@ -260,6 +275,8 @@
                 button.hidden = true
                 break;
         }
-    })
-</script>
+    
+
+
+</script>        
 @endsection
