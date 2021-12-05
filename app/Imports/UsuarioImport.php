@@ -39,6 +39,7 @@ class UsuarioImport implements ToModel,WithHeadingRow,SkipsOnError
             'name'=>$row['name'],
             'email'=>$row['email'],
             'status'=>'1',
+            'rol'=>'Alumno',
             'password' => Hash::make(Rut::parse($row['rut'])->number()),
         ]);
     }
@@ -50,6 +51,7 @@ class UsuarioImport implements ToModel,WithHeadingRow,SkipsOnError
             'email' => 'required:users,email | unique:users,email',
             'rut' => 'required',
             'id_carrera'=>'required',
+            'rol'=>'Alumno',
         ];
     }
 
