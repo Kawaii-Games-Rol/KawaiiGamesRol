@@ -33,6 +33,7 @@ class UsuarioImport implements ToModel,WithHeadingRow,SkipsOnError
 
     public function model(array $row)
     {
+
         return new User([
             'id_carrera'=>$row['id_carrera'],
             'rut'=>$row['rut'],

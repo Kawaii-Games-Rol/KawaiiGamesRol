@@ -17,6 +17,7 @@ class UsuarioImportController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate (["file"=> "mimes:xlsx,xls|required"]);
 
         $file = $request->file('file')->store('import');
 

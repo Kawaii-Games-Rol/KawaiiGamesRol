@@ -171,6 +171,11 @@
     const inputProfesor = document.getElementById('groupProfesor');
     const inputAdjunto = document.getElementById('groupAdjunto');
     const button = document.getElementById('groupButton');
+    const button2 = document.getElementById("boton");
+    const form = document.getElementById("formulario");
+    const input = document.getElementById("adjunto");
+
+
 
 
 
@@ -263,6 +268,22 @@
         }
     })
 
-
+    button2.addEventListener('click', function(e){
+            e.preventDefault();
+            Swal.fire({
+                title: 'Estás seguro que quieres agregar esta solicitud?',
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: 'Guardar',
+                denyButtonText: `Cancelar`,
+                }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    form.submit();
+                } else if (result.isDenied) {
+                    Swal.fire('No guardado', '', 'info')
+                }
+            })
+        })
 </script>
 @endsection
