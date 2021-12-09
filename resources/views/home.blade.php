@@ -34,7 +34,7 @@
                     <small class="text-muted">Permite realizar una carga masiva de estudiantes al sistema.</small>
                 </div>
                 <div class="card-footer">
-                    <a href="/import" class="btn btn-info btn-block">IR</a>
+                    <a href="/carga-masiva" class="btn btn-info btn-block">IR</a>
                 </div>
             </div>
         <div class="card-deck">

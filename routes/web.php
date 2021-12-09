@@ -7,6 +7,7 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DisabledUserController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\UsuarioImportController;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -67,7 +68,11 @@ Route::post('/reset-password/{id}',[ResetPasswordController::class, 'resetPasswo
 
 //importar alumnos
 
-Route::get('import-alumno',[App\Http\Controllers\UsuarioImportController::class,'show']);
-Route::post('import-alumno',[App\Http\Controllers\UsuarioImportController::class,'store'])->name('alumno.import');
+//Route::get('import-alumno',[App\Http\Controllers\UsuarioImportController::class,'show']);
+//Route::post('import-alumno',[App\Http\Controllers\UsuarioImportController::class,'store'])->name('alumno.import');
+
+Route::get('carga-masiva', [UsuarioImportController::class, 'index'])->name('indexCargaMasiva');
+Route::post('carga-masiva', [UsuarioImportController::class, 'carga'])->name('cargaExcel');
+
 Route::get('/import', function () {return view('usuario.import');});
 

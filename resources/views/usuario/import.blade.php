@@ -1,68 +1,109 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Importar Excel</div>
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <div class="row">
+        <div class="col-lg-3 col-md-2"></div>
+        <div class="col-lg-6 col-md-8 login-box">
+            <div class="col-lg-12 login-key">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="col-lg-12 login-title">
+                CARGA MASIVA
+            </div>
 
-                    @if (isset($errors) && $errors->any())
-                        <div class="alert alert-danger">
-                            @foreach ($errors->all() as $error)
-                                {{ $error }}
-                            @endforeach
-                        </div>
-                    @endif
-
-                    @if (session()->has('failures'))
-
-                        <table class="table table-danger">
-                            <tr>
-                                <th>Row</th>
-                                <th>Attribute</th>
-                                <th>Errors</th>
-                                <th>Value</th>
-                            </tr>
-
-                            @foreach (session()->get('failures') as $validation)
-                                <tr>
-                                    <td>{{ $validation->row() }}</td>
-                                    <td>{{ $validation->attribute() }}</td>
-                                    <td>
-                                        <ul>
-                                            @foreach ($validation->errors() as $e)
-                                                <li>{{ $e }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        {{ $validation->values()[$validation->attribute()] }}
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </table>
-
-                    @endif
-
-
-                    <form method="POST" enctype="multipart/form-data" action="{{route('alumno.import')}}">
+            <div class="col-lg-12 login-form">
+                <div class="col-lg-12 login-form">
+                    <form id="formulario" method="POST" action="{{ route('cargaExcel') }}"
+                        enctype="multipart/form-data">
                         @csrf
-                        <div class=" d-flex form-group justify-content-center">
-                            <label for="file py-2 mt-2"></label>
-                            <input type="file" name="file" required class="form-control"/>
+                        <div class="form-group" id="groupAdjunto">
+                            <label class="form-control-label">ADJUNTAR ARCHIVO</label>
+                            <input id="adjunto" type="file" class="form-control @error('adjunto') is-invalid @enderror"
+                                name="adjunto">
 
+                            @error('adjunto')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
-                        <div class ="container d-flex justify-content-center">
-                        <button  type="submit" class=" btn btn-primary py-3 mt-3"> Subir Archivo</button>
+                        <div class="col-lg-12 py-3">
+                            <div class="col-lg-12 text-center">
+                                <button id="boton" class="btn btn-outline-primary">{{ __('Subir') }}</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col @if (!$errores)
+                                col-12 @else col-6
+                            @endif">
 
-                       </div>
-                </form>
-@endsection
+                                @if ($nuevos)
+                                <h1 class="text-white">Alumnos agregados</h1>
+                                <table class="table table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Fila</th>
+                                            <th scope="col">Nombre de Alumno</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($nuevos as $key => $value)
+                                        <tr>
+                                            <td class="table-success text-black">{{$key}}</td>
+                                            <td class="table-success text-black">{{$value->name}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                @endif
+                            </div>
+                            <div class="col @if (!$nuevos)
+                                col-12 @else col-6
+                            @endif">
+
+                                @if ($errores)
+                                <h1 class="text-white">Alumnos No agregados</h1>
+                                <table class="table table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Fila</th>
+                                            <th scope="col">Errores</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($errores as $key => $value)
+                                        @if ($value)
+                                        <tr>
+                                            <td class="table-danger text-black">{{$key}}</td>
+                                            @foreach ($value as $newKey => $error)
+                                            <td class="table-danger text-black">{{$error[0]}}</td>
+
+                                            @endforeach
+                                        </tr>
+                                        @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                @endif
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-2"></div>
+        </div>
+    </div>
+    @endsection
