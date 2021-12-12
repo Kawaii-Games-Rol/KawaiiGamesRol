@@ -3,7 +3,6 @@
 @section('content')
 
 
-
 <div class="container">
     @if (session('error'))
     <div class="alert alert-danger">
@@ -107,3 +106,4 @@
         </div>
     </div>
     @endsection
+
