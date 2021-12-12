@@ -66,11 +66,12 @@ class UsuarioImportController extends Controller
                     "rut" => 'unique:users,rut',
                     'email' => 'unique:users,email'
                 ]);
+
                 $auxErrores["fila" . $fila->getRowIndex()] = $validator->getMessageBag()->getMessages();
                 if (!$validator->fails()) {
                     $carrera = Carrera::where('codigo', $auxDatos->request->all()["carrera"])->first();
                     //crear pass
-                    $defaultpass= "12312";
+                    $defaultpass= substr($auxDatos->request->all()["rut"],0,6);
                     $newUser = User::create([
                         'name' => $auxDatos->request->all()["nombre"],
                         'email' => $auxDatos->request->all()["email"],
