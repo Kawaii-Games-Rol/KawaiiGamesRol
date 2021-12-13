@@ -77,7 +77,7 @@
                                 <table class="table table-dark">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Fila</th>
+                                            <th scope="col">Nombre alumno</th>
                                             <th scope="col">Errores</th>
                                         </tr>
                                     </thead>

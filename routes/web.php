@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnularSolicitudController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\BuscarEstudianteController;
 use App\Http\Controllers\CarreraController;
@@ -41,6 +42,7 @@ Route::resource('usuario', UsuarioController::class,['middleware' => 'auth']);
 Route::middleware(['rutasAlumno'])->group(function () {
     Route::resource('solicitud', SolicitudController::class);
     Route::get('/solicitud/{id}/edit', [SolcitudController::class, 'edit'])->name('editarSolicitud');
+    Route::post('anular',[AnularSolicitudController::class,'AnularSolicitud'])->name('anular');
 
 });
 

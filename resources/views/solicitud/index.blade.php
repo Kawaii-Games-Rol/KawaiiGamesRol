@@ -62,12 +62,29 @@
                     </div>
                 </td>
                 @break
+                @case(4)
+                <td>
+                    <div class="alert alert-danger" role="alert">
+                        Anulada
+                    </div>
+                </td>
+                @break
 
                 @default
 
                 @endswitch
+                @if ($solicitud->pivot->estado ==0)
                 <td><a class="btn btn-info" data-toggle="tooltip" data-placement="top" title="editar" href={{
                         route('editarSolicitud', [$solicitud->getOriginal()['pivot_id']]) }}><i class="far fa-edit"></i></a></td>
+                <td>
+                    <form class="anular" method="POST" action="{{route('anular')}}">
+                        @csrf
+                        <input type="text" value={{$solicitud->getOriginal()['pivot_id']}} name="id" hidden>
+                        <button type="submit" class="btn btn-info anular"
+                           style="color:white; background-color: grey; border:grey">Anular</button>
+                    </form>
+                </td>
+                @endif
             </tr>
             @empty
             <tr>

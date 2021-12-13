@@ -66,13 +66,14 @@ class UsuarioImportController extends Controller
                             break;
                     }
                 }
+
                 $validator = Validator::make($auxDatos->request->all(), [
                     "carrera" => "exists:carreras,codigo",
                     "rut" => 'unique:users,rut|required',
                     "name" => 'unique:users,nombre',
                     'email' => 'unique:users,email'
                 ]);
-                $auxErrores["fila" . $fila->getRowIndex()] = $validator->getMessageBag()->getMessages();
+                $auxErrores[$auxDatos->request->get('nombre')] = $validator->getMessageBag()->getMessages();
                 if (!$validator->fails()) {
                     $carrera = Carrera::where('codigo', $auxDatos->request->all()["carrera"])->first();
                     //crear pass
