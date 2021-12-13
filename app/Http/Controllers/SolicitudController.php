@@ -140,7 +140,7 @@ class SolicitudController extends Controller
                     'detalle' => ['required'],
                     'facilidad' => ['required'],
                     'profesor' => ['required'],
-                    'archivos' => ['mimes:pdf,jpg,jpeg,doc,docx','required'],
+                    'adjunto.*' => ['mimes:pdf,jpg,jpeg,doc,docx','required'],
                 ]);
 
                 $findUser = User::find($request->user);
@@ -200,7 +200,7 @@ class SolicitudController extends Controller
 
         }
 
-       
+
     }
 
     /**
@@ -220,11 +220,11 @@ class SolicitudController extends Controller
                     'nrc' => ['required'],
                     'nombre' => ['required'],
                     'detalle' => ['required']
-                   
+
                 ]);
-              
+
                 $findUser = User::find($request->user);
-                $getUserWithSol = Auth::user()->solicitudes;       
+                $getUserWithSol = Auth::user()->solicitudes;
                 foreach ($getUserWithSol as $key => $solicitud) {
                     if ($solicitud->getOriginal()["pivot_id"] == $request->id_solicitud) {
                         $solicitud->pivot->telefono = $request->telefono;
@@ -241,11 +241,11 @@ class SolicitudController extends Controller
                     'nrc' => ['required'],
                     'nombre' => ['required'],
                     'detalle' => ['required']
-                   
+
                 ]);
-              
+
                 $findUser = User::find($request->user);
-                $getUserWithSol = Auth::user()->solicitudes;       
+                $getUserWithSol = Auth::user()->solicitudes;
                 foreach ($getUserWithSol as $key => $solicitud) {
                     if ($solicitud->getOriginal()["pivot_id"] == $request->id_solicitud) {
                         $solicitud->pivot->telefono = $request->telefono;
@@ -262,11 +262,11 @@ class SolicitudController extends Controller
                     'nrc' => ['required'],
                     'nombre' => ['required'],
                     'detalle' => ['required']
-                   
+
                 ]);
-              
+
                 $findUser = User::find($request->user);
-                $getUserWithSol = Auth::user()->solicitudes;       
+                $getUserWithSol = Auth::user()->solicitudes;
                 foreach ($getUserWithSol as $key => $solicitud) {
                     if ($solicitud->getOriginal()["pivot_id"] == $request->id_solicitud) {
                         $solicitud->pivot->telefono = $request->telefono;
@@ -283,11 +283,11 @@ class SolicitudController extends Controller
                     'nrc' => ['required'],
                     'nombre' => ['required'],
                     'detalle' => ['required']
-                   
+
                 ]);
-              
+
                 $findUser = User::find($request->user);
-                $getUserWithSol = Auth::user()->solicitudes;       
+                $getUserWithSol = Auth::user()->solicitudes;
                 foreach ($getUserWithSol as $key => $solicitud) {
                     if ($solicitud->getOriginal()["pivot_id"] == $request->id_solicitud) {
                         $solicitud->pivot->telefono = $request->telefono;
@@ -304,11 +304,11 @@ class SolicitudController extends Controller
                     'nombre' => ['required'],
                     'detalle' => ['required'],
                     'calificacion' => ['required'],
-                    'cantidad' => ['required'] 
+                    'cantidad' => ['required']
                 ]);
-              
+
                 $findUser = User::find($request->user);
-                $getUserWithSol = Auth::user()->solicitudes;       
+                $getUserWithSol = Auth::user()->solicitudes;
                 foreach ($getUserWithSol as $key => $solicitud) {
                     if ($solicitud->getOriginal()["pivot_id"] == $request->id_solicitud) {
                         $solicitud->pivot->telefono = $request->telefono;
@@ -319,7 +319,7 @@ class SolicitudController extends Controller
                         $solicitud->pivot->save();
                     }
                 }
-                return redirect('/solicitud');  
+                return redirect('/solicitud');
         case 6:
             $request->validate([
                 'telefono' => ['regex:/[0-9]/','required'],
@@ -329,19 +329,14 @@ class SolicitudController extends Controller
                 'profesor' => ['required'],
                 'adjunto.*' => ['mimes:pdf,jpg,jpeg,doc,docx'],
             ]);
-          
+
             $findUser = User::find($request->user);
             $datos= [];
             $aux = 0;
-            foreach ($request->adjunto as $file) {
-                $name = $aux.time().'-'.$findUser->name.'.pdf';
-                $file->move(public_path('\storage\docs'), $name);
-                $datos[] = $name;
-                $aux++;
-            }
+
 
             $getUserWithSol = Auth::user()->solicitudes;
-     
+
             foreach ($getUserWithSol as $key => $solicitud) {
                 if ($solicitud->getOriginal()["pivot_id"] == $request->id_solicitud) {
                     $solicitud->pivot->telefono = $request->telefono;
@@ -350,12 +345,12 @@ class SolicitudController extends Controller
                     $solicitud->pivot->tipo_facilidad = $request->facilidad;
                     $solicitud->pivot->nombre_profesor = $request->profesor;
                     $solicitud->pivot->telefono = $request->telefono;
-                    $solicitud->pivot->archivos = json_encode($datos);
+
                     $solicitud->pivot->save();
                 }
             }
         }
-        return redirect('/solicitud');  
+        return redirect('/solicitud');
     }
 
     /**
