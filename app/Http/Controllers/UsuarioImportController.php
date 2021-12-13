@@ -30,6 +30,11 @@ class UsuarioImportController extends Controller
         $doc = IOFactory::load($request->adjunto);
         $hoja1 = $doc->getSheet(0);
 
+        if ($hoja1->getCell('A1')->getValue() == null|| $hoja1->getCell('B1')->getValue() == null|| $hoja1->getCell('C1')->getValue() == null|| $hoja1->getCell('D1')->getValue() == null){
+            return redirect('carga-masiva')->with('nuevos',$auxAdd)->with('eliminados',$auxErrores)->with('error', 'Error: El archivo excel se encuentra vacío');
+        }
+
+
         /* $auxErrores->errors = ["errorRut" => "linea 2" ];
         $auxErrores->errors['prueba'] = "nada"; */
 
@@ -64,7 +69,7 @@ class UsuarioImportController extends Controller
                 $validator = Validator::make($auxDatos->request->all(), [
                     "carrera" => "exists:carreras,codigo",
                     "rut" => 'unique:users,rut|required',
-                    "name" => 'unique:users,nombre|required',
+                    "name" => 'unique:users,nombre',
                     'email' => 'unique:users,email'
                 ]);
                 $auxErrores["fila" . $fila->getRowIndex()] = $validator->getMessageBag()->getMessages();
@@ -109,7 +114,7 @@ class UsuarioImportController extends Controller
                 $validator = Validator::make($auxDatos->request->all(), [
                     "carrera" => "exists:carreras,codigo",
                     "rut" => 'unique:users,rut|required',
-                    "name" => 'unique:users,nombre|required',
+                    "name" => 'unique:users,nombre',
                     'email' => 'unique:users,email'
                 ]);
 
