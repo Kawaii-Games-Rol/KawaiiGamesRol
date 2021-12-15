@@ -34,7 +34,7 @@
                     <small class="text-muted">Permite realizar una carga masiva de estudiantes al sistema.</small>
                 </div>
                 <div class="card-footer">
-                    <a href="/import" class="btn btn-info btn-block">IR</a>
+                    <a href="/carga-masiva" class="btn btn-info btn-block">IR</a>
                 </div>
             </div>
         <div class="card-deck">
@@ -78,7 +78,7 @@
                     <small class="text-muted">Permite visualizar todas las solicitudes recibidas con estado "Pendiente".</small>
                 </div>
                 <div class="card-footer">
-                    <a href="" class="btn btn-info btn-block">IR</a>
+                    <a href="/GestionSolicitud" class="btn btn-info btn-block">IR</a>
                 </div>
             </div>
 
@@ -89,7 +89,7 @@
                     <small class="text-muted">Permite visualizar mediante gráficos las distintas solicitudes del sistema.</small>
                 </div>
                 <div class="card-footer">
-                    <a href="" class="btn btn-info btn-block">IR</a>
+                    <a href="/estadisticas" class="btn btn-info btn-block">IR</a>
                 </div>
             </div>
         </div>

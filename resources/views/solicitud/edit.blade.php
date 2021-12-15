@@ -133,7 +133,7 @@
                         </div>
 
                         <div class="form-group" id="groupTipoFacilidad" hidden>
-                            <label for="form-control-label" style="color: white">TIPO DE FACILIDAD</label>
+                            <label for="form-control-label" style="color: black">TIPO DE FACILIDAD</label>
                             <select class="form-control" name="facilidad" id="facilidad">
                                 <option value={{ null }}>Seleccione..</option>
                                 <option value="Licencia" @if ($solicitud->getOriginal()['pivot_tipo_facilidad'] ==
@@ -209,6 +209,8 @@
                             const inputProfesor = document.getElementById('groupProfesor');
                             const inputAdjunto = document.getElementById('groupAdjunto');
                             const button = document.getElementById('groupButton');
+                            const button2 = document.getElementById("boton");
+                            const form = document.getElementById("formulario");
                             const variable = {!! json_encode($solicitud->id) !!}
 
                             switch (variable) {
@@ -298,6 +300,23 @@
                                         break;
 
                                 }
+        button2.addEventListener('click', function(e){
+            e.preventDefault();
+            Swal.fire({
+                title: 'Estás seguro que quieres agregar esta solicitud?',
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: 'Guardar',
+                denyButtonText: `Cancelar`,
+                }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    form.submit();
+                } else if (result.isDenied) {
+                    Swal.fire('No guardado', '', 'info')
+                }
+            })
+        })
 </script>
 
 

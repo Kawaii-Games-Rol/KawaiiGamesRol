@@ -94,7 +94,8 @@
             </tr>
             @endforelse
         </tbody>
-    </table>
+    </table>}
+    
 
 </div>
 

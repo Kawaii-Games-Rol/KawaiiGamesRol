@@ -78,7 +78,7 @@
                     <small class="text-muted">Permite visualizar todas las solicitudes recibidas con estado "Pendiente".</small>
                 </div>
                 <div class="card-footer">
-                    <a href="" class="btn btn-info btn-block">IR</a>
+                    <a href="/GestionSolicitud" class="btn btn-info btn-block">IR</a>
                 </div>
             </div>
 
