@@ -114,7 +114,7 @@
                         </div>
 
                         <div class="form-group" id="groupTipoFacilidad" hidden>
-                            <label for="form-control-label" style="color: white">TIPO DE FACILIDAD</label>
+                            <label for="form-control-label" >TIPO DE FACILIDAD</label>
                             <select class="form-control" name="facilidad" id="facilidad">
                                 <option value={{ null }}>Seleccione..</option>
                                 <option value="Licencia">Licencia Médica o Certificado Médico</option>
