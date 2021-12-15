@@ -80,7 +80,7 @@
                     <form class="anular" method="POST" action="{{route('anular')}}">
                         @csrf
                         <input type="text" value={{$solicitud->getOriginal()['pivot_id']}} name="id" hidden>
-                        <button type="submit" class="btn btn-info anular"
+                        <button id="boton" type="submit" class="btn btn-info anular"
                            style="color:white; background-color: grey; border:grey">Anular</button>
                     </form>
                 </td>
@@ -98,5 +98,27 @@
     
 
 </div>
+
+<script>
+    const button = document.getElementById('boton');
+    const form = document.getElementById('formulario')
+    button.addEventListener('click', function(e){
+        e.preventDefault();
+        Swal.fire({
+            title: 'Estás seguro que quieres anular esta solicitud?',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: 'Confirmar',
+            denyButtonText: `Cancelar`,
+            }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                form.submit();
+            } else if (result.isDenied) {
+                Swal.fire('No guardado', '', 'info')
+            }
+        })
+    })
+</script>
 
 @endsection

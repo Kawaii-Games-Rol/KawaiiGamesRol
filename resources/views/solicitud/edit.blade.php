@@ -24,7 +24,7 @@
                         <input type="text" name="id_solicitud" id="id_solicitud"
                             value={{$solicitud->getOriginal()['pivot_id']}} hidden>
                         <div class="form-group">
-                            <label for="form-control-label" style="color: white">Tipo Solicitud</label>
+                            <label for="form-control-label" >Tipo Solicitud</label>
                             <select class="form-control" name="tipo" id="tipo" disabled>
                                 <option value={{ null }}>Seleccione..</option>
                                 <option value="1" @if ($solicitud->id == 1)
