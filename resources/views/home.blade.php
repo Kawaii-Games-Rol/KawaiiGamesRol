@@ -89,7 +89,7 @@
                     <small class="text-muted">Permite visualizar mediante gráficos las distintas solicitudes del sistema.</small>
                 </div>
                 <div class="card-footer">
-                    <a href="" class="btn btn-info btn-block">IR</a>
+                    <a href="/estadisticas" class="btn btn-info btn-block">IR</a>
                 </div>
             </div>
         </div>

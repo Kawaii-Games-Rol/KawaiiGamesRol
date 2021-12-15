@@ -6,6 +6,7 @@ use App\Http\Controllers\BuscarEstudianteController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DisabledUserController;
+use App\Http\Controllers\EstadisticasController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\UsuarioImportController;
@@ -51,6 +52,7 @@ Route::middleware(['rutasJefeCarrera'])->group(function () {
     Route::post('alumno',[BuscarEstudianteController::class, 'devolverEstudiante'])->name('postBuscarEstudiante');
     Route::get('alumno/{id}', [BuscarEstudianteController::class,'mostrarEstudiante'])->name('mostrarEstudiante');
     Route::get('alumno/{alumno_id}/solicitud/{id}', [BuscarEstudianteController::class, 'verDatosSolicitud'])->name('verSolicitudAlumno');
+    Route::get('estadisticas', [EstadisticasController::class, 'showEstadistica'])->name('estadisitica');
 });
 Auth::routes();
 
