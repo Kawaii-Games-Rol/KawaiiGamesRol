@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SolicitudController extends Controller
+class GestionSolicitudController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -180,9 +180,10 @@ class SolicitudController extends Controller
      */
     public function show(Solicitud $solicitud)
     {
-        
-
-        
+        $solicitud = solicitud::all();
+        $usuarios = User::simplePaginate(5);
+       
+        return view('GestionSolicitud.index')->with('solicitudes',$solicitud)->with('usuarios',$usuarios);
     }
 
     /**

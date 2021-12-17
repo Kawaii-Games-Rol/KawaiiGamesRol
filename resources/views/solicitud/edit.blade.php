@@ -24,7 +24,7 @@
                         <input type="text" name="id_solicitud" id="id_solicitud"
                             value={{$solicitud->getOriginal()['pivot_id']}} hidden>
                         <div class="form-group">
-                            <label for="form-control-label" >Tipo Solicitud</label>
+                            <label for="form-control-label" style="color: white">Tipo Solicitud</label>
                             <select class="form-control" name="tipo" id="tipo" disabled>
                                 <option value={{ null }}>Seleccione..</option>
                                 <option value="1" @if ($solicitud->id == 1)
@@ -303,7 +303,7 @@
         button2.addEventListener('click', function(e){
             e.preventDefault();
             Swal.fire({
-                title: 'Estás seguro que quieres agregar esta solicitud?',
+                title: '¿Estás seguro que quieres editar esta solicitud?',
                 showDenyButton: true,
                 showCancelButton: false,
                 confirmButtonText: 'Guardar',

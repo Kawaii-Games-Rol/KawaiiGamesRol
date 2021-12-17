@@ -59,29 +59,7 @@
                         <th scope="col">Fecha</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Ver</th>
-                    </thead>
-                    <tbody>
-                        @forelse ($user->solicitudes as $solicitud)
-                        <tr>
-                            <td>{{$solicitud->getOriginal()['pivot_id']}}</td>
-                            <td>{{$solicitud->getOriginal()['pivot_updated_at']}}</td>
-                            <td>{{$solicitud->getOriginal()['tipo']}}</td>
-                            <td><a class="btn btn-info" href={{ route('verSolicitudAlumno',
-                                    ['id'=>$solicitud->getOriginal()['pivot_id'], 'alumno_id' => $user->id])
-                                    }}>Ver</a></td>
-
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="4">
-                                <p>Sin Solicitudes</p>
-                            </td>
-                        </tr>
-
-                        @endforelse
-
-                    </tbody>
-                </table>
+         
             </div>
         </div>
         <div class="col-lg-3 col-md-2"></div>

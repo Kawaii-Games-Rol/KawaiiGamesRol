@@ -10,6 +10,7 @@ use App\Http\Controllers\EstadisticasController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\UsuarioImportController;
+use App\Http\Controllers\GestionSolicitudController;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -49,12 +50,12 @@ Route::middleware(['rutasAlumno'])->group(function () {
 
 Route::middleware(['rutasJefeCarrera'])->group(function () {
     Route::get('buscarEstudiante', function(){return view('auth.buscarEstudiante.index');})->name('buscarEstudiante');
-    Route::get('GestionSolicitud', function(){return view('GestionSolicitud.index');})->name('GestionSolicitud');
-    Route::get('filtrarSolicitudes', function(){return view('filtrarSolicitudes.index');})->name('filtarSolicitudes');
+    Route::get('filtrarSolicitudes', function(){return view('filtrarSolicitudes.index');})->name('filtrarSolicitudes');
     Route::post('alumno',[BuscarEstudianteController::class, 'devolverEstudiante'])->name('postBuscarEstudiante');
     Route::get('alumno/{id}', [BuscarEstudianteController::class,'mostrarEstudiante'])->name('mostrarEstudiante');
     Route::get('alumno/{alumno_id}/solicitud/{id}', [BuscarEstudianteController::class, 'verDatosSolicitud'])->name('verSolicitudAlumno');
     Route::get('estadisticas', [EstadisticasController::class, 'showEstadistica'])->name('estadisitica');
+    Route::get('GestionSolicitud', [GestionSolicitudController::class, 'show'])->name('GestionSolicitud');
 });
 Auth::routes();
 

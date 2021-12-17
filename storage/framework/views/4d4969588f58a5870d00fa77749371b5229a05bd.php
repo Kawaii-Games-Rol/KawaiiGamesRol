@@ -92,6 +92,18 @@
                     <a href="/estadisticas" class="btn btn-info btn-block">IR</a>
                 </div>
             </div>
+
+            <div class="card">
+                <i class="fas fa-info fa-10x text-center"></i>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Filtrar solicitudes</h5>
+                    <small class="text-muted">Permite buscar las distintas solicitudes del sistema.</small>
+                </div>
+                <div class="card-footer">
+                    <a href="/filtrarSolicitudes" class="btn btn-info btn-block">IR</a>
+                </div>
+            </div>
+
         </div>
         <?php elseif(Auth::user()->rol == "Alumno"): ?>
         <div class="card-deck">
