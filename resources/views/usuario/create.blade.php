@@ -94,7 +94,7 @@
             Swal.fire({
                 icon: 'Error',
                 title: 'Oops...',
-                text: 'No puedes crear usuarios sin tener carreras en el sistema!',
+                text: '¡No puedes crear usuarios sin tener carreras en el sistema!',
                 footer: 'Para crear carreras has&nbsp;<a href="/carrera/create">click aquí</a>'
             }).then((result) => {
                 window.location.href = '/usuario'

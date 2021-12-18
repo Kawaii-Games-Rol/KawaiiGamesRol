@@ -36,7 +36,7 @@
                         </div>
                         <br>
                         <div class="form-group" id="groupTelefono" hidden>
-                            <label class="form-control-label">TELEFONO CONTACTO</label>
+                            <label class="form-control-label">TELÉFONO CONTACTO</label>
                             <input id="telefono" type="text"
                                 class="form-control @error('telefono') is-invalid @enderror" name="telefono"
                                 value="{{ old('telefono') }}" autocomplete="telefono" autofocus>
@@ -364,7 +364,7 @@
     button2.addEventListener('click', function(e){
             e.preventDefault();
             Swal.fire({
-                title: 'Estás seguro que quieres agregar esta solicitud?',
+                title: '¿Estás seguro que quieres agregar esta solicitud?',
                 showDenyButton: true,
                 showCancelButton: false,
                 confirmButtonText: 'Guardar',
@@ -374,7 +374,7 @@
                 if (result.isConfirmed) {
                     form.submit();
                 } else if (result.isDenied) {
-                    Swal.fire('No guardado', '', 'info')
+                    Swal.fire('No Guardado', '', 'info')
                 }
             })
         })

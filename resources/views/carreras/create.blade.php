@@ -59,7 +59,7 @@
         button.addEventListener('click', function(e){
             e.preventDefault();
             Swal.fire({
-                title: 'Estás seguro que quieres agregar esta carrera?, esta acción es irreversible',
+                title: '¿Estás seguro que quieres agregar esta carrera?, esta acción es irreversible',
                 showDenyButton: true,
                 showCancelButton: false,
                 confirmButtonText: 'Guardar',
@@ -69,7 +69,7 @@
                 if (result.isConfirmed) {
                     form.submit();
                 } else if (result.isDenied) {
-                    Swal.fire('No guardado', '', 'info')
+                    Swal.fire('No Guardado', '', 'info')
                 }
             })
         })

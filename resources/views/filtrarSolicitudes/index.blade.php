@@ -21,7 +21,7 @@
                             <label for="form-control-label" style="color: white">Filtrar por</label>
                             <select class="form-control" name="facilidad" id="facilidad">
                                 <option value={{ null }}>Seleccione..</option>
-                                <option value="1" @if (old('tipo')=="1" ) selected @endif>Numero de solicitud
+                                <option value="1" @if (old('tipo')=="1" ) selected @endif>Número de solicitud
                                 </option>
                                 <option value="2" @if (old('tipo')=="2" ) selected @endif>Tipo de solicitud
                                 </option>
@@ -29,7 +29,7 @@
                         </div>
                         <br>
                         <div class="form-group" id="groupNumero" hidden>
-                            <label class="form-control-label">NUMERO SOLICITUD</label>
+                            <label class="form-control-label">NÚMERO SOLICITUD</label>
                             <input id="numero" type="text"
                                 class="form-control @error('telefono') is-invalid @enderror" name="numero"
                                 value="{{ old('numero') }}" autocomplete="numero" autofocus>

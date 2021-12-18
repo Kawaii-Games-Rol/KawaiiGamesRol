@@ -49,7 +49,7 @@
                         </div>
                         <br>
                         <div class="form-group" id="groupTelefono" hidden>
-                            <label class="form-control-label">TELEFONO CONTACTO</label>
+                            <label class="form-control-label">TELÉFONO CONTACTO</label>
                             <input id="telefono" type="text"
                                 class="form-control @error('telefono') is-invalid @enderror" name="telefono"
                                 value="{{$solicitud->getOriginal()['pivot_telefono']}}" autocomplete="telefono"
@@ -313,7 +313,7 @@
                 if (result.isConfirmed) {
                     form.submit();
                 } else if (result.isDenied) {
-                    Swal.fire('No guardado', '', 'info')
+                    Swal.fire('No Guardado', '', 'info')
                 }
             })
         })

@@ -21,7 +21,7 @@
         <thead>
             <tr>
                 <th style="width: 15%" scope="col">Fecha Solicitud</th>
-                <th style="width: 20%" scope="col">Numero Solicitud</th>
+                <th style="width: 20%" scope="col">Número Solicitud</th>
                 <th style="width: 30%" scope="col">Tipo Solicitud</th>
                 <th style="width: 20%" scope="col">Estado</th>
                 <th style="width: 10%" scope="col">Editar</th>
@@ -94,8 +94,8 @@
             </tr>
             @endforelse
         </tbody>
-    </table>}
-    
+    </table>
+
 
 </div>
 
@@ -105,7 +105,7 @@
     button.addEventListener('click', function(e){
         e.preventDefault();
         Swal.fire({
-            title: 'Estás seguro que quieres anular esta solicitud?',
+            title: '¿Estás seguro que quieres anular esta solicitud?',
             showDenyButton: true,
             showCancelButton: false,
             confirmButtonText: 'Confirmar',
@@ -115,7 +115,7 @@
             if (result.isConfirmed) {
                 form.submit();
             } else if (result.isDenied) {
-                Swal.fire('No guardado', '', 'info')
+                Swal.fire('No Guardado', '', 'info')
             }
         })
     })
