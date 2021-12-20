@@ -10,7 +10,7 @@ class BuscarEstudianteController extends Controller
 {
     public function devolverEstudiante(Request $request){
 
-
+      
         $findUser = User::where('rut', $request->rut)->first();
 
         if (isset($findUser)) {
@@ -26,6 +26,7 @@ class BuscarEstudianteController extends Controller
 
 
     public function mostrarEstudiante(String $id){
+        
         $user = User::where('id', $id)->with('carrera')->with('solicitudes')->first();
 
         return view('alumno.index')->with('user',$user);

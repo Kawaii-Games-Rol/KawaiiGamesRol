@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::resource('carrera', CarreraController::class,['middleware'=>'auth']);
 Route::resource('usuario', UsuarioController::class,['middleware' => 'auth']);
+Route::resource('GestionSolicitud', GestionSolicitudController::class,['middleware' => 'auth']);
 
 Route::middleware(['rutasAlumno'])->group(function () {
     Route::resource('solicitud', SolicitudController::class);
@@ -49,13 +50,16 @@ Route::middleware(['rutasAlumno'])->group(function () {
 });
 
 Route::middleware(['rutasJefeCarrera'])->group(function () {
+    Route::resource('GestionSolicitud', GestionSolicitudController::class);
     Route::get('buscarEstudiante', function(){return view('auth.buscarEstudiante.index');})->name('buscarEstudiante');
     Route::get('filtrarSolicitudes', function(){return view('filtrarSolicitudes.index');})->name('filtrarSolicitudes');
+    Route::get('Detalles/{id}/solicitud/{pivot_id}',[GestionSolicitudController::class, 'Detalles'])->name('postDetalles');
     Route::post('alumno',[BuscarEstudianteController::class, 'devolverEstudiante'])->name('postBuscarEstudiante');
     Route::get('alumno/{id}', [BuscarEstudianteController::class,'mostrarEstudiante'])->name('mostrarEstudiante');
     Route::get('alumno/{alumno_id}/solicitud/{id}', [BuscarEstudianteController::class, 'verDatosSolicitud'])->name('verSolicitudAlumno');
     Route::get('estadisticas', [EstadisticasController::class, 'showEstadistica'])->name('estadisitica');
     Route::get('GestionSolicitud', [GestionSolicitudController::class, 'show'])->name('GestionSolicitud');
+    
 });
 Auth::routes();
 

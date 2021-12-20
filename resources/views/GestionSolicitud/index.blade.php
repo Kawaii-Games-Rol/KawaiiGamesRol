@@ -25,17 +25,35 @@
                 <th style="width: 20%" scope="col" colspan="3">Tipo de solicitud</th>
 
                 <tbody>
-                    
+                     
             @foreach ($usuarios as $usuario)
             @forelse ($usuario->solicitudes as $solicitud)
                         
             <tr>
                 <th scope="row">{{$usuario->created_at}}</th>
-                <td>{{$solicitud->getOriginal()['pivot_id']}}</td>
+                <td>{{$solicitud->getOriginal()['pivot_id']}}</td> 
                 <td>{{$usuario->rut}}</td>
                 <td>{{$usuario->name}}</td>
                 <td>{{$solicitud->tipo}}</td>
                 <td>
+                <div class="col-lg-12 login-form">
+                <div class="col-lg-12 login-form">
+                    <form method="POST" action={{ route('GestionSolicitud.update', [$usuario]) }}>
+                        @method('PUT')
+                        @csrf
+                        <div class="form-group"><hidden>
+                               
+                                <input id="rut"
+                                    type="text"
+                                    class="form-control @error('rut') is-invalid @enderror"
+                                    name="rut"
+                                    value="{{ $solicitud->getOriginal()['pivot_id']}}"
+                                    required
+                                    autocomplete="rut"
+                                    autofocus>
+                                    <div class="form-group"><hidden>
+                             
+                                   
                         @csrf<button class="btn-info">Detalles</button>
                     </form>
             </tr>

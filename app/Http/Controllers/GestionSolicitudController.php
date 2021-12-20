@@ -184,6 +184,32 @@ class GestionSolicitudController extends Controller
         $usuarios = User::simplePaginate(5);
        
         return view('GestionSolicitud.index')->with('solicitudes',$solicitud)->with('usuarios',$usuarios);
+    }  
+    
+   
+    public function Detalles(String $id){
+      
+        
+        $user = User::where('id', $id)->with('carrera')->where('solicitudes')->first();
+        
+        return view('Detalles.index')->with('user',$user);
+    }
+
+    public function update(Request $request)
+    {
+      
+
+        $findUser = User::where('rut', $request->rut)->first();
+        
+        if (isset($findUser)) {
+            if ($findUser->rol == "Alumno") {
+                return redirect(route('postDetalles',['id' => $findUser->id]));
+            }else {
+                return redirect('buscarEstudiante')->with('error', 'Error.');
+            }
+        }else {
+            return redirect('buscarEstudiante')->with('error', 'Error.');
+        }
     }
 
     /**
@@ -213,148 +239,7 @@ class GestionSolicitudController extends Controller
      * @param  \App\Models\Solicitud  $solicitud
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Solicitud $solicitud)
-    {
-
-        switch ($solicitud->id) {
-            case 1:
-                $request->validate([
-                    'telefono' => ['regex:/[0-9]/','required'],
-                    'nrc' => ['required'],
-                    'nombre' => ['required'],
-                    'detalle' => ['required']
-
-                ]);
-
-                $findUser = User::find($request->user);
-                $getUserWithSol = Auth::user()->solicitudes;
-                foreach ($getUserWithSol as $key => $solicitud) {
-                    if ($solicitud->getOriginal()["pivot_id"] == $request->id_solicitud) {
-                        $solicitud->pivot->telefono = $request->telefono;
-                        $solicitud->pivot->nombre_asignatura = $request->nombre;
-                        $solicitud->pivot->detalles = $request->detalle;
-                        $solicitud->pivot->NRC= $request->nrc;
-                        $solicitud->pivot->save();
-                    }
-                }
-                return redirect('/solicitud');
-            case 2:
-                $request->validate([
-                    'telefono' => ['regex:/[0-9]/','required'],
-                    'nrc' => ['required'],
-                    'nombre' => ['required'],
-                    'detalle' => ['required']
-
-                ]);
-
-                $findUser = User::find($request->user);
-                $getUserWithSol = Auth::user()->solicitudes;
-                foreach ($getUserWithSol as $key => $solicitud) {
-                    if ($solicitud->getOriginal()["pivot_id"] == $request->id_solicitud) {
-                        $solicitud->pivot->telefono = $request->telefono;
-                        $solicitud->pivot->nombre_asignatura = $request->nombre;
-                        $solicitud->pivot->detalles = $request->detalle;
-                        $solicitud->pivot->NRC= $request->nrc;
-                        $solicitud->pivot->save();
-                    }
-                }
-                return redirect('/solicitud');
-            case 3:
-                $request->validate([
-                    'telefono' => ['regex:/[0-9]/','required'],
-                    'nrc' => ['required'],
-                    'nombre' => ['required'],
-                    'detalle' => ['required']
-
-                ]);
-
-                $findUser = User::find($request->user);
-                $getUserWithSol = Auth::user()->solicitudes;
-                foreach ($getUserWithSol as $key => $solicitud) {
-                    if ($solicitud->getOriginal()["pivot_id"] == $request->id_solicitud) {
-                        $solicitud->pivot->telefono = $request->telefono;
-                        $solicitud->pivot->nombre_asignatura = $request->nombre;
-                        $solicitud->pivot->detalles = $request->detalle;
-                        $solicitud->pivot->NRC= $request->nrc;
-                        $solicitud->pivot->save();
-                    }
-                }
-                return redirect('/solicitud');
-            case 4:
-                $request->validate([
-                    'telefono' => ['regex:/[0-9]/','required'],
-                    'nrc' => ['required'],
-                    'nombre' => ['required'],
-                    'detalle' => ['required']
-
-                ]);
-
-                $findUser = User::find($request->user);
-                $getUserWithSol = Auth::user()->solicitudes;
-                foreach ($getUserWithSol as $key => $solicitud) {
-                    if ($solicitud->getOriginal()["pivot_id"] == $request->id_solicitud) {
-                        $solicitud->pivot->telefono = $request->telefono;
-                        $solicitud->pivot->nombre_asignatura = $request->nombre;
-                        $solicitud->pivot->detalles = $request->detalle;
-                        $solicitud->pivot->NRC= $request->nrc;
-                        $solicitud->pivot->save();
-                    }
-                }
-                return redirect('/solicitud');
-            case 5:
-                $request->validate([
-                    'telefono' => ['regex:/[0-9]/','required'],
-                    'nombre' => ['required'],
-                    'detalle' => ['required'],
-                    'calificacion' => ['required'],
-                    'cantidad' => ['required']
-                ]);
-
-                $findUser = User::find($request->user);
-                $getUserWithSol = Auth::user()->solicitudes;
-                foreach ($getUserWithSol as $key => $solicitud) {
-                    if ($solicitud->getOriginal()["pivot_id"] == $request->id_solicitud) {
-                        $solicitud->pivot->telefono = $request->telefono;
-                        $solicitud->pivot->nombre_asignatura = $request->nombre;
-                        $solicitud->pivot->detalles = $request->detalle;
-                        $solicitud->pivot->calificacion_aprob= $request->calificacion;
-                        $solicitud->pivot->cant_ayudantias= $request->cantidad;
-                        $solicitud->pivot->save();
-                    }
-                }
-                return redirect('/solicitud');
-        case 6:
-            $request->validate([
-                'telefono' => ['regex:/[0-9]/','required'],
-                'nombre' => ['required'],
-                'detalle' => ['required'],
-                'facilidad' => ['required'],
-                'profesor' => ['required'],
-                'adjunto.*' => ['mimes:pdf'],
-            ]);
-
-            $findUser = User::find($request->user);
-            $datos= [];
-            $aux = 0;
-
-
-            $getUserWithSol = Auth::user()->solicitudes;
-
-            foreach ($getUserWithSol as $key => $solicitud) {
-                if ($solicitud->getOriginal()["pivot_id"] == $request->id_solicitud) {
-                    $solicitud->pivot->telefono = $request->telefono;
-                    $solicitud->pivot->nombre_asignatura = $request->nombre;
-                    $solicitud->pivot->detalles = $request->detalle;
-                    $solicitud->pivot->tipo_facilidad = $request->facilidad;
-                    $solicitud->pivot->nombre_profesor = $request->profesor;
-                    $solicitud->pivot->telefono = $request->telefono;
-
-                    $solicitud->pivot->save();
-                }
-            }
-        }
-        return redirect('/solicitud');
-    }
+   
 
     /**
      * Remove the specified resource from storage.
