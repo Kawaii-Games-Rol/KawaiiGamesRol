@@ -54,6 +54,7 @@ Route::middleware(['rutasJefeCarrera'])->group(function () {
     Route::get('buscarEstudiante', function(){return view('auth.buscarEstudiante.index');})->name('buscarEstudiante');
     Route::get('filtrarSolicitudes', function(){return view('filtrarSolicitudes.index');})->name('filtrarSolicitudes');
     Route::get('Detalles/{id}',[GestionSolicitudController::class, 'Detalles'])->name('postDetalles');
+    Route::get('Detalles/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'DatosSolicitud'])->name('verSolicitud');
     Route::post('alumno',[BuscarEstudianteController::class, 'devolverEstudiante'])->name('postBuscarEstudiante');
     Route::get('alumno/{id}', [BuscarEstudianteController::class,'mostrarEstudiante'])->name('mostrarEstudiante');
     Route::get('alumno/{alumno_id}/solicitud/{id}', [BuscarEstudianteController::class, 'verDatosSolicitud'])->name('verSolicitudAlumno');

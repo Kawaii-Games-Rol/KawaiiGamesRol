@@ -19,12 +19,10 @@ class GestionSolicitudController extends Controller
     }  
     
    
-    public function Detalles(String $id){
+    public function Detalles2(String $id,String $alumno_id){
       
-        
-        $user = User::where('id', $id)->with('carrera')->with('solicitudes')->first();
-    
-        return view('Detalles.index')->with('user',$user);
+        $getUser = User::where('id', $id)->firstOrFail()->getSolicitudId($alumno_id)->first();
+        return view('Detalles.index')->with('solicitud',$getUser);
     }
 
     public function update(Request $request)
@@ -41,6 +39,14 @@ class GestionSolicitudController extends Controller
             return redirect('buscarEstudiante')->with('error', 'Error.');
         }
     }
+
+    public function DatosSolicitud (String $id, String $alumno_id){
+
+        $getUser = User::where('id', $id)->firstOrFail()->getSolicitudId($alumno_id)->first();
+        $user = User::where('id',$id)->first();
+        return view('Detalles.index')->with('solicitud',$getUser)->with('user',$user);
+    }
+
 
 
     public function edit(String  $id)
