@@ -9,9 +9,7 @@
         </div>
         <div class="col-lg-12 mt-4 text-light login-title" style="font-size: 15px">
                            
-        <div class="col col-2">
-            <a class="btn btn-success btn-block" href={{ route('usuario.create') }}> <i class="fas fa-plus"></i> Usuario</a>
-        </div>
+        
     </div>
 
     <table class="table table-hover" style="background-color:#DBE2E9">
@@ -47,7 +45,7 @@
                                     type="text"
                                     class="form-control @error('rut') is-invalid @enderror"
                                     name="rut"
-                                    value="{{ $solicitud->getOriginal()['pivot_id']}}"
+                                    value="{{ $usuario->rut}}"
                                     required
                                     autocomplete="rut"
                                     autofocus>
@@ -59,9 +57,7 @@
             </tr>
                         @empty
                         <tr>
-                            <td colspan="4">
-                                <p>Sin Solicitudes</p>
-                            </td>
+                            
                         </tr>
 
                         @endforelse
