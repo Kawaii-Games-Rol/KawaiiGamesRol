@@ -18,8 +18,8 @@
                         @csrf
                         <input type="text" name="user" id="user" value={{Auth::user()->id}} hidden>
                         <div class="form-group">
-                            <label for="form-control-label" style="color: white">Filtrar por</label>
-                            <select class="form-control" name="facilidad" id="facilidad">
+                            <label for="form-control-label" style="color: black">Filtrar por</label>
+                            <select class="form-control" name="tipo" id="tipo">
                                 <option value={{ null }}>Seleccione..</option>
                                 <option value="1" @if (old('tipo')=="1" ) selected @endif>Numero de solicitud
                                 </option>
@@ -41,7 +41,7 @@
                             @enderror
                         </div>
                         <div class="form-group" id="groupTipoSolicitud" hidden>
-                            <label for="form-control-label" style="color: white">TIPO DE SOLICITUD</label>
+                            <label for="form-control-label" style="color: Black">TIPO DE SOLICITUD</label>
                             <select class="form-control" name="solicitud" id="solicitud">
                                 <option value={{ null }}>Seleccione..</option>
                                 <option value="1" @if (old('tipo')=="1" ) selected @endif>Solicitud de Sobrecupo
