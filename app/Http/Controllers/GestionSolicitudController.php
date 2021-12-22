@@ -14,15 +14,59 @@ class GestionSolicitudController extends Controller
     {
         $solicitud = solicitud::all();
         $usuarios = User::simplePaginate(5);
-       
+      
         return view('GestionSolicitud.index')->with('solicitudes',$solicitud)->with('usuarios',$usuarios);
     }  
-    
+    public function Resuelta(Solicitud $solicitud)
+    {
+        $solicitud = solicitud::all();
+        $usuarios = User::simplePaginate(5);
+      
+        return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$usuarios);
+    }  
    
     public function Detalles2(String $id,String $alumno_id){
-      
+       
         $getUser = User::where('id', $id)->firstOrFail()->getSolicitudId($alumno_id)->first();
         return view('Detalles.index')->with('solicitud',$getUser);
+
+    }
+    public function AceptarSolicitud(String $id, String $alumno_id){
+
+        $array = [1,2,3,4,5,6];
+    
+        $user = User::where('id','=', $id)->first();
+        $user->solicitudes()->wherePivot('id', $alumno_id)->updateExistingPivot($array, [
+            'estado' => 1
+           
+        ]);
+        $user->save();
+        return redirect('/GestionSolicitud');
+    }
+   
+    public function AceptarOSolicitud(String $id, String $alumno_id){
+
+        $array = [1,2,3,4,5,6];
+    
+        $user = User::where('id','=', $id)->first();
+        $user->solicitudes()->wherePivot('id', $alumno_id)->updateExistingPivot($array, [
+            'estado' => 2
+           
+        ]);
+        $user->save();
+        return redirect('/GestionSolicitud');
+    }
+    public function RechazarSolicitud(String $id, String $alumno_id){
+
+        $array = [1,2,3,4,5,6];
+    
+        $user = User::where('id','=', $id)->first();
+        $user->solicitudes()->wherePivot('id', $alumno_id)->updateExistingPivot($array, [
+            'estado' => 3
+           
+        ]);
+        $user->save();
+        return redirect('/GestionSolicitud');
     }
 
     public function update(Request $request)
@@ -44,9 +88,9 @@ class GestionSolicitudController extends Controller
 
         $getUser = User::where('id', $id)->firstOrFail()->getSolicitudId($alumno_id)->first();
         $user = User::where('id',$id)->first();
+        
         return view('Detalles.index')->with('solicitud',$getUser)->with('user',$user);
     }
-
 
 
     public function edit(String  $id)

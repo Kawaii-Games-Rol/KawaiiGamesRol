@@ -94,31 +94,11 @@
             </tr>
             @endforelse
         </tbody>
-    </table>}
+    </table>
     
 
 </div>
 
-<script>
-    const button = document.getElementById('boton');
-    const form = document.getElementById('formulario')
-    button.addEventListener('click', function(e){
-        e.preventDefault();
-        Swal.fire({
-            title: 'Estás seguro que quieres anular esta solicitud?',
-            showDenyButton: true,
-            showCancelButton: false,
-            confirmButtonText: 'Confirmar',
-            denyButtonText: `Cancelar`,
-            }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                form.submit();
-            } else if (result.isDenied) {
-                Swal.fire('No guardado', '', 'info')
-            }
-        })
-    })
-</script>
+
 
 @endsection

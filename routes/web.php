@@ -42,6 +42,9 @@ Route::resource('carrera', CarreraController::class,['middleware'=>'auth']);
 Route::resource('usuario', UsuarioController::class,['middleware' => 'auth']);
 Route::resource('GestionSolicitud', GestionSolicitudController::class,['middleware' => 'auth']);
 
+
+
+
 Route::middleware(['rutasAlumno'])->group(function () {
     Route::resource('solicitud', SolicitudController::class);
     Route::get('/solicitud/{id}/edit', [SolcitudController::class, 'edit'])->name('editarSolicitud');
@@ -55,11 +58,16 @@ Route::middleware(['rutasJefeCarrera'])->group(function () {
     Route::get('filtrarSolicitudes', function(){return view('filtrarSolicitudes.index');})->name('filtrarSolicitudes');
     Route::get('Detalles/{id}',[GestionSolicitudController::class, 'Detalles'])->name('postDetalles');
     Route::get('Detalles/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'DatosSolicitud'])->name('verSolicitud');
+    Route::get('Detalles2/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'AceptarSolicitud'])->name('AceptarSolicitud');
+    Route::get('Detalles3/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'AceptarOSolicitud'])->name('AceptarOSolicitud');
+    Route::get('Detalles4/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'RechazarSolicitud'])->name('RechazarSolicitud');
     Route::post('alumno',[BuscarEstudianteController::class, 'devolverEstudiante'])->name('postBuscarEstudiante');
     Route::get('alumno/{id}', [BuscarEstudianteController::class,'mostrarEstudiante'])->name('mostrarEstudiante');
     Route::get('alumno/{alumno_id}/solicitud/{id}', [BuscarEstudianteController::class, 'verDatosSolicitud'])->name('verSolicitudAlumno');
     Route::get('estadisticas', [EstadisticasController::class, 'showEstadistica'])->name('estadisitica');
     Route::get('GestionSolicitud', [GestionSolicitudController::class, 'show'])->name('GestionSolicitud');
+    Route::post('Aceptar',[GestionSolicitudController::class,'AceptarSolicitud'])->name('Aceptar');
+    Route::get('Resuelta', [GestionSolicitudController::class, 'Resuelta'])->name('Resuelta');
     
 });
 Auth::routes();

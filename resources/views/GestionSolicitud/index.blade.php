@@ -5,13 +5,15 @@
 <div class="container">
         <div class="row mb-3">
         <div class="col col-8">
-            <p class="text-center" style="font-size: x-large">Solicitudes pendientes</p>
+            <p class="text-center" style="font-size: x-large">Solicitudes Pendientes</p>
+            
         </div>
+        <td><a class="btn btn-success"  style="color: Black"href={{ route('Resuelta')}}>Solicitudes Finalizadas</a></td>
         <div class="col-lg-12 mt-4 text-light login-title" style="font-size: 15px">
                            
         
     </div>
-
+  
     <table class="table table-hover" style="background-color:#DBE2E9">
         <thead>
             <tr>
@@ -25,9 +27,11 @@
                 <tbody>
                      
             @foreach ($usuarios as $usuario)
+            
             @forelse ($usuario->solicitudes as $solicitud)
-                        
+            @if ($solicitud->pivot->estado == 0)    
             <tr>
+
                 <th scope="row">{{$usuario->created_at}}</th>
                 <td>{{$solicitud->getOriginal()['pivot_id']}}</td> 
                 <td>{{$usuario->rut}}</td>
@@ -38,23 +42,25 @@
                                     }}>Ver</a></td>
                 <div class="col-lg-12 login-form">
                 <div class="col-lg-12 login-form">
-                    
-                             
-                                
             </tr>
-                        @empty
-                        <tr>
-                            
-                        </tr>
-
-                        @endforelse
+ 
+            @endif
+            @if (!$solicitud)
             <tr>
-                
-    
-
+                <td colspan="5">
+                    <p>No hay solicitudes ingresadas</p>
+                </td>
+            </tr>
+            @endif
+            @empty
+             
+         
+            @endforelse  
+      
             @endforeach
+           
         </tbody>
-   
+
 </div>
 
 @endsection
