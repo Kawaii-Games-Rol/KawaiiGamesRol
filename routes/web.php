@@ -7,6 +7,7 @@ use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DisabledUserController;
 use App\Http\Controllers\EstadisticasController;
+use App\Http\Controllers\FiltarSolicitudesController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\UsuarioImportController;
@@ -55,20 +56,29 @@ Route::middleware(['rutasAlumno'])->group(function () {
 Route::middleware(['rutasJefeCarrera'])->group(function () {
     Route::resource('GestionSolicitud', GestionSolicitudController::class);
     Route::get('buscarEstudiante', function(){return view('auth.buscarEstudiante.index');})->name('buscarEstudiante');
+    Route::post('alumno',[BuscarEstudianteController::class, 'devolverEstudiante'])->name('postBuscarEstudiante');
+    Route::get('alumno/{id}', [BuscarEstudianteController::class,'mostrarEstudiante'])->name('mostrarEstudiante');
+    Route::get('alumno/{alumno_id}/solicitud/{id}', [BuscarEstudianteController::class, 'verDatosSolicitud'])->name('verSolicitudAlumno');
+
     Route::get('filtrarSolicitudes', function(){return view('filtrarSolicitudes.index');})->name('filtrarSolicitudes');
+    Route::get('filtrarNumero/{alumno_id}/solicitud/{id}', [FiltarSolicitudesController::class, 'DatosNumero'])->name('verNumero');
+    Route::get('filtrarNumero/{alumno_id}/solicitud/{id}', [FiltarSolicitudesController::class, 'DatosTipo'])->name('verTipo');
+    Route::post('filtrarNumero',[FiltarSolicitudesController::class, 'devolverSolicitud'])->name('postfiltrarSolicitud');
+    Route::post('filtrarNumero2',[FiltarSolicitudesController::class, 'devolverSolicitudTipo'])->name('postfiltrarSolicitudTipo');
+    Route::get('filtrarNumero/{id}', [FiltarSolicitudesController::class,'mostrarSolicitud'])->name('mostrarSolicitud');
+
     Route::get('Detalles/{id}',[GestionSolicitudController::class, 'Detalles'])->name('postDetalles');
     Route::get('Detalles/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'DatosSolicitud'])->name('verSolicitud');
     Route::get('Detalles2/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'AceptarSolicitud'])->name('AceptarSolicitud');
     Route::get('Detalles3/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'AceptarOSolicitud'])->name('AceptarOSolicitud');
     Route::get('Detalles4/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'RechazarSolicitud'])->name('RechazarSolicitud');
-    Route::post('alumno',[BuscarEstudianteController::class, 'devolverEstudiante'])->name('postBuscarEstudiante');
-    Route::get('alumno/{id}', [BuscarEstudianteController::class,'mostrarEstudiante'])->name('mostrarEstudiante');
-    Route::get('alumno/{alumno_id}/solicitud/{id}', [BuscarEstudianteController::class, 'verDatosSolicitud'])->name('verSolicitudAlumno');
+
+
     Route::get('estadisticas', [EstadisticasController::class, 'showEstadistica'])->name('estadisitica');
     Route::get('GestionSolicitud', [GestionSolicitudController::class, 'show'])->name('GestionSolicitud');
     Route::post('Aceptar',[GestionSolicitudController::class,'AceptarSolicitud'])->name('Aceptar');
     Route::get('Resuelta', [GestionSolicitudController::class, 'Resuelta'])->name('Resuelta');
-    
+
 });
 Auth::routes();
 

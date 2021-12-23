@@ -13,7 +13,7 @@
             </div>
             <div class="col-lg-12 login-form">
                 <div class="col-lg-12 login-form">
-                    <form id="formulario" method="POST" action="{{ route('filtrarSolicitudes') }}"
+                    <form id="formulario" method="POST" action="{{ route('postfiltrarSolicitud') }}"
                         enctype="multipart/form-data">
                         @csrf
                         <input type="text" name="user" id="user" value={{Auth::user()->id}} hidden>
@@ -31,7 +31,7 @@
                         <div class="form-group" id="groupNumero" hidden>
                             <label class="form-control-label">NUMERO SOLICITUD</label>
                             <input id="numero" type="text"
-                                class="form-control @error('telefono') is-invalid @enderror" name="numero"
+                                class="form-control @error('numero') is-invalid @enderror" name="numero"
                                 value="{{ old('numero') }}" autocomplete="numero" autofocus>
 
                             @error('numero')
@@ -44,27 +44,75 @@
                             <label for="form-control-label" style="color: black">TIPO DE SOLICITUD</label>
                             <select class="form-control" name="solicitud" id="solicitud">
                                 <option value={{ null }}>Seleccione..</option>
-                                <option value="1" @if (old('tipo')=="1" ) selected @endif>Solicitud de Sobrecupo
+                                <option value="1" @if (old('solicitud')=="1" ) selected @endif>Solicitud de Sobrecupo
                                 </option>
-                                <option value="2" @if (old('tipo')=="2" ) selected @endif>Solicitud Cambio de Paralelo
+                                <option value="2" @if (old('solicitud')=="2" ) selected @endif>Solicitud Cambio de Paralelo
                                 </option>
-                                <option value="3" @if (old('tipo')=="3" ) selected @endif>Solicitud Eliminación de
+                                <option value="3" @if (old('solicitud')=="3" ) selected @endif>Solicitud Eliminación de
                                     Asignatura</option>
-                                <option value="4" @if (old('tipo')=="4" ) selected @endif>Solicitud Inscripción de
+                                <option value="4" @if (old('solicitud')=="4" ) selected @endif>Solicitud Inscripción de
                                     Asignatura</option>
-                                <option value="5" @if (old('tipo')=="5" ) selected @endif>Solicitud Ayudantía</option>
-                                <option value="6" @if (old('tipo')=="6" ) selected @endif>Solicitud Facilidades
+                                <option value="5" @if (old('solicitud')=="5" ) selected @endif>Solicitud Ayudantía</option>
+                                <option value="6" @if (old('solicitud')=="6" ) selected @endif>Solicitud Facilidades
                                     Académicas</option>
                             </select>
                         </div>
-
+                        @dd(numero)
 
                         <div hidden id="groupButton" class="col-lg-12 py-3">
+                            <td><a class="btn btn-info" href={{ route('postfiltrarSolicitud')
+                                }}>Ver</a></td>
+                            <form id="formulario"
+                            method="POST"
+                            action="{{ route('postfiltrarSolicitud') }}">
+                            @csrf
+                            <div class="form-group">
+                                <label class="form-control-label">RUT</label>
+                                <input id="id"
+                                    type="text"
+                                    class="form-control @error('numero') is-invalid @enderror"
+                                    name="numero"
+                                    value="{{ old() }}"
+                                    required
+                                    autocomplete="numero"
+                                    autofocus>
+                        </div>
+
+                        <div hidden id="groupButton2" class="col-lg-12 py-3">
                             <div class="col-lg-12 text-center">
-                                <button type="submit" id="boton" class="btn btn-outline-primary">{{ __('Agregar')
-                                    }}</button>
+                                <button id="boton"
+                                    class="btn btn-outline-primary">{{ __('Buscar') }}</button>
                             </div>
                         </div>
+
+                        <div hidden id="groupButton3" class="col-lg-12 py-3">
+                            <div class="col-lg-12 text-center">
+                                <button id="boton"
+                                    class="btn btn-outline-primary">{{ __('Buscar') }}</button>
+                            </div>
+                        </div>
+
+                        <div hidden id="groupButton4" class="col-lg-12 py-3">
+                            <div class="col-lg-12 text-center">
+                                <button id="boton"
+                                    class="btn btn-outline-primary">{{ __('Buscar') }}</button>
+                            </div>
+                        </div>
+
+                        <div hidden id="groupButton5" class="col-lg-12 py-3">
+                            <div class="col-lg-12 text-center">
+                                <button id="boton"
+                                    class="btn btn-outline-primary">{{ __('Buscar') }}</button>
+                            </div>
+                        </div>
+
+                        <div hidden id="groupButton6" class="col-lg-12 py-3">
+                            <div class="col-lg-12 text-center">
+                                <button id="boton"
+                                    class="btn btn-outline-primary">{{ __('Buscar') }}</button>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>
@@ -74,27 +122,45 @@
 </div>
 <script type="text/javascript">
     const selectFiltro = document.getElementById('tipo');
+    const selectTipo =document.getElementById('solicitud');
     const inputTipoSolicitud = document.getElementById('groupTipoSolicitud');
     const inputNumero = document.getElementById('groupNumero');
+
+
     const button = document.getElementById('groupButton');
-    const button2 = document.getElementById("boton");
-    const form = document.getElementById("formulario");
+    const button2 = document.getElementById('groupButton2');
+    const button3 = document.getElementById('groupButton3');
+    const button4 = document.getElementById('groupButton4');
+    const button5 = document.getElementById('groupButton5');
+    const button6 = document.getElementById('groupButton6');
+
 
     switch ({!! json_encode(old('tipo')) !!}) {
             case "1":
                 inputTipoSolicitud.hidden = true;
                 inputNumero.hidden=false;
-                button.hidden = false
+                button.hidden = false;
+
+                button2.hidden = true;
+                button3.hidden=true;
+                button4.hidden=true;
+                button5.hidden=true;
+                button6.hidden=true;
                 break;
             case "2":
                 inputTipoSolicitud.hidden = false;
                 inputNumero.hidden=true;
-                button.hidden = false
+                button.hidden = true;
                 break;
             default:
             inputTipoSolicitud.hidden = true;
                 inputNumero.hidden=true;
                 button.hidden = true;
+                button2.hidden = true;
+                button3.hidden=true;
+                button4.hidden=true;
+                button5.hidden=true;
+                button6.hidden=true;
                 break;
         }
 
@@ -103,20 +169,156 @@
     selectFiltro.addEventListener('change', () => {
         switch (selectFiltro.value) {
             case "1":
-            inputTipoSolicitud.hidden = true;
+                inputTipoSolicitud.hidden = true;
                 inputNumero.hidden=false;
-                button.hidden = false
+                button.hidden = false;
+
+                button2.hidden = true;
+                button3.hidden=true;
+                button4.hidden=true;
+                button5.hidden=true;
+                button6.hidden=true;
                 break;
             case "2":
-            inputTipoSolicitud.hidden = false;
+                inputTipoSolicitud.hidden = false;
                 inputNumero.hidden=true;
-                button.hidden = false
+                button.hidden = true;
                 break;
-
             default:
             inputTipoSolicitud.hidden = true;
                 inputNumero.hidden=true;
                 button.hidden = true;
+                button2.hidden = true;
+                button3.hidden=true;
+                button4.hidden=true;
+                button5.hidden=true;
+                button6.hidden=true;
+                break;
+        }
+    })
+
+
+    switch ({!! json_encode(old('solicitud')) !!}) {
+            case "1":
+
+                button.hidden=true;
+                button2.hidden = false;
+                button3.hidden=true;
+                button4.hidden=true;
+                button5.hidden=true;
+                button6.hidden=true;
+
+                break;
+            case "2":
+
+                button.hidden=true;
+                button2.hidden = true;
+                button3.hidden=false;
+                button4.hidden=true;
+                button5.hidden=true;
+                button6.hidden=true;
+
+            case "3":
+
+                button.hidden=true;
+                button2.hidden = true;
+                button3.hidden=true;
+                button4.hidden=false;
+                button5.hidden=true;
+                button6.hidden=true;
+
+                break;
+            case "4":
+
+                button.hidden=true;
+                button2.hidden = true;
+                button3.hidden=true;
+                button4.hidden=true;
+                button5.hidden=false;
+                button6.hidden=true;
+
+                break;
+            case "5":
+
+                button.hidden=true;
+                button2.hidden = true;
+                button3.hidden=true;
+                button4.hidden=true;
+                button5.hidden=true;
+                button6.hidden=false;
+
+                break;
+
+            default:
+
+                button.hidden=true;
+                button2.hidden = true;
+                button3.hidden=true;
+                button4.hidden=true;
+                button5.hidden=true;
+                button6.hidden=true;
+                break;
+        }
+    selectTipo.addEventListener('change', () => {
+        switch (selectTipo.value) {
+            case "1":
+
+                button.hidden=true;
+                button2.hidden = false;
+                button3.hidden=true;
+                button4.hidden=true;
+                button5.hidden=true;
+                button6.hidden=true;
+
+                break;
+            case "2":
+
+                button.hidden=true;
+                button2.hidden = true;
+                button3.hidden=false;
+                button4.hidden=true;
+                button5.hidden=true;
+                button6.hidden=true;
+
+            case "3":
+
+                button.hidden=true;
+                button2.hidden = true;
+                button3.hidden=true;
+                button4.hidden=false;
+                button5.hidden=true;
+                button6.hidden=true;
+
+                break;
+            case "4":
+
+                button.hidden=true;
+                button2.hidden = true;
+                button3.hidden=true;
+                button4.hidden=true;
+                button5.hidden=false;
+                button6.hidden=true;
+
+                break;
+            case "5":
+
+                button.hidden=true;
+                button2.hidden = true;
+                button3.hidden=true;
+                button4.hidden=true;
+                button5.hidden=true;
+                button6.hidden=false;
+
+                break;
+
+            default:
+
+                button.hidden=true;
+                button2.hidden = true;
+                button3.hidden=true;
+                button4.hidden=true;
+                button5.hidden=true;
+                button6.hidden=true;
                 break;
         }
     })
