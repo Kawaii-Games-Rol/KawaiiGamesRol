@@ -74,14 +74,14 @@
 
                 @endswitch
                 @if ($solicitud->pivot->estado ==0)
-                <td><a class="btn btn-info" data-toggle="tooltip" data-placement="top" title="editar" href={{
+                <td><a class="btn btn-info"  data-toggle="tooltip" data-placement="top" title="editar" href={{
                         route('editarSolicitud', [$solicitud->getOriginal()['pivot_id']]) }}><i class="far fa-edit"></i></a></td>
                 <td>
                     <form class="anular" method="POST" action="{{route('anular')}}">
                         @csrf
                         <input type="text" value={{$solicitud->getOriginal()['pivot_id']}} name="id" hidden>
                         <button id="boton" type="submit" class="btn btn-info anular"
-                           style="color:white; background-color: grey; border:grey">Anular</button>
+                           style="color:black; background-color: #A45248; border:#A45248">Anular</button>
                     </form>
                 </td>
                 @endif
@@ -95,7 +95,7 @@
             @endforelse
         </tbody>
     </table>
-    
+
 
 </div>
 

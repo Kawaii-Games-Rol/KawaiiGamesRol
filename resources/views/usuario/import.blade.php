@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-lg-12 py-3">
                             <div class="col-lg-12 text-center">
-                                <button id="boton" class="btn btn-outline-primary">{{ __('Subir') }}</button>
+                                <button id="boton" class="btn btn-outline-primary" style="color:Black; background-color: #AD7C59; border:#AD7C59">{{ __('Subir') }}</button>
                             </div>
                         </div>
                     </form>

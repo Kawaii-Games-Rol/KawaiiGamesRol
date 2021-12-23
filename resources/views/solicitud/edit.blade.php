@@ -185,7 +185,7 @@
 
                         <div hidden id="groupButton" class="col-lg-12 py-3">
                             <div class="col-lg-12 text-center">
-                                <button type="submit" id="boton" class="btn btn-outline-primary">{{ __('Editar')
+                                <button type="submit" id="boton" class="btn btn-outline-primary" style="color:black; background-color: #A45248; border:#A45248" >{{ __('Editar')
                                     }}</button>
                             </div>
                         </div>

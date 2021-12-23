@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-3 col-md-2"></div>
         <div class="col-lg-6 col-md-6 login-box">
-            
+
             <div class="login-title">Solicitud Nº {{$solicitud->getOriginal()['pivot_id']}}</div>
             <div class="row">
                 <div class="col-6">
@@ -14,7 +14,7 @@
                             <i class="fas fa-user"></i>
                         </div>
                     </div>
-                    
+
                     </div>
                 </div>
                 <div class="row-12">
@@ -22,7 +22,7 @@
                         <tbody>
                             <tr>
                                 <td>Fecha de la solicitud:</td>
-                                
+
                                 <td>{{ $user->created_at }}</td>
                             </tr>
                             <tr>
@@ -50,188 +50,188 @@
                                 <td>{{ $solicitud->getOriginal()['pivot_telefono'] }}</td>
                             </tr>
 
-                        
+
 
                             @if ($solicitud->getOriginal()['pivot_NRC'])
                             <tr>
-                            
-                
+
+
                             </tr>
                             <tr>
                                 <td>NRC:</td>
                                 <td>{{ $solicitud->getOriginal()['pivot_NRC'] }}</td>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                             @endif
 
                             @if ($solicitud->getOriginal()['pivot_nombre_asignatura'])
                             <tr>
-                            
-                
+
+
                             </tr>
                             <tr>
                                 <td>Nombre de la asignatura:</td>
                                 <td>{{ $solicitud->getOriginal()['pivot_nombre_asignatura'] }}</td>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                             @endif
 
                             @if ($solicitud->getOriginal()['pivot_detalles'])
                             <tr>
-                            
-                
+
+
                             </tr>
                             <tr>
                                 <td>Detalles de la solicitud:</td>
                                 <td>{{$solicitud->getOriginal()['pivot_detalles'] }}</td>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                             @endif
 
                             @if ($solicitud->getOriginal()['pivot_calificacion_aprob'])
                             <tr>
-                            
-                
+
+
                             </tr>
                             <tr>
                                 <td>Calificacion de aprobacion:</td>
                                 <td>{{ $solicitud->getOriginal()['pivot_calificacion_aprob'] }}</td>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                             @endif
 
                             @if ($solicitud->getOriginal()['pivot_cant_ayudantias'])
                             <tr>
-                            
+
                             </tr>
                             <tr>
                                 <td>Cantidad de ayudantias:</td>
                                 <td>{{ $solicitud->getOriginal()['pivot_cant_ayudantias'] }}</td>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                             @endif
 
                             @if ($solicitud->getOriginal()['pivot_tipo_facilidad'])
                             <tr>
-                            
-                
+
+
                             </tr>
                             <tr>
                                 <td>Tipo de facilidad:</td>
                                 <td>{{ $solicitud->getOriginal()['pivot_tipo_facilidad'] }}</td>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                             @endif
                             @if ($solicitud->getOriginal()['pivot_nombre_profesor'])
                             <tr>
-                            
-                
+
+
                             </tr>
                             <tr>
                                 <td>Nombre del profesor:</td>
                                 <td>{{ $solicitud->getOriginal()['pivot_nombre_profesor'] }}</td>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                             @endif
 
-                            
+
                             @if ($solicitud->getOriginal()['pivot_archivos'])
                             <tr>
-                            
+
                                 <td>Archivos:</td>
                                 <td>
                                     @foreach (json_decode($solicitud->getOriginal()['pivot_archivos']) as $file)
                                     <a href={{"/storage/docs/".$file}}>Archivo</a>
                                     @endforeach
 
-                                
+
                                 </td>
-                                
+
                             </tr>
                             @endif
                             @if ($solicitud->pivot->estado == 1)
                             <tr>
-                            
-                
+
+
                             </tr>
                             <tr>
                                 <td>Pivot estado:</td>
                                 <td>ACEPTADA</td>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                             @endif
                             @if ($solicitud->pivot->estado == 2)
                             <tr>
-                            
-                
+
+
                             </tr>
                             <tr>
                                 <td>Pivot estado:</td>
                                 <td>ACEPTADA CON OBSERVACIONES</td>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                             @endif
                             @if ($solicitud->pivot->estado == 3)
                             <tr>
-                            
-                
+
+
                             </tr>
                             <tr>
                                 <td>Pivot estado:</td>
                                 <td>RECHAZADA</td>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                             @endif
                             @if ($solicitud->pivot->estado == 4)
                             <tr>
-                            
-                
+
+
                             </tr>
                             <tr>
                                 <td>Pivot estado:</td>
                                 <td>ANULADA</td>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                             @endif
                             @if ($solicitud->pivot->estado == 0)
                             <tr>
-                            
-                
+
+
                             </tr>
                             <tr>
                                 <td>Pivot estado:</td>
                                 <td>PENDIENTE</td>
                             </tr>
                             <tr>
-                                
+
                             </tr>
                             @endif
                         </tbody>
                     </table>
                 </div>
-               
+
                 <div class="form-group">
                             <label for="form-control-label" style="color: Black">Opcion a resolver</label>
                             <select class="form-control" name="tipo" id="tipo">
@@ -257,15 +257,17 @@
                             @enderror
                         </div>
                         <div hidden id="groupButton3" class="col-lg-12 py-3">
-                        <td><a class="btn btn-primary"  style="color: Black"href={{ route('AceptarSolicitud',  ['id'=>$solicitud->getOriginal()['pivot_id'], 'alumno_id' => $user->id])     }}>Aceptar</a></td>
+                        <td><a class="btn btn-primary"
+                            style="color:Black; background-color: #AD7C59; border:#AD7C59" href={{ route('AceptarSolicitud',  ['id'=>$solicitud->getOriginal()['pivot_id'], 'alumno_id' => $user->id])     }}>Aceptar</a></td>
                         </div>
-                        
+
                         <div hidden id="groupButton" class="col-lg-12 py-3">
-                        <td><a class="btn btn-success"  style="color: Black"href={{ route('AceptarOSolicitud',  ['id'=>$solicitud->getOriginal()['pivot_id'], 'alumno_id' => $user->id])     }}>Aceptar con observaciones</a></td>
+                        <td><a class="btn btn-success"
+                            style="color:Black; background-color: #AD7C59; border:#AD7C59" href={{ route('AceptarOSolicitud',  ['id'=>$solicitud->getOriginal()['pivot_id'], 'alumno_id' => $user->id])     }}>Aceptar con observaciones</a></td>
                         </div>
 
                         <div hidden id="groupButton2" class="col-lg-12 py-3">
-                        <td><a class="btn btn-danger"  style="color: Black"href={{ route('RechazarSolicitud',  ['id'=>$solicitud->getOriginal()['pivot_id'], 'alumno_id' => $user->id])     }}>Rechazar</a></td>
+                        <td><a class="btn btn-danger"  style="color:black; background-color: #A45248; border:#A45248" href={{ route('RechazarSolicitud',  ['id'=>$solicitud->getOriginal()['pivot_id'], 'alumno_id' => $user->id])     }}>Rechazar</a></td>
                         </div>
     </div>
 </div>

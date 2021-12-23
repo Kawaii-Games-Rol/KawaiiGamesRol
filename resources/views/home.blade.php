@@ -26,95 +26,95 @@
 <div class="container">
     <div class="row justify-content-center">
         @if (Auth::user()->rol == "Administrador")
-        <div class="card-deck">
-            <div class="card">
+        <div class="card-deck" >
+            <div class="card" style="background-color:#DBE2E9">
                 <i class="fas fa-users fa-10x text-center"></i>
                 <div class="card-body">
                     <h5 class="card-title text-center">Carga Masiva de Estudiantes</h5>
                     <small class="text-muted">Permite realizar una carga masiva de estudiantes al sistema.</small>
                 </div>
                 <div class="card-footer">
-                    <a href="/carga-masiva" class="btn btn-info btn-block">IR</a>
+                    <a href="/carga-masiva" class="btn btn-info btn-block" style="color:Black; background-color: #AD7C59; border:#AD7C59">IR</a>
                 </div>
             </div>
         <div class="card-deck">
-            <div class="card">
+            <div class="card" style="background-color:#DBE2E9">
                 <i class="fas fa-users fa-10x text-center"></i>
                 <div class="card-body">
                     <h5 class="card-title text-center">Administrar Usuarios</h5>
                     <small class="text-muted">Permite crear, editar y deshabilitar usuarios del sistema.</small>
                 </div>
                 <div class="card-footer">
-                    <a href="/usuario" class="btn btn-info btn-block">IR</a>
+                    <a href="/usuario" class="btn btn-info btn-block" style="color:Black; background-color: #AD7C59; border:#AD7C59">IR</a>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" style="background-color:#DBE2E9">
                 <i class="fas fa-graduation-cap fa-10x text-center"></i>
                 <div class="card-body">
                     <h5 class="card-title text-center">Administrar Carreras</h5>
                     <small class="text-muted">Permite crear y editar carreras en el sistema.</small>
                 </div>
                 <div class="card-footer">
-                    <a href="/carrera" class="btn btn-info btn-block">IR</a>
+                    <a href="/carrera" class="btn btn-info btn-block" style="color:Black; background-color: #AD7C59; border:#AD7C59">IR</a>
                 </div>
             </div>
         </div>
         @elseif (Auth::user()->rol == "Jefe Carrera")
 
-            <div class="card">
+            <div class="card" style="background-color:#DBE2E9">
                 <i class="fas fa-search fa-10x text-center"></i>
                 <div class="card-body">
                     <h5 class="card-title text-center">Buscar Estudiante</h5>
                     <small class="text-muted">Permite buscar un estudiante mediante su RUT.</small>
                 </div>
                 <div class="card-footer">
-                    <a href="/buscarEstudiante" class="btn btn-info btn-block">IR</a>
+                    <a href="/buscarEstudiante" class="btn btn-info btn-block" style="color:Black; background-color: #AD7C59; border:#AD7C59">IR</a>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" style="background-color:#DBE2E9">
                 <i class="fas fa-check-double fa-10x text-center"></i>
                 <div class="card-body">
                     <h5 class="card-title text-center">Resolver Solicitudes</h5>
                     <small class="text-muted">Permite visualizar todas las solicitudes recibidas con estado "Pendiente".</small>
                 </div>
                 <div class="card-footer">
-                    <a href="/GestionSolicitud" class="btn btn-info btn-block">IR</a>
+                    <a href="/GestionSolicitud" class="btn btn-info btn-block" style="color:Black; background-color: #AD7C59; border:#AD7C59">IR</a>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" style="background-color:#DBE2E9">
                 <i class="fas fa-info fa-10x text-center"></i>
                 <div class="card-body">
                     <h5 class="card-title text-center">Estadísticas del Sistema</h5>
                     <small class="text-muted">Permite visualizar mediante gráficos las distintas solicitudes del sistema.</small>
                 </div>
                 <div class="card-footer">
-                    <a href="/estadisticas" class="btn btn-info btn-block">IR</a>
+                    <a href="/estadisticas" class="btn btn-info btn-block" style="color:Black; background-color: #AD7C59; border:#AD7C59">IR</a>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" style="background-color:#DBE2E9">
                 <i class="fas fa-info fa-10x text-center"></i>
                 <div class="card-body">
                     <h5 class="card-title text-center">Filtrar solicitudes</h5>
                     <small class="text-muted">Permite buscar las distintas solicitudes del sistema.</small>
                 </div>
                 <div class="card-footer">
-                    <a href="/filtrarSolicitudes" class="btn btn-info btn-block">IR</a>
+                    <a href="/filtrarSolicitudes" class="btn btn-info btn-block" style="color:Black; background-color: #AD7C59; border:#AD7C59">IR</a>
                 </div>
             </div>
 
         </div>
         @elseif (Auth::user()->rol == "Alumno")
         <div class="card-deck">
-            <div class="card">
+            <div class="card" style="background-color:#DBE2E9">
                 <i class="fas fa-tasks fa-10x text-center"></i>
                 <div class="card-body">
                     <h5 class="card-title text-center">Gestión de Solicitudes</h5>
                     <small class="text-muted">Permite crear, editar o anular solicitudes especiales.</small>
                 </div>
                 <div class="card-footer">
-                    <a href="/solicitud" class="btn btn-info btn-block">IR</a>
+                    <a href="/solicitud" class="btn btn-info btn-block" style="color:Black; background-color: #AD7C59; border:#AD7C59">IR</a>
                 </div>
             </div>
         </div>

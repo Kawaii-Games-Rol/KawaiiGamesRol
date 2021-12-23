@@ -30,7 +30,8 @@
             <tr>
                 <th scope="row">{{$carrera->codigo}}</th>
                 <td>{{$carrera->nombre}}</td>
-                <td><a class="btn btn-info" href={{ route('carrera.edit', [$carrera]) }}>Editar</a></td>
+                <td><a class="btn btn-info"
+                    style="color:Black; background-color: #AD7C59; border:#AD7C59"   href={{ route('carrera.edit', [$carrera]) }}>Editar</a></td>
             </tr>
             @endforeach
         </tbody>

@@ -52,7 +52,7 @@
                 <td>
                     <form action='/reset-password/{{$usuario->id}}'
                         method="POST">
-                        @csrf<button class="btn-info">Reiniciar Clave</button>
+                        @csrf<button class="btn-info" style="color:Black; background-color: #AD7C59; border:#AD7C59">Reiniciar Clave</button>
                     </form>
             </tr>
             @endforeach
