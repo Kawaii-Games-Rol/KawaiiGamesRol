@@ -21,8 +21,9 @@ class GestionSolicitudController extends Controller
     {
         $solicitud = solicitud::all();
         $usuarios = User::simplePaginate(5);
-      
-        return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$usuarios);
+     
+return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$usuarios);
+     
     }  
    
     public function Detalles2(String $id,String $alumno_id){

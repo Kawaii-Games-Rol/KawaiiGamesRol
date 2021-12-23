@@ -3,9 +3,9 @@
 @section('content')
 
 <div class="container">
-    <p class="text">Desde:</p>
+ <p class="text">Desde:</p>
     <input type="date">
-    <p class="text">Hasta:</p>
+    <div id="Fecha"   p class="text">Hasta:</p>
     <input type="date">
     <h1 style="font-size: 50px" class="text-center">Estadísticas del sistema</h1>
     <div class="row row-cols-1 row-cols-md-3">
@@ -21,6 +21,7 @@
                 <div class="card-body">
                     <div id="chartContainerStatus" style="height: 300px; width: 100%;"></div>
                 </div>
+
             </div>
         <div class="col mb-4">
             <div class="card h-100">
@@ -28,9 +29,73 @@
                     <h5 class="card-title">Cantidad Total de Solicitudes: {{$cantEnRango}}</h5>
                 </div>
             </div>
+                       
         </div>
+        
     </div>
+    
 </div>
+<div class="col-lg-12 login-form">
+                <div class="col-lg-12 login-form">
+                    <form id="formulario" method="POST" action="{{ route('postfiltrarSolicitud') }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="container" >
+                            <p class="text">>Desde</p>
+                             <input type="date"
+                                class="form-control @error('Tipo') is-invalid @enderror" name="Tipo"
+                                value="{{ old('Tipo') }}" autocomplete="numero" autofocus>
+
+                            @error('numero')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>          
+                        <div class="container" >
+                            <p class="text">>Hasta</p>
+                             <input type="date"
+                                class="form-control @error('Tipo2') is-invalid @enderror" name="Tipo2"
+                                value="{{ old('Tipo2') }}" autocomplete="numero" autofocus>
+
+                            @error('numero')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>     
+                      
+                        <form id="formulario"
+                            method="POST"
+                            action="{{ route('postfiltrarSolicitud') }}">
+                            @csrf
+                            <div class="form-group">
+                                <label class="form-control-label">  </label>
+                                <input id="Hola"
+                                    type="hidden"
+                                    class="form-control @error('Hola') is-invalid @enderror"
+                                    name="Hola"
+                                    value="{{ old('numero') }}"
+                                    required
+                                
+                                    autofocus>
+
+                                @error('rut')
+                                    <span class="invalid-feedback"
+                                        role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-lg-12 py-3">
+                                <div class="col-lg-12 text-center">
+                                    <button id="boton"
+                                        class="btn btn-outline-primary">{{ __('Filtrar') }}</button>
+                                </div>
+                            </div>
+                        </form>
+
+
 
 <script>
     var chart = new CanvasJS.Chart("chartContainerTipo", {
