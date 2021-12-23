@@ -29,6 +29,7 @@ class EstadisticasController extends Controller
         foreach ($usuarios as $key => $usuario) {
             foreach ($usuario->solicitudes as $key => $solicitud) {
                 $totalSolicitudes++;
+                $cantEnRango++;
                 switch ($solicitud->getOriginal()['pivot_estado']) {
                     case 0:
                         $totalPendiente++;
@@ -87,6 +88,7 @@ class EstadisticasController extends Controller
             ->with('totalAceptada', $totalAceptada)
             ->with('totalAceptadaObs', $totalAceptadaObs)
             ->with('totalAnulada', $totalAnulada)
+            ->with('cantEnRango', $cantEnRango)
             ;
     }
 }

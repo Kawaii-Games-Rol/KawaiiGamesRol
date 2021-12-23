@@ -3,6 +3,9 @@
 @section('content')
 
 <div class="container">
+    <p class="text">Desde:</p>
+    <input type="date">
+    <p class="text">Hasta:</p>
     <input type="date">
     <h1 style="font-size: 50px" class="text-center">Estadísticas del sistema</h1>
     <div class="row row-cols-1 row-cols-md-3">
@@ -19,21 +22,10 @@
                     <div id="chartContainerStatus" style="height: 300px; width: 100%;"></div>
                 </div>
             </div>
-        </div>
-        <div class="col mb-4">
-            <div class="card h-100">
-
-                <div class="card-body">
-                    <h5 class="card-title">Tarjeta para estadistica ejemplo</h5>
-                    <p class="card-text">insertar estadistica</p>
-                </div>
-            </div>
-        </div>
         <div class="col mb-4">
             <div class="card h-100">
                 <div class="card-body">
-                    <h5 class="card-title">Tarjeta para estadistica ejemplo</h5>
-                    <p class="card-text">insertar estadistica</p>
+                    <h5 class="card-title">Cantidad Total de Solicitudes: {{$cantEnRango}}</h5>
                 </div>
             </div>
         </div>
