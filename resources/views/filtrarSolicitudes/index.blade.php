@@ -41,7 +41,7 @@
                             @enderror
                         </div>
                         <div class="form-group" id="groupTipoSolicitud" hidden>
-                            <label for="form-control-label" style="color: Black">TIPO DE SOLICITUD</label>
+                            <label for="form-control-label" style="color: black">TIPO DE SOLICITUD</label>
                             <select class="form-control" name="solicitud" id="solicitud">
                                 <option value={{ null }}>Seleccione..</option>
                                 <option value="1" @if (old('tipo')=="1" ) selected @endif>Solicitud de Sobrecupo
@@ -79,10 +79,6 @@
     const button = document.getElementById('groupButton');
     const button2 = document.getElementById("boton");
     const form = document.getElementById("formulario");
-
-
-
-
 
     switch ({!! json_encode(old('tipo')) !!}) {
             case "1":
