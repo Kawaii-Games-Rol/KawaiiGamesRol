@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <label class="form-control-label">  </label>
                                 <input id="Hola"
-                                    type="text"
+                                    type="hidden"
                                     class="form-control @error('Hola') is-invalid @enderror"
                                     name="Hola"
                                     value="{{ old('numero') }}"
