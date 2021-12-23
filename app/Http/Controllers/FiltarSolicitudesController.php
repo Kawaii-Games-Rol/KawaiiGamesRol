@@ -10,8 +10,9 @@ class FiltarSolicitudesController extends Controller
 {
 
     public function devolverSolicitud(Request $request){//devolver la solicitud segun el numero de solicitud
-
-        $findSolicitud = Solicitud::where('nrc', $request->nrc)->first();
+       
+        
+        $findSolicitud = Solicitud::where('nrc', $request->numero)->first();
 
         if (isset($findSolicitud)) {
             return redirect(route('mostrarSolicitud',['id' => $findSolicitud->id]));

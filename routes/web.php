@@ -63,7 +63,7 @@ Route::middleware(['rutasJefeCarrera'])->group(function () {
     Route::get('filtrarSolicitudes', function(){return view('filtrarSolicitudes.index');})->name('filtrarSolicitudes');
     Route::get('filtrarNumero/{alumno_id}/solicitud/{id}', [FiltarSolicitudesController::class, 'DatosNumero'])->name('verNumero');
     Route::get('filtrarNumero/{alumno_id}/solicitud/{id}', [FiltarSolicitudesController::class, 'DatosTipo'])->name('verTipo');
-    Route::post('filtrarNumero',[FiltarSolicitudesController::class, 'devolverSolicitud'])->name('postfiltrarSolicitud');
+    Route::post('filtrarNumero6',[FiltarSolicitudesController::class, 'devolverSolicitud'])->name('postfiltrarSolicitud');
     Route::post('filtrarNumero2',[FiltarSolicitudesController::class, 'devolverSolicitudTipo'])->name('postfiltrarSolicitudTipo');
     Route::get('filtrarNumero/{id}', [FiltarSolicitudesController::class,'mostrarSolicitud'])->name('mostrarSolicitud');
 

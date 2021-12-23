@@ -57,26 +57,38 @@
                                     Académicas</option>
                             </select>
                         </div>
-                        @dd(numero)
+                
 
                         <div hidden id="groupButton" class="col-lg-12 py-3">
-                            <td><a class="btn btn-info" href={{ route('postfiltrarSolicitud')
-                                }}>Ver</a></td>
-                            <form id="formulario"
+                        <form id="formulario"
                             method="POST"
                             action="{{ route('postfiltrarSolicitud') }}">
                             @csrf
                             <div class="form-group">
-                                <label class="form-control-label">RUT</label>
-                                <input id="id"
-                                    type="text"
-                                    class="form-control @error('numero') is-invalid @enderror"
-                                    name="numero"
-                                    value="{{ old() }}"
+                                <label class="form-control-label">  </label>
+                                <input id="Hola"
+                                    type="hidden"
+                                    class="form-control @error('Hola') is-invalid @enderror"
+                                    name="Hola"
+                                    value="{{ old('numero') }}"
                                     required
-                                    autocomplete="numero"
+                                
                                     autofocus>
-                        </div>
+
+                                @error('rut')
+                                    <span class="invalid-feedback"
+                                        role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-lg-12 py-3">
+                                <div class="col-lg-12 text-center">
+                                    <button id="boton"
+                                        class="btn btn-outline-primary">{{ __('Filtrar') }}</button>
+                                </div>
+                            </div>
+                        </form>
 
                         <div hidden id="groupButton2" class="col-lg-12 py-3">
                             <div class="col-lg-12 text-center">
