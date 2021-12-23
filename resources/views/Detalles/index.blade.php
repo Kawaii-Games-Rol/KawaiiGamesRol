@@ -169,7 +169,7 @@
 
                             </tr>
                             <tr>
-                                <td>Pivot estado:</td>
+                                <td>Estado:</td>
                                 <td>ACEPTADA</td>
                             </tr>
                             <tr>
@@ -182,7 +182,7 @@
 
                             </tr>
                             <tr>
-                                <td>Pivot estado:</td>
+                                <td>Estado:</td>
                                 <td>ACEPTADA CON OBSERVACIONES</td>
                             </tr>
                             <tr>
@@ -195,7 +195,7 @@
 
                             </tr>
                             <tr>
-                                <td>Pivot estado:</td>
+                                <td>Estado:</td>
                                 <td>RECHAZADA</td>
                             </tr>
                             <tr>
@@ -208,7 +208,7 @@
 
                             </tr>
                             <tr>
-                                <td>Pivot estado:</td>
+                                <td>Estado:</td>
                                 <td>ANULADA</td>
                             </tr>
                             <tr>
@@ -221,7 +221,7 @@
 
                             </tr>
                             <tr>
-                                <td>Pivot estado:</td>
+                                <td>Estado:</td>
                                 <td>PENDIENTE</td>
                             </tr>
                             <tr>

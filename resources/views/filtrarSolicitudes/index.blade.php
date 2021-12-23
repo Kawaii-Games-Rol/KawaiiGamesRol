@@ -90,41 +90,7 @@
                             </div>
                         </form>
                         </div>
-                        <div hidden id="groupButton2" class="col-lg-12 py-3">
-                        <form id="formulario"
-                            method="POST"
-                            action="{{ route('postfiltrarSolicitudTipo') }}">
-                            @csrf
-                            <div class="form-group">
-                                <label class="form-control-label">  </label>
-                                <input id="Hola"
-                                    type="hidden"
-                                    class="form-control @error('Hola') is-invalid @enderror"
-                                    name="Hola"
-                                    value="{{ old('numero') }}"
-                                    required
-                                
-                                    autofocus>
-
-                                @error('rut')
-                                    <span class="invalid-feedback"
-                                        role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-lg-12 py-3">
-                                <div class="col-lg-12 text-center">
-                                    <button id="boton"
-                                        class="btn btn-outline-primary">{{ __('Filtrar') }}</button>
-                                </div>
-                            </div>
-                        </form>
-                        </div>
-                        
-
-                    </form>
-                </div>
+                       
             </div>
             <div class="col-lg-3 col-md-2"></div>
         </div>
@@ -138,8 +104,7 @@
 
 
     const button = document.getElementById('groupButton');
-    const button2 = document.getElementById('groupButton2');
- 
+  
 
 
     switch ({!! json_encode(old('tipo')) !!}) {
@@ -148,7 +113,7 @@
                 inputNumero.hidden=false;
                 button.hidden = false;
 
-                button2.hidden = true;
+      
          
                 break;
             case "2":
@@ -160,7 +125,7 @@
             inputTipoSolicitud.hidden = true;
                 inputNumero.hidden=true;
                 button.hidden = true;
-                button2.hidden = true;
+         
        
                 break;
         }
@@ -174,7 +139,7 @@
                 inputNumero.hidden=false;
                 button.hidden = false;
 
-                button2.hidden = true;
+        
    
                 break;
             case "2":
@@ -186,7 +151,7 @@
             inputTipoSolicitud.hidden = true;
                 inputNumero.hidden=true;
                 button.hidden = true;
-                button2.hidden = true;
+         
      
                 break;
         }
@@ -196,85 +161,78 @@
     switch ({!! json_encode(old('solicitud')) !!}) {
             case "1":
 
-                button.hidden=true;
-                button2.hidden = false;
-
-
+                button.hidden=false;
+              
                 break;
             case "2":
 
-                button.hidden=true;
-                button2.hidden = true;
-      
+                button.hidden=false;
+     
 
             case "3":
 
-                button.hidden=true;
-                button2.hidden = true;
+                button.hidden=false;
+           
         
 
                 break;
             case "4":
 
-                button.hidden=true;
-                button2.hidden = true;
+                button.hidden=false;
+              
    
 
                 break;
             case "5":
 
-                button.hidden=true;
-                button2.hidden = true;
+                button.hidden=false;
+         
      
                 break;
 
             default:
 
-                button.hidden=true;
-                button2.hidden = true;
-         
+            button.hidden=false;
+        
                 break;
         }
     selectTipo.addEventListener('change', () => {
         switch (selectTipo.value) {
             case "1":
 
-                button.hidden=true;
-                button2.hidden = false;
+                button.hidden=false;
+             
              
                 break;
             case "2":
 
-                button.hidden=true;
-                button2.hidden = true;
+                button.hidden=false;
+          
   
 
             case "3":
-
-                button.hidden=true;
-                button2.hidden = true;
+                button.hidden=false;
+             
 
 
                 break;
             case "4":
 
-                button.hidden=true;
-                button2.hidden = true;
-            
+                button.hidden=false;
+              
 
                 break;
             case "5":
 
-                button.hidden=true;
-                button2.hidden = true;
+                button.hidden=false;
+          
         
                 break;
 
             default:
 
-                button.hidden=true;
-                button2.hidden = true;
-      
+            button.hidden=false;
+            
                 break;
         }
     })

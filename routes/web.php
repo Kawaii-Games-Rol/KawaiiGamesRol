@@ -69,11 +69,12 @@ Route::middleware(['rutasJefeCarrera'])->group(function () {
 
     Route::get('Detalles/{id}',[GestionSolicitudController::class, 'Detalles'])->name('postDetalles');
     Route::get('Detalles/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'DatosSolicitud'])->name('verSolicitud');
+    Route::get('Detalles22/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'DatosSolicitud2'])->name('verSolicitud2');
     Route::get('Detalles2/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'AceptarSolicitud'])->name('AceptarSolicitud');
     Route::get('Detalles3/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'AceptarOSolicitud'])->name('AceptarOSolicitud');
     Route::get('Detalles4/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'RechazarSolicitud'])->name('RechazarSolicitud');
 
-    Route::get('Numero', [FiltarSolicitudesController::class,'NumeroBuscar'])->name('NumeroBuscar');
+    Route::get('NUMERO', [FiltarSolicitudesController::class,'NumeroBuscar'])->name('NumeroBuscar');
 
     Route::get('estadisticas', [EstadisticasController::class, 'showEstadistica'])->name('estadisitica');
     Route::get('GestionSolicitud', [GestionSolicitudController::class, 'show'])->name('GestionSolicitud');

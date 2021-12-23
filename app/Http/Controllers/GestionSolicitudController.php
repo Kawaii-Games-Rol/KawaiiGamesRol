@@ -95,6 +95,14 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
         return view('Detalles.index')->with('solicitud',$getUser)->with('user',$user);
     }
 
+    public function DatosSolicitud2 (String $id, String $alumno_id){
+
+        $getUser = User::where('id', $id)->firstOrFail()->getSolicitudId($alumno_id)->first();
+
+        $user = User::where('id',$id)->first();
+        
+        return view('Detalles2.index')->with('solicitud',$getUser)->with('user',$user);
+    }
 
     public function edit(String  $id)
     {
