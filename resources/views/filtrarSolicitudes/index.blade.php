@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <label class="form-control-label">  </label>
                                 <input id="Hola"
-                                    type="text"
+                                    type="hidden"
                                     class="form-control @error('Hola') is-invalid @enderror"
                                     name="Hola"
                                     value="{{ old('numero') }}"
@@ -89,41 +89,39 @@
                                 </div>
                             </div>
                         </form>
-
+                        </div>
                         <div hidden id="groupButton2" class="col-lg-12 py-3">
-                            <div class="col-lg-12 text-center">
-                                <button id="boton"
-                                    class="btn btn-outline-primary">{{ __('Buscar') }}</button>
-                            </div>
-                        </div>
+                        <form id="formulario"
+                            method="POST"
+                            action="{{ route('postfiltrarSolicitudTipo') }}">
+                            @csrf
+                            <div class="form-group">
+                                <label class="form-control-label">  </label>
+                                <input id="Hola"
+                                    type="hidden"
+                                    class="form-control @error('Hola') is-invalid @enderror"
+                                    name="Hola"
+                                    value="{{ old('numero') }}"
+                                    required
+                                
+                                    autofocus>
 
-                        <div hidden id="groupButton3" class="col-lg-12 py-3">
-                            <div class="col-lg-12 text-center">
-                                <button id="boton"
-                                    class="btn btn-outline-primary">{{ __('Buscar') }}</button>
+                                @error('rut')
+                                    <span class="invalid-feedback"
+                                        role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                        </div>
-
-                        <div hidden id="groupButton4" class="col-lg-12 py-3">
-                            <div class="col-lg-12 text-center">
-                                <button id="boton"
-                                    class="btn btn-outline-primary">{{ __('Buscar') }}</button>
+                            <div class="col-lg-12 py-3">
+                                <div class="col-lg-12 text-center">
+                                    <button id="boton"
+                                        class="btn btn-outline-primary">{{ __('Filtrar') }}</button>
+                                </div>
                             </div>
+                        </form>
                         </div>
-
-                        <div hidden id="groupButton5" class="col-lg-12 py-3">
-                            <div class="col-lg-12 text-center">
-                                <button id="boton"
-                                    class="btn btn-outline-primary">{{ __('Buscar') }}</button>
-                            </div>
-                        </div>
-
-                        <div hidden id="groupButton6" class="col-lg-12 py-3">
-                            <div class="col-lg-12 text-center">
-                                <button id="boton"
-                                    class="btn btn-outline-primary">{{ __('Buscar') }}</button>
-                            </div>
-                        </div>
+                        
 
                     </form>
                 </div>
@@ -141,10 +139,7 @@
 
     const button = document.getElementById('groupButton');
     const button2 = document.getElementById('groupButton2');
-    const button3 = document.getElementById('groupButton3');
-    const button4 = document.getElementById('groupButton4');
-    const button5 = document.getElementById('groupButton5');
-    const button6 = document.getElementById('groupButton6');
+ 
 
 
     switch ({!! json_encode(old('tipo')) !!}) {
@@ -154,10 +149,7 @@
                 button.hidden = false;
 
                 button2.hidden = true;
-                button3.hidden=true;
-                button4.hidden=true;
-                button5.hidden=true;
-                button6.hidden=true;
+         
                 break;
             case "2":
                 inputTipoSolicitud.hidden = false;
@@ -169,10 +161,7 @@
                 inputNumero.hidden=true;
                 button.hidden = true;
                 button2.hidden = true;
-                button3.hidden=true;
-                button4.hidden=true;
-                button5.hidden=true;
-                button6.hidden=true;
+       
                 break;
         }
 
@@ -186,10 +175,7 @@
                 button.hidden = false;
 
                 button2.hidden = true;
-                button3.hidden=true;
-                button4.hidden=true;
-                button5.hidden=true;
-                button6.hidden=true;
+   
                 break;
             case "2":
                 inputTipoSolicitud.hidden = false;
@@ -201,10 +187,7 @@
                 inputNumero.hidden=true;
                 button.hidden = true;
                 button2.hidden = true;
-                button3.hidden=true;
-                button4.hidden=true;
-                button5.hidden=true;
-                button6.hidden=true;
+     
                 break;
         }
     })
@@ -215,60 +198,41 @@
 
                 button.hidden=true;
                 button2.hidden = false;
-                button3.hidden=true;
-                button4.hidden=true;
-                button5.hidden=true;
-                button6.hidden=true;
+
 
                 break;
             case "2":
 
                 button.hidden=true;
                 button2.hidden = true;
-                button3.hidden=false;
-                button4.hidden=true;
-                button5.hidden=true;
-                button6.hidden=true;
+      
 
             case "3":
 
                 button.hidden=true;
                 button2.hidden = true;
-                button3.hidden=true;
-                button4.hidden=false;
-                button5.hidden=true;
-                button6.hidden=true;
+        
 
                 break;
             case "4":
 
                 button.hidden=true;
                 button2.hidden = true;
-                button3.hidden=true;
-                button4.hidden=true;
-                button5.hidden=false;
-                button6.hidden=true;
+   
 
                 break;
             case "5":
 
                 button.hidden=true;
                 button2.hidden = true;
-                button3.hidden=true;
-                button4.hidden=true;
-                button5.hidden=true;
-                button6.hidden=false;
-
+     
                 break;
 
             default:
 
                 button.hidden=true;
                 button2.hidden = true;
-                button3.hidden=true;
-                button4.hidden=true;
-                button5.hidden=true;
-                button6.hidden=true;
+         
                 break;
         }
     selectTipo.addEventListener('change', () => {
@@ -277,60 +241,40 @@
 
                 button.hidden=true;
                 button2.hidden = false;
-                button3.hidden=true;
-                button4.hidden=true;
-                button5.hidden=true;
-                button6.hidden=true;
-
+             
                 break;
             case "2":
 
                 button.hidden=true;
                 button2.hidden = true;
-                button3.hidden=false;
-                button4.hidden=true;
-                button5.hidden=true;
-                button6.hidden=true;
+  
 
             case "3":
 
                 button.hidden=true;
                 button2.hidden = true;
-                button3.hidden=true;
-                button4.hidden=false;
-                button5.hidden=true;
-                button6.hidden=true;
+
 
                 break;
             case "4":
 
                 button.hidden=true;
                 button2.hidden = true;
-                button3.hidden=true;
-                button4.hidden=true;
-                button5.hidden=false;
-                button6.hidden=true;
+            
 
                 break;
             case "5":
 
                 button.hidden=true;
                 button2.hidden = true;
-                button3.hidden=true;
-                button4.hidden=true;
-                button5.hidden=true;
-                button6.hidden=false;
-
+        
                 break;
 
             default:
 
                 button.hidden=true;
                 button2.hidden = true;
-                button3.hidden=true;
-                button4.hidden=true;
-                button5.hidden=true;
-                button6.hidden=true;
+      
                 break;
         }
     })

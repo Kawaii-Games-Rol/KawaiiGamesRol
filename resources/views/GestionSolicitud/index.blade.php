@@ -32,7 +32,7 @@
             @if ($solicitud->pivot->estado == 0)
             <tr>
 
-                <th scope="row">{{$usuario->created_at}}</th>
+                <th scope="row">{{$solicitud->getOriginal()['pivot_updated_at']}}</th>
                 <td>{{$solicitud->getOriginal()['pivot_id']}}</td>
                 <td>{{$usuario->rut}}</td>
                 <td>{{$usuario->name}}</td>

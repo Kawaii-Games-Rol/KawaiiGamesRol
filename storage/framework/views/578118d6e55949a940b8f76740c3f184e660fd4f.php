@@ -75,7 +75,8 @@ unset($__errorArgs, $__bag); ?>
 
                         <div class="col-lg-12 py-3">
                             <div class="col-lg-12 text-center">
-                                <button type="submit" class="btn btn-outline-primary">ACCEDER</button>
+                                <button type="submit" class="btn btn-outline-primary"
+                                style="color:Black; background-color: #AD7C59; border:#AD7C59"  >ACCEDER</button>
                             </div>
                         </div>
                     </form>

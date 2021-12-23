@@ -22,8 +22,8 @@
                         <tbody>
                             <tr>
                                 <td>Fecha de la solicitud:</td>
-
-                                <td>{{ $user->created_at }}</td>
+                                   
+                                <td>{{ $solicitud->getOriginal()['pivot_updated_at'] }}</td>
                             </tr>
                             <tr>
                                 <td>Numero de la solicitud:</td>

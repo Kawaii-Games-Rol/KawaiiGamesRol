@@ -14,14 +14,15 @@ class GestionSolicitudController extends Controller
     {
         $solicitud = solicitud::all();
         $usuarios = User::simplePaginate(5);
-      
+       
         return view('GestionSolicitud.index')->with('solicitudes',$solicitud)->with('usuarios',$usuarios);
     }  
     public function Resuelta(Solicitud $solicitud)
     {
         $solicitud = solicitud::all();
         $usuarios = User::simplePaginate(5);
-     
+        
+        
 return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$usuarios);
      
     }  
@@ -88,6 +89,7 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
     public function DatosSolicitud (String $id, String $alumno_id){
 
         $getUser = User::where('id', $id)->firstOrFail()->getSolicitudId($alumno_id)->first();
+
         $user = User::where('id',$id)->first();
         
         return view('Detalles.index')->with('solicitud',$getUser)->with('user',$user);

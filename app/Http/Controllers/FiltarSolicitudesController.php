@@ -11,29 +11,23 @@ class FiltarSolicitudesController extends Controller
 
     public function devolverSolicitud(Request $request){//devolver la solicitud segun el numero de solicitud
        
-       dd($request);
-        $findSolicitud = Solicitud::where('nrc', $request->numero)->first();
+ 
+    
+        $solicitud = solicitud::all();
+        $usuarios = User::simplePaginate(5);
+        
+        return view('filtrarNumero.index')->with('solicitudes',$solicitud)->with('usuarios',$usuarios)->with('numero',$request->numero);
 
-        if (isset($findSolicitud)) {
-            return redirect(route('mostrarSolicitud',['id' => $findSolicitud->id]));
-
-        }else {
-            return redirect('filtrarSolicitud')->with('error', 'El número de solicitud ingresado no existe.');
-        }
     }
-
     public function devolverSolicitudTipo(Request $request){ //devolver la solicitud segun el tipo de solicitud
 
-        $findSolicitud = Solicitud::where('tipo', $request->tipo)->first();
+        dd($request);
+        $solicitud2 = solicitud::all();
+        $usuarios = User::simplePaginate(5);
+        
+        return view('filtrarTipo.index')->with('solicitudes',$solicitud2)->with('usuarios',$usuarios)->with('numero',$request->$solicitud);
 
-        if (isset($findSolicitud)) {
-            return redirect(route('mostrarSolicitud',['id' => $findSolicitud->id]));
-
-        }else {
-            return redirect('filtrarSolicitud')->with('error', 'No existen solicitudes registradas.');
-        }
     }
-
     public function mostrarSolicitud(String $id){
 
         $solicitud = Solicitud::where('id', $id)->first();
@@ -52,7 +46,14 @@ class FiltarSolicitudesController extends Controller
         $getUser = User::where('id', $id)->firstOrFail()->getSolicitudId($alumno_id)->first();
         return view('datosSolicitud.index')->with('solicitud',$getUser);
     }
-
+    public function NumeroBuscar(Solicitud $solicitud)
+    {
+        $solicitud = solicitud::all();
+        $usuarios = User::simplePaginate(5);
+        
+return view('filtrarNumero.index')->with('solicitudes',$solicitud)->with('usuarios',$usuarios);
+     
+    }  
 
 
 }

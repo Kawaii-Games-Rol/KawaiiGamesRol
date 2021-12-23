@@ -73,6 +73,7 @@ Route::middleware(['rutasJefeCarrera'])->group(function () {
     Route::get('Detalles3/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'AceptarOSolicitud'])->name('AceptarOSolicitud');
     Route::get('Detalles4/{alumno_id}/solicitud/{id}', [GestionSolicitudController::class, 'RechazarSolicitud'])->name('RechazarSolicitud');
 
+    Route::get('Numero', [FiltarSolicitudesController::class,'NumeroBuscar'])->name('NumeroBuscar');
 
     Route::get('estadisticas', [EstadisticasController::class, 'showEstadistica'])->name('estadisitica');
     Route::get('GestionSolicitud', [GestionSolicitudController::class, 'show'])->name('GestionSolicitud');
