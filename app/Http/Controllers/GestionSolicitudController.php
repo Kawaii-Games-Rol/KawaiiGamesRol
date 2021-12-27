@@ -14,21 +14,21 @@ class GestionSolicitudController extends Controller
     {
         $solicitud = solicitud::all();
         $usuarios = User::simplePaginate(5);
-       
+
         return view('GestionSolicitud.index')->with('solicitudes',$solicitud)->with('usuarios',$usuarios);
-    }  
+    }
     public function Resuelta(Solicitud $solicitud)
     {
         $solicitud = solicitud::all();
         $usuarios = User::simplePaginate(5);
-        
-        
+
+
 return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$usuarios);
-     
-    }  
-   
+
+    }
+
     public function Detalles2(String $id,String $alumno_id){
-       
+
         $getUser = User::where('id', $id)->firstOrFail()->getSolicitudId($alumno_id)->first();
         return view('Detalles.index')->with('solicitud',$getUser);
 
@@ -36,24 +36,24 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
     public function AceptarSolicitud(String $id, String $alumno_id){
 
         $array = [1,2,3,4,5,6];
-    
+
         $user = User::where('id','=', $id)->first();
         $user->solicitudes()->wherePivot('id', $alumno_id)->updateExistingPivot($array, [
             'estado' => 1
-           
+
         ]);
         $user->save();
         return redirect('/GestionSolicitud');
     }
-   
+
     public function AceptarOSolicitud(String $id, String $alumno_id){
 
         $array = [1,2,3,4,5,6];
-    
+
         $user = User::where('id','=', $id)->first();
         $user->solicitudes()->wherePivot('id', $alumno_id)->updateExistingPivot($array, [
             'estado' => 2
-           
+
         ]);
         $user->save();
         return redirect('/GestionSolicitud');
@@ -61,11 +61,11 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
     public function RechazarSolicitud(String $id, String $alumno_id){
 
         $array = [1,2,3,4,5,6];
-    
+
         $user = User::where('id','=', $id)->first();
         $user->solicitudes()->wherePivot('id', $alumno_id)->updateExistingPivot($array, [
             'estado' => 3
-           
+
         ]);
         $user->save();
         return redirect('/GestionSolicitud');
@@ -73,7 +73,7 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
 
     public function update(Request $request)
     {
-      
+
         $findUser = User::where('rut', $request->rut)->first();
         if (isset($findUser)) {
             if ($findUser->rol == "Alumno") {
@@ -91,7 +91,7 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
         $getUser = User::where('id', $id)->firstOrFail()->getSolicitudId($alumno_id)->first();
 
         $user = User::where('id',$id)->first();
-        
+
         return view('Detalles.index')->with('solicitud',$getUser)->with('user',$user);
     }
 
@@ -100,7 +100,7 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
         $getUser = User::where('id', $id)->firstOrFail()->getSolicitudId($alumno_id)->first();
 
         $user = User::where('id',$id)->first();
-        
+
         return view('Detalles2.index')->with('solicitud',$getUser)->with('user',$user);
     }
 
@@ -118,4 +118,30 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
 
     }
 
-}
+    public function update(Request $request,Solicitud $solicitud)
+    {
+        $jefeCarrera = Auth::user()->carrera_id;
+        $user= User::where('carrera_id', $jefeCarrera)->where('id', '!=', Auth::user()->id)->with('solicitudesActivas')->get();
+        //dd($request->estado);
+        //dd($request->observacionSolicitud);
+
+        foreach ($user as $usuario){
+            foreach ($usuario->solicitudesActivas as $solicitud){
+                if ($solicitud->getOriginal()['pivot_id'] == $request->id_solicitud) {
+                    $solicitud->pivot->estado = $request->resolverSolicitud;
+                    $solicitud->pivot->save();
+                    $observacion = $request->observacionSolicitud;
+
+                    if ($request->estado ==1){
+                        Mail::to($usuario->email)->send(new ResolucionSolicitudMail ($observacion,$solicitud));
+                    }
+                    else if ($request->estado ==2){
+                        Mail::to($usuario->email)->send(new ResolucionSolicitudMail ($observacion,$solicitud));
+                    }
+                    else{
+                        Mail::to($usuario->email)->send(new ResolucionSolicitudMail ($observacion,$solicitud));
+                    }
+                }
+            }
+        }
+    }
