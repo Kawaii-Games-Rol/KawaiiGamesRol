@@ -6,16 +6,22 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 class EstadisticasController extends Controller
+
+
 {
-    public function showEstadistica()
+    public function showEstadistica(Request $request)
     {
+
+        $fecha1= $request->Fecha1;
+        $fecha2= $request->Fecha2;
+        $fecha2 = date('Y-m-d', strtotime($fecha2 . ' + 1 days'));
+        $fecha1 = date('Y-m-d', strtotime($fecha1));
         $totalSolicitudes = 0;
         $totalPendiente = 0;
         $totalRechazada = 0;
         $totalAceptada = 0;
         $totalAceptadaObs = 0;
         $totalAnulada = 0;
-
         $cantTipo1 = 0;
         $cantTipo2 = 0;
         $cantTipo3 = 0;
@@ -23,25 +29,31 @@ class EstadisticasController extends Controller
         $cantTipo5 = 0;
         $cantTipo6 = 0;
 
-        $cantEnRango = 0;
-
-        $usuarios = User::where('rol', 'Alumno')->get();
-        foreach ($usuarios as $key => $usuario) {
-            foreach ($usuario->solicitudes as $key => $solicitud) {
+        $usuarios1= User::where('rol', 'Alumno')->get();
+        foreach($usuarios1 as $usuario){
+            foreach($usuario->solicitudes as  $solicitud){
                 $totalSolicitudes++;
-                $cantEnRango++;
+            }
+        }
+        $cantEnRango = 0;
+        $usuarios = User::where('rol', 'Alumno')->with(array('solicitudes' => function ($query) use ($fecha1, $fecha2) {
+            $query->wherePivot('created_at', '>=', $fecha1)->wherePivot('created_at', '<=', $fecha2);
+        }))->get();
+        foreach ($usuarios as $usuario) {
+            foreach ($usuario->solicitudes as  $solicitud) {
+                $cantEnRango ++;
                 switch ($solicitud->getOriginal()['pivot_estado']) {
                     case 0:
                         $totalPendiente++;
                         break;
                     case 1:
-                        $totalRechazada++;
-                        break;
-                    case 2:
                         $totalAceptada++;
                         break;
-                    case 3:
+                    case 2:
                         $totalAceptadaObs++;
+                        break;
+                    case 3:
+                        $totalRechazada++;
                         break;
                     case 4:
                         $totalAnulada++;
@@ -76,6 +88,30 @@ class EstadisticasController extends Controller
             }
         }
 
+        //si total solicitudes es 0, no hay solicitudes en ese rango de fechas
+        if($totalSolicitudes == 0)
+        {
+            $porcentajePendiente = 0;
+            $porcentajeRechazada = 0;
+            $porcentajeAceptada = 0;
+            $porcentajeAceptadaObs = 0;
+            $porcentajeAnulada = 0;
+        }
+        else
+        {
+            //porcentajePendiente con 1 decimal
+            $porcentajePendiente = round(($totalPendiente / $totalSolicitudes) * 100, 1);
+            //porcentajeRechazada con 1 decimal
+            $porcentajeRechazada = round(($totalRechazada / $totalSolicitudes) * 100, 1);
+            //porcentajeAceptada con 1 decimal
+            $porcentajeAceptada = round(($totalAceptada / $totalSolicitudes) * 100, 1);
+            //porcentajeAceptadaObs con 1 decimal
+            $porcentajeAceptadaObs = round(($totalAceptadaObs / $totalSolicitudes) * 100, 1);
+            //porcentajeAnulada con 1 decimal
+            $porcentajeAnulada = round(($totalAnulada / $totalSolicitudes) * 100, 1);
+        }
+
+
         return view('estadisticas.index')
             ->with('cantTipo1', $cantTipo1)
             ->with('cantTipo2', $cantTipo2)
@@ -88,7 +124,78 @@ class EstadisticasController extends Controller
             ->with('totalAceptada', $totalAceptada)
             ->with('totalAceptadaObs', $totalAceptadaObs)
             ->with('totalAnulada', $totalAnulada)
-            ->with('cantEnRango', $cantEnRango)
-            ;
+            ->with('totalSolicitudes', $totalSolicitudes)
+            ->with('porcentajePendiente', $porcentajePendiente)
+            ->with('porcentajeRechazada', $porcentajeRechazada)
+            ->with('porcentajeAceptada', $porcentajeAceptada)
+            ->with('porcentajeAceptadaObs', $porcentajeAceptadaObs)
+            ->with('porcentajeAnulada', $porcentajeAnulada)
+            ->with('cantEnRango', $cantEnRango);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }
