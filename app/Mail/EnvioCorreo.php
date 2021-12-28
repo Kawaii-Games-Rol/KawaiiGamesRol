@@ -6,21 +6,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\User;
 
 class EnvioCorreo extends Mailable
 {
     use Queueable, SerializesModels;
-    public $user;
-    public $alumno_id;
+     public $user;
+     public $solicitud;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user , $alumno_id)
+    public function __construct($id , $alumno_id)
     {
-        $this->$user = $user;
-        $this->alumno_id = $alumno_id;
+        $this->user = User::where('id', $id )->first();
+        $this->solicitud = $this->user->solicitudes()->wherePivot('id', $alumno_id )->first();
 
     }
 
@@ -31,18 +32,24 @@ class EnvioCorreo extends Mailable
      */
     public function build()
     {
-        {if ($user->solicitudes->pivot->estado == 0)
+        
+       if($this->solicitud->pivot->estado == 1){
+           return $this->view('correo.aprobada');
 
 
         }
-        {if ($user->solicitudes->pivot->estado == 1)
 
+        if($this->solicitud->pivot->estado == 2){
+            return $this->view('correo.aceptadaO');
         }
-        {if ($user->solicitudes->pivot->estado == 2)
 
-        }
-        {if ($user->solicitudes->pivot->estado == 3)
 
+        if($this->solicitud->pivot->estado == 3){
+            return $this->view('correo.rechazada');
         }
+
+
+
+
     }
 }

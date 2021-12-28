@@ -7,7 +7,8 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EnvioCorreo;
 class GestionSolicitudController extends Controller
 {
     public function show(Solicitud $solicitud)
@@ -43,8 +44,10 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
 
         ]);
         $user->save();
-        Mail::to($user->email)->send(new EnvioCorreo($user,$alumno_id));
+    
+        Mail::to($user->email)->send(new EnvioCorreo($id,$alumno_id));
         return redirect('/GestionSolicitud');
+        
     }
 
     public function AceptarOSolicitud(String $id, String $alumno_id){
@@ -57,7 +60,7 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
 
         ]);
         $user->save();
-        Mail::to($user->email)->send(new EnvioCorreo($user,$alumno_id));
+        Mail::to($user->email)->send(new EnvioCorreo($id,$alumno_id));
         return redirect('/GestionSolicitud');
     }
     public function RechazarSolicitud(String $id, String $alumno_id){
@@ -70,7 +73,7 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
 
         ]);
         $user->save();
-        Mail::to($user->email)->send(new EnvioCorreo($user,$alumno_id));
+        Mail::to($user->email)->send(new EnvioCorreo($id,$alumno_id));
         return redirect('/GestionSolicitud');
     }
 

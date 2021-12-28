@@ -12,7 +12,7 @@ class FiltarSolicitudesController extends Controller
     public function devolverSolicitud(Request $request){//devolver la solicitud segun el numero de solicitud
        
  
-   
+  
         $solicitud = solicitud::all();
         $usuarios = User::simplePaginate(5);
         
