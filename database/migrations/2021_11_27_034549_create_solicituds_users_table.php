@@ -17,7 +17,6 @@ class CreateSolicitudsUsersTable extends Migration
             $table->id();
             $table->string('telefono');
             $table->tinyInteger('estado')->default(0); //0: Pendiente, 1:Aceptada, 2:Aceptada con obs, 3:Rechazada, 4:anulada
-            $table->string('observacion')->nullable();
             //sobrecupo, cambio paralelo, eliminación e inscripción asignatura.
             $table->string('NRC')->nullable();
             $table->string('nombre_asignatura')->nullable();
