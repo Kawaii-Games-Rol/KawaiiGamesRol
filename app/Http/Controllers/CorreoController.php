@@ -11,7 +11,7 @@ class ResolucionSolicitudMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = 'Resoluvcion de Solicitud';
+    public $subject = 'Resolucion de Solicitud';
     public $info;
     public $observacion;
 

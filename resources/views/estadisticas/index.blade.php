@@ -33,7 +33,7 @@
 </div>
 <div class="col-lg-12 login-form">
                 <div class="col-lg-12 login-form">
-                    <form id="formulario" method="GET" action="{{ route('estadisitica') }}"
+                    <form id="formulario" method="GET" action="{{ route('estadistica') }}"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="container" >
@@ -63,7 +63,7 @@
 
                         <form id="formulario"
                             method="POST"
-                            action="{{ route('estadisitica') }}">
+                            action="{{ route('estadistica') }}">
                             @csrf
                             <div class="form-group">
                                 <label class="form-control-label">  </label>

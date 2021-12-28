@@ -71,21 +71,7 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
         return redirect('/GestionSolicitud');
     }
 
-    public function update(Request $request)
-    {
-
-        $findUser = User::where('rut', $request->rut)->first();
-        if (isset($findUser)) {
-            if ($findUser->rol == "Alumno") {
-                return redirect(route('postDetalles',['id' => $findUser->id]));
-            }else {
-                return redirect('buscarEstudiante')->with('error', 'Error.');
-            }
-        }else {
-            return redirect('buscarEstudiante')->with('error', 'Error.');
-        }
-    }
-
+    
     public function DatosSolicitud (String $id, String $alumno_id){
 
         $getUser = User::where('id', $id)->firstOrFail()->getSolicitudId($alumno_id)->first();
@@ -145,3 +131,4 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
             }
         }
     }
+}

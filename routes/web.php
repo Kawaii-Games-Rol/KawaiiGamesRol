@@ -77,6 +77,8 @@ Route::middleware(['rutasJefeCarrera'])->group(function () {
     Route::get('NUMERO', [FiltarSolicitudesController::class,'NumeroBuscar'])->name('NumeroBuscar');
 
     Route::get('estadisticas', [EstadisticasController::class, 'showEstadistica'])->name('estadisitica');
+    
+    Route::get('estadisticas2', [EstadisticasController::class, 'showEstadistica2'])->name('estadistica');
     Route::get('GestionSolicitud', [GestionSolicitudController::class, 'show'])->name('GestionSolicitud');
     Route::post('Aceptar',[GestionSolicitudController::class,'AceptarSolicitud'])->name('Aceptar');
     Route::get('Resuelta', [GestionSolicitudController::class, 'Resuelta'])->name('Resuelta');
