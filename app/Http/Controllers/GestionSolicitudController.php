@@ -43,6 +43,7 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
 
         ]);
         $user->save();
+        Mail::to($user->email)->send(new EnvioCorreo($user,$alumno_id));
         return redirect('/GestionSolicitud');
     }
 
@@ -56,6 +57,7 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
 
         ]);
         $user->save();
+        Mail::to($user->email)->send(new EnvioCorreo($user,$alumno_id));
         return redirect('/GestionSolicitud');
     }
     public function RechazarSolicitud(String $id, String $alumno_id){
@@ -68,6 +70,7 @@ return view('Resuelta.index')->with('solicitudes',$solicitud)->with('usuarios',$
 
         ]);
         $user->save();
+        Mail::to($user->email)->send(new EnvioCorreo($user,$alumno_id));
         return redirect('/GestionSolicitud');
     }
 
